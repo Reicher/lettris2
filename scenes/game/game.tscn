@@ -1,0 +1,96 @@
+[gd_scene load_steps=6 format=3 uid="uid://2dcfqcb5ygdl"]
+
+[ext_resource type="Texture2D" uid="uid://boqojdjk5ql7v" path="res://assets/mall.png" id="1_00amt"]
+[ext_resource type="Texture2D" uid="uid://ba8p53yw0mhrx" path="res://assets/spritesheet.png" id="1_uhmel"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_omyno"]
+atlas = ExtResource("1_uhmel")
+region = Rect2(0, 0, 480, 800)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ax43"]
+atlas = ExtResource("1_uhmel")
+region = Rect2(0, 801, 480, 200)
+
+[sub_resource type="GDScript" id="GDScript_byvro"]
+script/source = "extends Node2D
+
+# Define the Box scene to instantiate
+var box_scene = preload(\"res://scenes/basebox.tscn\")
+var rng = RandomNumberGenerator.new()
+
+func _ready():
+	# Start the timer when the scene is ready
+	box_scene = load(\"res://scenes/basebox.tscn\")
+	$Timer.start()
+
+func _on_timer_timeout():
+	# Get the viewport width and height
+	var viewport_rect = get_viewport_rect()
+	var viewport_width = viewport_rect.size.x
+
+	# Generate random coordinates within the viewport width
+	var random_pos = Vector2(rng.randf_range(0, viewport_width), -30)
+	
+	# Instantiate the Box scene at the random position
+	var box_instance = box_scene.instance()	
+	add_child(box_instance)
+
+	# Set the position of the \"box\" node
+	box_instance.position = random_pos
+	
+	# Add the instantiated scene to the current scene
+	add_child(box_instance)
+	
+	print(\"Creating box!\")
+
+"
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Mall" type="TextureRect" parent="."]
+visible = false
+offset_right = 540.0
+offset_bottom = 960.0
+texture = ExtResource("1_00amt")
+expand_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="background" type="TextureRect" parent="Panel"]
+texture_filter = 1
+layout_mode = 2
+offset_right = 540.0
+offset_bottom = 760.0
+size_flags_vertical = 3
+texture = SubResource("AtlasTexture_omyno")
+expand_mode = 1
+
+[node name="UI" type="TextureRect" parent="Panel"]
+texture_filter = 1
+layout_mode = 2
+offset_top = 760.0
+offset_right = 540.0
+offset_bottom = 960.0
+size_flags_vertical = 8
+texture = SubResource("AtlasTexture_4ax43")
+expand_mode = 1
+
+[node name="floor and walls" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="floor and walls"]
+polygon = PackedVector2Array(0, 0, 0, 760, 540, 760, 540, 0, 560, 780, -30, 781)
+
+[node name="BoxGenerator2" type="Node2D" parent="."]
+script = SubResource("GDScript_byvro")
+
+[node name="Timer" type="Timer" parent="BoxGenerator2"]
+
+[connection signal="timeout" from="BoxGenerator2/Timer" to="BoxGenerator2" method="_on_timer_timeout"]
