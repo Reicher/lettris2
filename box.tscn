@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://dxw5co5ucfkeo"]
+
+[ext_resource type="Script" path="res://box.gd" id="1_7tbs5"]
+[ext_resource type="Texture2D" uid="uid://86ey3tglhxfq" path="res://assets/spritesheet.png" id="1_f42ex"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uml43"]
+atlas = ExtResource("1_f42ex")
+region = Rect2(1129, 1295, 80, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kivvd"]
+size = Vector2(80, 80)
+
+[sub_resource type="LabelSettings" id="LabelSettings_g6a4k"]
+font_size = 45
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_3jls4"]
+font_size = 17
+font_color = Color(0, 0, 0, 1)
+
+[node name="box" type="RigidBody2D"]
+position = Vector2(0, -2)
+script = ExtResource("1_7tbs5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = SubResource("AtlasTexture_uml43")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_kivvd")
+
+[node name="Letter" type="Label" parent="."]
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+text = "A"
+label_settings = SubResource("LabelSettings_g6a4k")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Value" type="Label" parent="."]
+offset_left = 17.0
+offset_top = 16.0
+offset_right = 40.0
+offset_bottom = 40.0
+text = "1"
+label_settings = SubResource("LabelSettings_3jls4")
+horizontal_alignment = 1

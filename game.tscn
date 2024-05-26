@@ -1,49 +1,16 @@
 [gd_scene load_steps=6 format=3 uid="uid://2dcfqcb5ygdl"]
 
-[ext_resource type="Texture2D" uid="uid://boqojdjk5ql7v" path="res://assets/mall.png" id="1_00amt"]
-[ext_resource type="Texture2D" uid="uid://ba8p53yw0mhrx" path="res://assets/spritesheet.png" id="1_uhmel"]
+[ext_resource type="Texture2D" uid="uid://whxsdiyncy77" path="res://assets/mall.png" id="1_wrcy1"]
+[ext_resource type="Texture2D" uid="uid://86ey3tglhxfq" path="res://assets/spritesheet.png" id="2_t8dp4"]
+[ext_resource type="Script" path="res://BoxGenerator2.gd" id="3_vw3vm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_omyno"]
-atlas = ExtResource("1_uhmel")
+atlas = ExtResource("2_t8dp4")
 region = Rect2(0, 0, 480, 800)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4ax43"]
-atlas = ExtResource("1_uhmel")
+atlas = ExtResource("2_t8dp4")
 region = Rect2(0, 801, 480, 200)
-
-[sub_resource type="GDScript" id="GDScript_byvro"]
-script/source = "extends Node2D
-
-# Define the Box scene to instantiate
-var box_scene = preload(\"res://scenes/basebox.tscn\")
-var rng = RandomNumberGenerator.new()
-
-func _ready():
-	# Start the timer when the scene is ready
-	box_scene = load(\"res://scenes/basebox.tscn\")
-	$Timer.start()
-
-func _on_timer_timeout():
-	# Get the viewport width and height
-	var viewport_rect = get_viewport_rect()
-	var viewport_width = viewport_rect.size.x
-
-	# Generate random coordinates within the viewport width
-	var random_pos = Vector2(rng.randf_range(0, viewport_width), -30)
-	
-	# Instantiate the Box scene at the random position
-	var box_instance = box_scene.instance()	
-	add_child(box_instance)
-
-	# Set the position of the \"box\" node
-	box_instance.position = random_pos
-	
-	# Add the instantiated scene to the current scene
-	add_child(box_instance)
-	
-	print(\"Creating box!\")
-
-"
 
 [node name="Node2D" type="Node2D"]
 
@@ -51,7 +18,7 @@ func _on_timer_timeout():
 visible = false
 offset_right = 540.0
 offset_bottom = 960.0
-texture = ExtResource("1_00amt")
+texture = ExtResource("1_wrcy1")
 expand_mode = 1
 metadata/_edit_lock_ = true
 
@@ -89,8 +56,9 @@ expand_mode = 1
 polygon = PackedVector2Array(0, 0, 0, 760, 540, 760, 540, 0, 560, 780, -30, 781)
 
 [node name="BoxGenerator2" type="Node2D" parent="."]
-script = SubResource("GDScript_byvro")
+script = ExtResource("3_vw3vm")
 
 [node name="Timer" type="Timer" parent="BoxGenerator2"]
+autostart = true
 
 [connection signal="timeout" from="BoxGenerator2/Timer" to="BoxGenerator2" method="_on_timer_timeout"]
