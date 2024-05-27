@@ -7,12 +7,14 @@ var letterValues = {
 	'Y': 4, 'Z': 10
 }
 
-# Called when the node enters the scene tree for the first time.
+var selected = false
+
 func _ready():
 	var randomLetter = letterValues.keys()[randi() % letterValues.size()]
 	$Letter.text = randomLetter
 	$Value.text = str(letterValues[randomLetter])
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func _on_texture_button_pressed():
+	selected = not selected
+	print("You clicked on box " + $Letter.text + ", visibile: " + str(selected))
+	$Selected.visible  = selected

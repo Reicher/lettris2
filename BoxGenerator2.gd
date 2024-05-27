@@ -21,6 +21,3 @@ func _on_timer_timeout():
 	
 	# Add the instantiated scene to the current scene
 	add_child(box)
-	
-	print("Creating box!")
-
