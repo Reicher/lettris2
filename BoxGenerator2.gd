@@ -12,12 +12,20 @@ func _on_timer_timeout():
 	var viewport_rect = get_viewport_rect()
 	var viewport_width = viewport_rect.size.x
 
-	# Generate random coordinates within the viewport width
-	var random_pos = Vector2(rng.randf_range(0, viewport_width), -30)
-	
 	# Instantiate the Box scene at the random position
 	var box = box_scene.instantiate()	
-	box.position = random_pos
 	
+	# Generate random coordinates within the viewport width
+	box.position = Vector2(rng.randf_range(0, viewport_width), -30)
+	
+	# Ensure the UI node is correctly referenced
+	var ui_node = get_node("../Panel/UI")
+	if ui_node == null:
+		print("UI node not found!")
+		return
+	
+	# Connect signals
+	box.clicked.connect(ui_node.box_clicked)
+
 	# Add the instantiated scene to the current scene
 	add_child(box)
