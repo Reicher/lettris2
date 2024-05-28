@@ -10,9 +10,19 @@ var letterValues = {
 	'Q': 10, 'R': 1, 'S': 1, 'T': 1, 'U': 1, 'V': 4, 'W': 4, 'X': 8,
 	'Y': 4, 'Z': 10
 }
-
+var weightedList = [] # Used for deciding how often a letter should appear
+	
 func _ready():
 	box_scene = load("res://box.tscn")
+	
+	# Create a list where each letter appears a number of times equal to its weight
+	for letter in letterValues:
+		for i in int(10 / letterValues[letter]):
+			weightedList.append(letter)
+	
+func _get_semi_random_letter():
+	# Select a random element from the weighted list
+	return weightedList[randi() % weightedList.size()]
 
 # A new box should be created
 func _on_timer_timeout():
@@ -31,7 +41,7 @@ func _on_timer_timeout():
 	# Generate parameters for the box
 	var x_bounds = Vector2(box.size[0]/2, viewport_width - box.size[0]/2)
 	box.position = Vector2(rng.randf_range(x_bounds[0], x_bounds[1]), -30)
-	box.letter = letterValues.keys()[randi() % letterValues.size()]
+	box.letter = _get_semi_random_letter()
 	box.value = letterValues[box.letter]
 	
 	# Ensure the UI node is correctly referenced
