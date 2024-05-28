@@ -27,3 +27,7 @@ func _on_texture_button_pressed():
 func select(status):
 	selected = status
 	$Selected.visible  = selected
+
+func destory():
+	print("Removing box " + letter)
+	queue_free()
