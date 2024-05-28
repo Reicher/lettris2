@@ -37,12 +37,12 @@ region = Rect2(1000, 1203, 102, 82)
 font_size = 36
 font_color = Color(0, 0, 0, 1)
 
-[node name="Node2D" type="Node2D"]
+[node name="Game" type="Node2D"]
 
 [node name="floor and walls" type="StaticBody2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="floor and walls"]
-polygon = PackedVector2Array(0, 0, 0, 760, 540, 760, 540, 0, 560, 780, -30, 781)
+polygon = PackedVector2Array(0, -120, 0, 760, 540, 760, 540, -120, 560, 780, -30, 780)
 
 [node name="Panel" type="Panel" parent="."]
 anchors_preset = 15
