@@ -28,6 +28,6 @@ func select(status):
 	selected = status
 	$Selected.visible  = selected
 
-func destory():
+func destroy():
 	print("Removing box " + letter)
 	queue_free()

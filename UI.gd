@@ -1,21 +1,33 @@
 extends TextureRect
 
-var boxes = []
+var dictionary = []
+var selected_boxes = []
 var word = ""
 var word_points = 0
 var score = 0
 
+func load_word_list(file_path):	
+	# Open the text file
+	var file = FileAccess.open(file_path, FileAccess.READ)
+	var minimum_length = 2 # All words needs to be atleast 3 char long
+	while not file.eof_reached():
+		var word = file.get_line()
+		if len(word) > minimum_length:
+			dictionary.append(word)
+	file.close()
+	print("Loaded " + str(len(dictionary)) + " words into dictionary")
+
 func _ready():
-	get_node("Confirm/Word").text = word # 
-	get_node("Score").text = str(score)
+	load_word_list("res://assets/words_alpha.txt" )
+	
+	update_word_display()
+	update_score_display()
 
 func box_clicked(box):
-	#print("Box (" + box.letter + ", " + str(box.value) + ") clicked")
-
-	if box.selected and box not in boxes:
-		boxes.append(box)
-	elif box in boxes:
-		boxes.erase(box)
+	if box.selected and box not in selected_boxes:
+		selected_boxes.append(box)
+	elif box in selected_boxes:
+		selected_boxes.erase(box)
 	else:
 		print("Something is very off...")
 	
@@ -24,31 +36,33 @@ func box_clicked(box):
 func _update_word():
 	word = ""
 	word_points = 0
-	for box in boxes:
+	for box in selected_boxes:
 		word += box.letter
 		word_points += box.value
-	get_node("Confirm/Word").text = word
+	update_word_display()
 
-func _on_clear_pressed():	
-	for box in boxes:
+func _on_clear_pressed():
+	for box in selected_boxes:
 		box.select(false)
-	boxes.clear()
+	selected_boxes.clear()
 	_update_word()
-	print("cleared " + str(len(boxes)) + " boxes")
 
 func _on_confirm_pressed():
-	var word_valid = true
-	if not word_valid:
-		# notify in some way
+	var word_valid = true  # Add your validation logic here
+	if not dictionary.has(word.to_lower()):
+		print(word + " not in wordlist")
 		return
-		
+
 	score += word_points
-	get_node("Score").text = str(score)
+	update_score_display()
 	print(score)
-	for box in boxes:
-		box.destory()
-	boxes.clear()
+	for box in selected_boxes:
+		box.destroy()
+	selected_boxes.clear()
 	_update_word()
-	print("Removed " + str(len(boxes)) + " boxes")
-		
-		
+
+func update_word_display():
+	get_node("Confirm/Word").text = word
+
+func update_score_display():
+	get_node("Score").text = str(score)
