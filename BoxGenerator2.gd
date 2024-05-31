@@ -1,7 +1,11 @@
 extends Node2D
 
-# Define the Box scene to instantiate
-var box_scene
+# Preload the box scenes
+var Normal = preload("res://boxes/basebox.tscn")
+var Silver = preload("res://boxes/silver.tscn")
+var Gold = preload("res://boxes/gold.tscn")
+var Ball = preload("res://boxes/ball.tscn")
+
 var rng = RandomNumberGenerator.new()
 
 var letterValues = {
@@ -13,8 +17,6 @@ var letterValues = {
 var weightedList = [] # Used for deciding how often a letter should appear
 	
 func _ready():
-	box_scene = load("res://box.tscn")
-	
 	# Create a list where each letter appears a number of times equal to its weight
 	for letter in letterValues:
 		for i in int(10 / letterValues[letter]):
@@ -23,6 +25,10 @@ func _ready():
 func _get_semi_random_letter():
 	# Select a random element from the weighted list
 	return weightedList[randi() % weightedList.size()]
+	
+func _get_next_box_type():
+	var box_types = [Normal, Silver, Gold, Ball]	
+	return box_types[randi() % box_types.size()]
 
 # A new box should be created
 func _on_timer_timeout():
@@ -35,8 +41,7 @@ func _on_timer_timeout():
 		if child.name != "Timer" and child.position.y < 0:
 			print("Game over")
 
-	# Instantiate the Box scene at the random position
-	var box = box_scene.instantiate()	
+	var box = _get_next_box_type().instantiate()	
 	
 	# Generate parameters for the box
 	var x_bounds = Vector2(box.size[0]/2, viewport_width - box.size[0]/2)

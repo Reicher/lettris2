@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://bpyhyqrplwfil"]
+
+[ext_resource type="PackedScene" uid="uid://dxw5co5ucfkeo" path="res://boxes/basebox.tscn" id="1_ooeul"]
+[ext_resource type="Texture2D" uid="uid://86ey3tglhxfq" path="res://assets/spritesheet.png" id="2_5gull"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lysr3"]
+atlas = ExtResource("2_5gull")
+region = Rect2(886, 1295, 80, 80)
+
+[node name="box" instance=ExtResource("1_ooeul")]
+multiplier = 2
+
+[node name="Texture" parent="." index="1"]
+texture_normal = SubResource("AtlasTexture_lysr3")

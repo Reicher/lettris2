@@ -5,10 +5,13 @@ signal clicked(box)
 var selected = false
 var letter = " "
 var value = 0
-var size = Vector2(80, 80) # Needs to be set dynamically later
+@export var multiplier = 1
+var size = Vector2(80, 80) # TODO: Needs to be set dynamically
 
 func _ready():
 	$Letter.text = letter
+	value *= multiplier
+	print("Value for " + letter + " is " + str(value) + " (multi x" + str(multiplier) + ")")
 	$Value.text = str(value)
 
 func _on_texture_button_pressed():
