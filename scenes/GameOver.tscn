@@ -1,0 +1,106 @@
+[gd_scene load_steps=8 format=3 uid="uid://cap2k70wpcutv"]
+
+[ext_resource type="Script" path="res://scripts/GameOver.gd" id="1_n6qrp"]
+[ext_resource type="Texture2D" uid="uid://86ey3tglhxfq" path="res://assets/spritesheet.png" id="2_8l1g2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vcqva"]
+atlas = ExtResource("2_8l1g2")
+region = Rect2(0, 0, 480, 800)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s630e"]
+atlas = ExtResource("2_8l1g2")
+region = Rect2(481, 0, 380, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_whrtb"]
+atlas = ExtResource("2_8l1g2")
+region = Rect2(862, 750, 213, 177)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x0vmf"]
+atlas = ExtResource("2_8l1g2")
+region = Rect2(862, 662, 269, 87)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vxulk"]
+atlas = ExtResource("2_8l1g2")
+region = Rect2(862, 927, 210, 70)
+
+[node name="GameOver" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_n6qrp")
+
+[node name="background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_vcqva")
+
+[node name="Outer Margin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="Inner Margin" type="MarginContainer" parent="Outer Margin"]
+layout_mode = 2
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_bottom = 20
+
+[node name="box" type="TextureRect" parent="Outer Margin/Inner Margin"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_s630e")
+
+[node name="Most inner" type="MarginContainer" parent="Outer Margin/Inner Margin"]
+layout_mode = 2
+theme_override_constants/margin_top = 75
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Outer Margin/Inner Margin/Most inner"]
+layout_mode = 2
+
+[node name="TentBack" type="TextureRect" parent="Outer Margin/Inner Margin/Most inner/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_whrtb")
+
+[node name="Title" type="TextureRect" parent="Outer Margin"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = SubResource("AtlasTexture_x0vmf")
+
+[node name="TextureButton" type="TextureButton" parent="Outer Margin"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+texture_normal = SubResource("AtlasTexture_vxulk")
+
+[node name="Label" type="Label" parent="Outer Margin/TextureButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -44.0
+offset_top = -11.5
+offset_right = 44.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Main Menu"
+
+[connection signal="pressed" from="Outer Margin/TextureButton" to="." method="_on_texture_button_pressed"]

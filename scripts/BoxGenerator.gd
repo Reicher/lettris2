@@ -39,7 +39,7 @@ func _on_timer_timeout():
 	# Check if any box is above the visible screen
 	for child in get_children():
 		if child.name != "Timer" and child.position.y < 0:
-			print("Game over")
+			get_tree().change_scene_to_file("res://scenes/GameOver.tscn")
 
 	var box = _get_next_box_type().instantiate()	
 	

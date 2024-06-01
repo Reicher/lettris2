@@ -131,6 +131,7 @@ autostart = true
 
 [node name="Mall" type="TextureRect" parent="."]
 visible = false
+layout_mode = 0
 offset_right = 540.0
 offset_bottom = 960.0
 texture = ExtResource("1_wrcy1")
