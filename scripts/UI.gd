@@ -18,7 +18,7 @@ func load_word_list(file_path):
 	print("Loaded " + str(len(dictionary)) + " words into dictionary")
 
 func _ready():
-	load_word_list("res://assets/words_alpha.txt" )
+	load_word_list("res://assets/words_alpha.txt")
 	
 	update_word_display()
 	update_score_display()

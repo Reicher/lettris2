@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://d0ge5uagl5lv5"]
+[gd_scene load_steps=6 format=3 uid="uid://d0ge5uagl5lv5"]
 
-[ext_resource type="PackedScene" uid="uid://dxw5co5ucfkeo" path="res://boxes/basebox.tscn" id="1_2jfjb"]
+[ext_resource type="PackedScene" uid="uid://dxw5co5ucfkeo" path="res://scenes/boxes/Basebox.tscn" id="1_2jfjb"]
+[ext_resource type="Script" path="res://scripts/Basebox.gd" id="2_ee16v"]
 [ext_resource type="Texture2D" uid="uid://86ey3tglhxfq" path="res://assets/spritesheet.png" id="2_vvg21"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_eody5"]
@@ -11,6 +12,7 @@ atlas = ExtResource("2_vvg21")
 region = Rect2(1383, 1149, 100, 100)
 
 [node name="box" instance=ExtResource("1_2jfjb")]
+script = ExtResource("2_ee16v")
 
 [node name="Shape" parent="." index="0"]
 shape = SubResource("CircleShape2D_eody5")

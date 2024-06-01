@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bpyhyqrplwfil"]
 
-[ext_resource type="PackedScene" uid="uid://dxw5co5ucfkeo" path="res://boxes/basebox.tscn" id="1_ooeul"]
+[ext_resource type="PackedScene" uid="uid://dxw5co5ucfkeo" path="res://scenes/boxes/Basebox.tscn" id="1_ooeul"]
 [ext_resource type="Texture2D" uid="uid://86ey3tglhxfq" path="res://assets/spritesheet.png" id="2_5gull"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lysr3"]

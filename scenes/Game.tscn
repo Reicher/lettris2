@@ -1,9 +1,9 @@
 [gd_scene load_steps=13 format=3 uid="uid://2dcfqcb5ygdl"]
 
 [ext_resource type="Texture2D" uid="uid://whxsdiyncy77" path="res://assets/mall.png" id="1_wrcy1"]
-[ext_resource type="Script" path="res://UI.gd" id="2_7wf87"]
+[ext_resource type="Script" path="res://scripts/UI.gd" id="2_8nee1"]
 [ext_resource type="Texture2D" uid="uid://86ey3tglhxfq" path="res://assets/spritesheet.png" id="2_t8dp4"]
-[ext_resource type="Script" path="res://BoxGenerator2.gd" id="3_vw3vm"]
+[ext_resource type="Script" path="res://scripts/BoxGenerator.gd" id="3_isv3v"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_omyno"]
 atlas = ExtResource("2_t8dp4")
@@ -37,7 +37,13 @@ region = Rect2(1000, 1203, 102, 82)
 font_size = 36
 font_color = Color(0, 0, 0, 1)
 
-[node name="Game" type="Node2D"]
+[node name="Game" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="floor and walls" type="StaticBody2D" parent="."]
 
@@ -45,6 +51,7 @@ font_color = Color(0, 0, 0, 1)
 polygon = PackedVector2Array(0, -120, 0, 760, 540, 760, 540, -120, 560, 780, -30, 780)
 
 [node name="Panel" type="Panel" parent="."]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -55,23 +62,27 @@ size_flags_vertical = 3
 
 [node name="background" type="TextureRect" parent="Panel"]
 texture_filter = 1
-layout_mode = 2
-offset_right = 540.0
-offset_bottom = 760.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_vertical = 3
 texture = SubResource("AtlasTexture_omyno")
-expand_mode = 1
 
 [node name="UI" type="TextureRect" parent="Panel"]
 texture_filter = 1
-layout_mode = 2
-offset_top = 760.0
-offset_right = 540.0
-offset_bottom = 960.0
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
 size_flags_vertical = 8
 texture = SubResource("AtlasTexture_4ax43")
-expand_mode = 1
-script = ExtResource("2_7wf87")
+script = ExtResource("2_8nee1")
 
 [node name="Confirm" type="TextureButton" parent="Panel/UI"]
 layout_mode = 0
@@ -113,7 +124,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="BoxGenerator" type="Node2D" parent="."]
-script = ExtResource("3_vw3vm")
+script = ExtResource("3_isv3v")
 
 [node name="Timer" type="Timer" parent="BoxGenerator"]
 autostart = true

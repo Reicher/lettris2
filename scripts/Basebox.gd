@@ -2,10 +2,11 @@ extends RigidBody2D
 
 signal clicked(box)
 
+@export var multiplier = 1
+
 var selected = false
 var letter = " "
 var value = 0
-@export var multiplier = 1
 var size = Vector2(80, 80) # TODO: Needs to be set dynamically
 
 func _ready():

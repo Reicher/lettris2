@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://dxw5co5ucfkeo"]
 
-[ext_resource type="Script" path="res://boxes/basebox.gd" id="1_63acf"]
+[ext_resource type="Script" path="res://scripts/Basebox.gd" id="1_jem35"]
 [ext_resource type="Texture2D" uid="uid://86ey3tglhxfq" path="res://assets/spritesheet.png" id="2_1x50m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kivvd"]
@@ -20,7 +20,7 @@ font_color = Color(0, 0, 0, 1)
 
 [node name="box" type="RigidBody2D"]
 position = Vector2(0, -2)
-script = ExtResource("1_63acf")
+script = ExtResource("1_jem35")
 
 [node name="Shape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_kivvd")

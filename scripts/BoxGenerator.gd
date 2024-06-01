@@ -1,10 +1,10 @@
 extends Node2D
 
 # Preload the box scenes
-var Normal = preload("res://boxes/basebox.tscn")
-var Silver = preload("res://boxes/silver.tscn")
-var Gold = preload("res://boxes/gold.tscn")
-var Ball = preload("res://boxes/ball.tscn")
+var Normal = preload("res://scenes/boxes/Basebox.tscn")
+var Silver = preload("res://scenes/boxes/Silver.tscn")
+var Gold = preload("res://scenes/boxes/Gold.tscn")
+var Ball = preload("res://scenes/boxes/Ball.tscn")
 
 var rng = RandomNumberGenerator.new()
 
