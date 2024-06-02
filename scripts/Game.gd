@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 
 # Preload the box scenes
 var Normal = preload("res://scenes/boxes/Basebox.tscn")
@@ -50,7 +50,7 @@ func _on_timer_timeout():
 	box.value = letterValues[box.letter]
 	
 	# Ensure the UI node is correctly referenced
-	var ui_node = get_node("../Panel/UI")
+	var ui_node = get_node("Panel/UI")
 
 	# Connect signals
 	box.clicked.connect(ui_node.box_clicked)

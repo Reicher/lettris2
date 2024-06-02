@@ -5,6 +5,7 @@ var selected_boxes = []
 var word = ""
 var word_points = 0
 var score = 0
+var level = 1
 
 func load_word_list(file_path):	
 	# Open the text file
@@ -60,9 +61,14 @@ func _on_confirm_pressed():
 		box.destroy()
 	selected_boxes.clear()
 	_update_word()
+	
+	level = 1 + int(score / 10)
+	get_node("Level").text = "Level: " + str(level)
+	get_node("Score").text = str(score)
 
 func update_word_display():
 	get_node("Confirm/Word").text = word
+	get_node("Confirm/Word/Value").text = str(word_points)
 
 func update_score_display():
 	get_node("Score").text = str(score)
