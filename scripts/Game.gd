@@ -7,35 +7,29 @@ var Gold = preload("res://scenes/boxes/Gold.tscn")
 var Ball = preload("res://scenes/boxes/Ball.tscn")
 
 var rng = RandomNumberGenerator.new()
+var dictionary = []
 
-var letterData = {
-	'A': { 'value': 1, 'quantity': 9 },  'B': { 'value': 3, 'quantity': 2 },
-	'C': { 'value': 3, 'quantity': 2 },  'D': { 'value': 2, 'quantity': 4 },
-	'E': { 'value': 1, 'quantity': 12 }, 'F': { 'value': 4, 'quantity': 2 },
-	'G': { 'value': 2, 'quantity': 3 },  'H': { 'value': 4, 'quantity': 2 },
-	'I': { 'value': 1, 'quantity': 9 },  'J': { 'value': 8, 'quantity': 1 },
-	'K': { 'value': 5, 'quantity': 1 },  'L': { 'value': 1, 'quantity': 4 },
-	'M': { 'value': 3, 'quantity': 2 },  'N': { 'value': 1, 'quantity': 6 },
-	'O': { 'value': 1, 'quantity': 8 },  'P': { 'value': 3, 'quantity': 2 },
-	'Q': { 'value': 10, 'quantity': 1 }, 'R': { 'value': 1, 'quantity': 6 },
-	'S': { 'value': 1, 'quantity': 4 },  'T': { 'value': 1, 'quantity': 6 },
-	'U': { 'value': 1, 'quantity': 4 },  'V': { 'value': 4, 'quantity': 2 },
-	'W': { 'value': 4, 'quantity': 2 },  'X': { 'value': 8, 'quantity': 1 },
-	'Y': { 'value': 4, 'quantity': 2 },  'Z': { 'value': 10, 'quantity': 1 }
-}
+var selected_boxes = []
+var CurrentWord = ""
+
+var score = 0
+var level = 1
+
+func load_word_list(file_path):	
+	# Open the text file
+	var file = FileAccess.open(file_path, FileAccess.READ)
+	var minimum_length = 2 # All words needs to be atleast 3 char long
+	while not file.eof_reached():
+		var word = file.get_line()
+		if len(word) > minimum_length:
+			dictionary.append(word)
+	file.close()
+	print("Loaded " + str(len(dictionary)) + " words into dictionary")
 
 func _ready():
-	pass
-	
-func _get_semi_random_letter():
-	var random_number = randi() % (98 - 1) # Number of letter tiles
-	var count = 0
-	
-	# Find the letter corresponding to the random_number
-	for letter in letterData.keys():
-		count += letterData[letter]['quantity']
-		if count > random_number:
-			return letter
+	load_word_list("res://assets/words_alpha.txt")	
+	_update_word()
+	_update_score(0)
 	
 func _get_next_box_type():
 	var box_types = [Normal, Silver, Gold, Ball]	
@@ -47,7 +41,7 @@ func _on_timer_timeout():
 	var viewport_rect = get_viewport_rect()
 	var viewport_width = viewport_rect.size.x
 
-	# Check if any box is above the visible screen
+	# Check if any box is above the visible screen ( must be possible in some nicer way?)
 	for child in get_children():
 		if child.name != "Timer" and child.position.y < 0:
 			get_tree().change_scene_to_file("res://scenes/GameOver.tscn")
@@ -57,12 +51,52 @@ func _on_timer_timeout():
 	# Generate parameters for the box
 	var x_bounds = Vector2(box.size[0]/2, viewport_width - box.size[0]/2)
 	box.position = Vector2(rng.randf_range(x_bounds[0], x_bounds[1]), -30)
-	box.letter = _get_semi_random_letter()
-	box.value = letterData[box.letter].value
-	
-	# Connect box click to UI
-	var ui_node = get_node("Panel/UI")
-	box.clicked.connect(ui_node.box_clicked)
+	box.clicked.connect(box_clicked)
 
-	# Add the instantiated scene to the current scene
 	add_child(box)
+
+func box_clicked(box):
+	if box.selected and box not in selected_boxes:
+		selected_boxes.append(box)
+	elif box in selected_boxes:
+		selected_boxes.erase(box)
+	else:
+		print("Something is very off...")
+	
+	_update_word()
+
+func _on_clear_pressed():
+	for box in selected_boxes:
+		box.select(false)
+	selected_boxes.clear()
+	_update_word()
+
+func _on_confirm_pressed():
+	if not dictionary.has(CurrentWord.to_lower()):
+		return
+
+	var points = 0
+	for box in selected_boxes:
+		points += box.value
+		box.destroy()
+	selected_boxes.clear()
+	
+	_update_word()
+	_update_score(points)
+	
+func _update_word():
+	CurrentWord = ""
+	var points = 0
+	for box in selected_boxes:
+		CurrentWord += box.letter
+		points += box.value
+	
+	get_node("GameArea/UI/Confirm/Word/Value").text = str(points) if points != 0 else ""
+	get_node("GameArea/UI/Confirm/Word").text = CurrentWord
+
+func _update_score(points):
+	score += points
+	level = 1 + int(score / 10)
+	
+	get_node("GameArea/UI/Score").text = str(score)	
+	get_node("GameArea/UI/Level").text = "Level: " + str(level)
