@@ -41,10 +41,8 @@ func _ready():
 	value *= multiplier
 	$Letter.text = letter		
 	$Value.text = str(value)
-	print("Crated  " + letter + " with value " + str(value) + " (multi " + str(multiplier) +  ")")
 
 func _on_texture_button_pressed():
-	print("You clicked on box " + letter)
 	select(not selected)
 	clicked.emit(self)
 	
@@ -53,5 +51,4 @@ func select(status):
 	$Selected.visible  = selected
 
 func destroy():
-	print("Removing box " + letter)
 	queue_free()

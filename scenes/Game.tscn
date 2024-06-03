@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://2dcfqcb5ygdl"]
+[gd_scene load_steps=15 format=3 uid="uid://2dcfqcb5ygdl"]
 
 [ext_resource type="Script" path="res://scripts/Game.gd" id="1_h8g5s"]
 [ext_resource type="Texture2D" uid="uid://whxsdiyncy77" path="res://assets/mall.png" id="1_wrcy1"]
 [ext_resource type="Texture2D" uid="uid://86ey3tglhxfq" path="res://assets/spritesheet.png" id="2_t8dp4"]
+[ext_resource type="PackedScene" uid="uid://dxw5co5ucfkeo" path="res://scenes/boxes/Basebox.tscn" id="4_emqsv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_omyno"]
 atlas = ExtResource("2_t8dp4")
@@ -146,6 +147,26 @@ offset_bottom = 168.0
 text = "Level: 1"
 label_settings = SubResource("LabelSettings_6b4gm")
 
+[node name="StartBoxes" type="Node" parent="GameArea"]
+
+[node name="box" parent="GameArea/StartBoxes" instance=ExtResource("4_emqsv")]
+position = Vector2(96, 720)
+
+[node name="box2" parent="GameArea/StartBoxes" instance=ExtResource("4_emqsv")]
+position = Vector2(198, 719)
+
+[node name="box3" parent="GameArea/StartBoxes" instance=ExtResource("4_emqsv")]
+position = Vector2(147, 637)
+
+[node name="box4" parent="GameArea/StartBoxes" instance=ExtResource("4_emqsv")]
+position = Vector2(316, 719)
+
+[node name="box5" parent="GameArea/StartBoxes" instance=ExtResource("4_emqsv")]
+position = Vector2(398, 720)
+
+[node name="box6" parent="GameArea/StartBoxes" instance=ExtResource("4_emqsv")]
+position = Vector2(480, 720)
+
 [node name="floor and walls" type="StaticBody2D" parent="GameArea"]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="GameArea/floor and walls"]
@@ -165,4 +186,5 @@ autostart = true
 
 [connection signal="pressed" from="GameArea/UI/Confirm" to="." method="_on_confirm_pressed"]
 [connection signal="pressed" from="GameArea/UI/Clear" to="." method="_on_clear_pressed"]
+[connection signal="clicked" from="GameArea/StartBoxes/box" to="." method="_on_box_clicked"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

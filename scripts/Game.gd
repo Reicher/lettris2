@@ -11,9 +11,11 @@ var dictionary = []
 
 var selected_boxes = []
 var CurrentWord = ""
-
+var karma = 10
 var score = 0
-var level = 1
+
+@export var level = 1
+@export var karma_threshold = 5
 
 func load_word_list(file_path):	
 	# Open the text file
@@ -30,10 +32,27 @@ func _ready():
 	load_word_list("res://assets/words_alpha.txt")	
 	_update_word()
 	_update_score(0)
+	# Connect startboxes to clicked
+	var startboxes = get_node("GameArea/StartBoxes")
+	for box in startboxes.get_children():
+		box.clicked.connect(box_clicked)
 	
 func _get_next_box_type():
-	var box_types = [Normal, Silver, Gold, Ball]	
-	return box_types[randi() % box_types.size()]
+	var next = Normal
+	# Nice boxes
+	if karma > 20:
+		next = Gold
+	elif karma > 15:
+		next = Silver		
+	# Bad boxes
+	elif karma < 7 and level > 3:
+		next = Ball
+	
+	if next != Normal: # Reset karma if karma was served
+		karma = 10
+		
+	return next
+	
 
 # A new box should be created
 func _on_timer_timeout():
@@ -53,7 +72,7 @@ func _on_timer_timeout():
 	box.position = Vector2(rng.randf_range(x_bounds[0], x_bounds[1]), -30)
 	box.clicked.connect(box_clicked)
 
-	add_child(box)
+	add_child(box)	
 
 func box_clicked(box):
 	if box.selected and box not in selected_boxes:
@@ -81,6 +100,8 @@ func _on_confirm_pressed():
 		box.destroy()
 	selected_boxes.clear()
 	
+	karma += points - karma_threshold 
+	
 	_update_word()
 	_update_score(points)
 	
@@ -100,3 +121,4 @@ func _update_score(points):
 	
 	get_node("GameArea/UI/Score").text = str(score)	
 	get_node("GameArea/UI/Level").text = "Level: " + str(level)
+	print("karma: " + str(karma))
