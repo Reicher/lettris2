@@ -1,5 +1,7 @@
 extends Control
 
+var game_over = preload("res://scenes/GameOver.tscn")
+
 # Preload the box scenes
 var Normal = preload("res://scenes/boxes/Basebox.tscn")
 var Silver = preload("res://scenes/boxes/Silver.tscn")
@@ -63,7 +65,7 @@ func _on_timer_timeout():
 	# Check if any box is above the visible screen ( must be possible in some nicer way?)
 	for child in get_children():
 		if child.name != "Timer" and child.position.y < 0:
-			get_tree().change_scene_to_file("res://scenes/GameOver.tscn")
+			get_tree().change_scene_to_packed(game_over)			
 
 	var box = _get_next_box_type().instantiate()	
 	
@@ -121,4 +123,3 @@ func _update_score(points):
 	
 	get_node("GameArea/UI/Score").text = str(score)	
 	get_node("GameArea/UI/Level").text = "Level: " + str(level)
-	print("karma: " + str(karma))

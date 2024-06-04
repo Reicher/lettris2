@@ -10,10 +10,11 @@ config_version=5
 
 [application]
 
-config/name="Lettris2"
+config/name="Lettris"
+config/version="2.0"
 run/main_scene="res://Main.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
-config/icon="res://icon.svg"
+config/icon="res://assets/favicon.png"
 
 [display]
 

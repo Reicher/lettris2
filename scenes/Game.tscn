@@ -182,6 +182,7 @@ expand_mode = 1
 metadata/_edit_lock_ = true
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 1.5
 autostart = true
 
 [connection signal="pressed" from="GameArea/UI/Confirm" to="." method="_on_confirm_pressed"]
