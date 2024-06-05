@@ -1,9 +1,9 @@
 [gd_scene load_steps=15 format=3 uid="uid://2dcfqcb5ygdl"]
 
-[ext_resource type="Script" path="res://scripts/Game.gd" id="1_h8g5s"]
-[ext_resource type="Texture2D" uid="uid://whxsdiyncy77" path="res://assets/mall.png" id="1_wrcy1"]
+[ext_resource type="Script" path="res://scripts/Game.gd" id="1_agnpc"]
 [ext_resource type="Texture2D" uid="uid://86ey3tglhxfq" path="res://assets/spritesheet.png" id="2_t8dp4"]
-[ext_resource type="PackedScene" uid="uid://dxw5co5ucfkeo" path="res://scenes/boxes/Basebox.tscn" id="4_emqsv"]
+[ext_resource type="PackedScene" uid="uid://dxw5co5ucfkeo" path="res://scenes/boxes/Basebox.tscn" id="3_g1sr4"]
+[ext_resource type="Texture2D" uid="uid://whxsdiyncy77" path="res://assets/mall.png" id="4_vx4g3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_omyno"]
 atlas = ExtResource("2_t8dp4")
@@ -52,7 +52,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_h8g5s")
+script = ExtResource("1_agnpc")
 
 [node name="GameArea" type="Panel" parent="."]
 layout_mode = 1
@@ -149,22 +149,22 @@ label_settings = SubResource("LabelSettings_6b4gm")
 
 [node name="StartBoxes" type="Node" parent="GameArea"]
 
-[node name="box" parent="GameArea/StartBoxes" instance=ExtResource("4_emqsv")]
+[node name="box" parent="GameArea/StartBoxes" instance=ExtResource("3_g1sr4")]
 position = Vector2(96, 720)
 
-[node name="box2" parent="GameArea/StartBoxes" instance=ExtResource("4_emqsv")]
+[node name="box2" parent="GameArea/StartBoxes" instance=ExtResource("3_g1sr4")]
 position = Vector2(198, 719)
 
-[node name="box3" parent="GameArea/StartBoxes" instance=ExtResource("4_emqsv")]
+[node name="box3" parent="GameArea/StartBoxes" instance=ExtResource("3_g1sr4")]
 position = Vector2(147, 637)
 
-[node name="box4" parent="GameArea/StartBoxes" instance=ExtResource("4_emqsv")]
+[node name="box4" parent="GameArea/StartBoxes" instance=ExtResource("3_g1sr4")]
 position = Vector2(316, 719)
 
-[node name="box5" parent="GameArea/StartBoxes" instance=ExtResource("4_emqsv")]
+[node name="box5" parent="GameArea/StartBoxes" instance=ExtResource("3_g1sr4")]
 position = Vector2(398, 720)
 
-[node name="box6" parent="GameArea/StartBoxes" instance=ExtResource("4_emqsv")]
+[node name="box6" parent="GameArea/StartBoxes" instance=ExtResource("3_g1sr4")]
 position = Vector2(480, 720)
 
 [node name="floor and walls" type="StaticBody2D" parent="GameArea"]
@@ -177,7 +177,7 @@ visible = false
 layout_mode = 0
 offset_right = 540.0
 offset_bottom = 960.0
-texture = ExtResource("1_wrcy1")
+texture = ExtResource("4_vx4g3")
 expand_mode = 1
 metadata/_edit_lock_ = true
 

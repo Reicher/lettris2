@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://c2yi43o6tsgym"]
+[gd_scene load_steps=8 format=3 uid="uid://c2yi43o6tsgym"]
 
 [ext_resource type="Script" path="res://scripts/SplashScreen.gd" id="1_l5vb3"]
 [ext_resource type="Texture2D" uid="uid://86ey3tglhxfq" path="res://assets/spritesheet.png" id="2_uehmu"]
@@ -6,6 +6,59 @@
 [sub_resource type="AtlasTexture" id="AtlasTexture_mnwhc"]
 atlas = ExtResource("2_uehmu")
 region = Rect2(0, 1002, 400, 200)
+
+[sub_resource type="Animation" id="Animation_oap06"]
+resource_name = "fade_to_black"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_8rf6t"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_iq1d2"]
+resource_name = "fade_from_black"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_84qd0"]
+_data = {
+"RESET": SubResource("Animation_8rf6t"),
+"fade_from_black": SubResource("Animation_iq1d2"),
+"fade_to_black": SubResource("Animation_oap06")
+}
 
 [node name="SplashScreen" type="Control"]
 layout_mode = 3
@@ -40,8 +93,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("AtlasTexture_mnwhc")
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 3.0
-autostart = true
-
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_84qd0")
+}
