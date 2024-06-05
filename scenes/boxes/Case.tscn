@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://b6xnhqcq67agu"]
+
+[ext_resource type="PackedScene" uid="uid://dxw5co5ucfkeo" path="res://scenes/boxes/Basebox.tscn" id="1_opawh"]
+[ext_resource type="Texture2D" uid="uid://86ey3tglhxfq" path="res://assets/spritesheet.png" id="2_8860a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qk4eg"]
+size = Vector2(179, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ahjf"]
+atlas = ExtResource("2_8860a")
+region = Rect2(543, 1295, 180, 80)
+
+[node name="box" instance=ExtResource("1_opawh")]
+
+[node name="Shape" parent="." index="0"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_qk4eg")
+
+[node name="Texture" parent="." index="1"]
+offset_left = -90.0
+offset_right = 90.0
+texture_normal = SubResource("AtlasTexture_6ahjf")

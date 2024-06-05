@@ -7,6 +7,7 @@ var Normal = preload("res://scenes/boxes/Basebox.tscn")
 var Silver = preload("res://scenes/boxes/Silver.tscn")
 var Gold = preload("res://scenes/boxes/Gold.tscn")
 var Ball = preload("res://scenes/boxes/Ball.tscn")
+var Case = preload("res://scenes/boxes/Case.tscn")
 
 var rng = RandomNumberGenerator.new()
 var dictionary = []
@@ -15,6 +16,7 @@ var selected_boxes = []
 var CurrentWord = ""
 var karma = 10
 var score = 0
+var bad_boxes = []
 
 @export var level = 1
 @export var karma_threshold = 5
@@ -40,21 +42,24 @@ func _ready():
 		box.clicked.connect(box_clicked)
 	
 func _get_next_box_type():
+	# DEBUG CHAOS
+	# return [Normal, Silver, Gold, Ball, Case][randi() % 5]
+	
 	var next = Normal
 	# Nice boxes
 	if karma > 20:
 		next = Gold
 	elif karma > 15:
-		next = Silver		
+		next = Silver	
+	
 	# Bad boxes
-	elif karma < 7 and level > 3:
-		next = Ball
+	if karma < 7 and not  bad_boxes.is_empty():
+		next = bad_boxes[randi() % len(bad_boxes)]
 	
 	if next != Normal: # Reset karma if karma was served
 		karma = 10
 		
 	return next
-	
 
 # A new box should be created
 func _on_timer_timeout():
@@ -121,5 +126,10 @@ func _update_score(points):
 	score += points
 	level = 1 + int(score / 10)
 	
+	bad_boxes = []
+	if level >= 3:
+		bad_boxes.append(Ball)
+	if level >= 5:
+		bad_boxes.append(Case)
 	get_node("GameArea/UI/Score").text = str(score)	
 	get_node("GameArea/UI/Level").text = "Level: " + str(level)

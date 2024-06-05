@@ -27,40 +27,52 @@ shape = SubResource("RectangleShape2D_kivvd")
 
 [node name="Texture" type="TextureButton" parent="."]
 texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 offset_left = -40.0
 offset_top = -40.0
 offset_right = 40.0
 offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
 texture_normal = SubResource("AtlasTexture_d4cd7")
 
-[node name="Letter" type="Label" parent="."]
+[node name="Letter" type="Label" parent="Texture"]
 texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 offset_left = -40.0
 offset_top = -40.0
 offset_right = 40.0
 offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "A"
 label_settings = SubResource("LabelSettings_g6a4k")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Value" type="Label" parent="."]
+[node name="Value" type="Label" parent="Texture/Letter"]
 texture_filter = 1
-offset_left = 17.0
-offset_top = 16.0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -23.0
+offset_top = -24.0
+grow_horizontal = 0
+grow_vertical = 0
 text = "1"
 label_settings = SubResource("LabelSettings_3jls4")
 horizontal_alignment = 1
-
-[node name="Selected" type="ColorRect" parent="."]
-visible = false
-offset_left = -40.0
-offset_top = -40.0
-offset_right = 40.0
-offset_bottom = 40.0
-mouse_filter = 2
-color = Color(0.57361, 0.562641, 0, 0.423529)
 
 [connection signal="pressed" from="Texture" to="." method="_on_texture_button_pressed"]

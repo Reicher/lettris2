@@ -39,8 +39,8 @@ func _ready():
 	letter = _get_semi_random_letter()
 	value = letterData[letter].value
 	value *= multiplier
-	$Letter.text = letter		
-	$Value.text = str(value)
+	get_node("Texture/Letter").text = letter		
+	get_node("Texture/Letter/Value").text = str(value)
 
 func _on_texture_button_pressed():
 	select(not selected)
@@ -48,7 +48,13 @@ func _on_texture_button_pressed():
 	
 func select(status):
 	selected = status
-	$Selected.visible  = selected
+	
+	# TODO: This should really be a nice shader (maybe a frame?)
+	var golden_color = Color(1, 0.743, 0, 1)  # Golden color (RGBA)
+	if selected:
+		$Texture.modulate = $Texture.modulate.blend(golden_color)  # Blend with the golden color
+	else:
+		$Texture.modulate = Color(1, 1, 1, 1)  # Reset to original color
 
 func destroy():
 	queue_free()

@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://d0ge5uagl5lv5"]
+[gd_scene load_steps=5 format=3 uid="uid://d0ge5uagl5lv5"]
 
 [ext_resource type="PackedScene" uid="uid://dxw5co5ucfkeo" path="res://scenes/boxes/Basebox.tscn" id="1_2jfjb"]
-[ext_resource type="Script" path="res://scripts/Basebox.gd" id="2_ee16v"]
 [ext_resource type="Texture2D" uid="uid://86ey3tglhxfq" path="res://assets/spritesheet.png" id="2_vvg21"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_eody5"]
@@ -12,21 +11,27 @@ atlas = ExtResource("2_vvg21")
 region = Rect2(1383, 1149, 100, 100)
 
 [node name="box" instance=ExtResource("1_2jfjb")]
-script = ExtResource("2_ee16v")
 
 [node name="Shape" parent="." index="0"]
 shape = SubResource("CircleShape2D_eody5")
 
 [node name="Texture" parent="." index="1"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
 offset_left = -50.0
 offset_top = -50.0
 offset_right = 50.0
 offset_bottom = 50.0
-grow_horizontal = 2
-grow_vertical = 2
 texture_normal = SubResource("AtlasTexture_eqrwh")
+
+[node name="Value" parent="Texture/Letter" index="0"]
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 50.0
+offset_top = 53.0
+offset_right = 73.0
+offset_bottom = 77.0
+grow_horizontal = 1
+grow_vertical = 1
