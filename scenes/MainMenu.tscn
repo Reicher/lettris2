@@ -49,6 +49,7 @@ layout_mode = 2
 theme_override_constants/separation = 44
 
 [node name="Title" type="TextureRect" parent="MidStuff/VBoxContainer"]
+texture_filter = 1
 layout_mode = 2
 texture = SubResource("AtlasTexture_0tuxg")
 
@@ -85,6 +86,52 @@ text = "PLAY"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Credits" type="TextureButton" parent="MidStuff/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = SubResource("AtlasTexture_ki02p")
+script = ExtResource("2_8tw01")
+
+[node name="creditsText" type="Label" parent="MidStuff/VBoxContainer/Credits"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "CREDITS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Language" type="TextureButton" parent="MidStuff/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = SubResource("AtlasTexture_ki02p")
+script = ExtResource("2_8tw01")
+
+[node name="LanguageText" type="Label" parent="MidStuff/VBoxContainer/Language"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "LANGUAGE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="BottomStuff" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 12
@@ -106,3 +153,5 @@ size_flags_vertical = 8
 text = "Version 2 alpha"
 
 [connection signal="pressed" from="MidStuff/VBoxContainer/PlayButton" to="MidStuff/VBoxContainer/PlayButton" method="_on_pressed"]
+[connection signal="pressed" from="MidStuff/VBoxContainer/Credits" to="MidStuff/VBoxContainer/Credits" method="_on_pressed"]
+[connection signal="pressed" from="MidStuff/VBoxContainer/Language" to="MidStuff/VBoxContainer/Language" method="_on_pressed"]
