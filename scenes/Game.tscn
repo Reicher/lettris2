@@ -1,9 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://2dcfqcb5ygdl"]
+[gd_scene load_steps=14 format=3 uid="uid://2dcfqcb5ygdl"]
 
 [ext_resource type="Script" path="res://scripts/Game.gd" id="1_agnpc"]
 [ext_resource type="Texture2D" uid="uid://86ey3tglhxfq" path="res://assets/spritesheet.png" id="2_t8dp4"]
 [ext_resource type="PackedScene" uid="uid://dxw5co5ucfkeo" path="res://scenes/boxes/Basebox.tscn" id="3_g1sr4"]
-[ext_resource type="Texture2D" path="res://assets/mall.png" id="4_vx4g3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_omyno"]
 atlas = ExtResource("2_t8dp4")
@@ -89,18 +88,19 @@ texture = SubResource("AtlasTexture_4ax43")
 
 [node name="Confirm" type="TextureButton" parent="GameArea/UI"]
 layout_mode = 0
-offset_left = 186.0
+offset_left = 163.0
 offset_top = 22.0
-offset_right = 499.0
+offset_right = 515.0
 offset_bottom = 104.0
 texture_normal = SubResource("AtlasTexture_v3o3s")
 texture_pressed = SubResource("AtlasTexture_m8ka1")
+stretch_mode = 0
 
 [node name="Word" type="Label" parent="GameArea/UI/Confirm"]
 layout_mode = 0
 offset_left = 3.0
 offset_top = 3.0
-offset_right = 310.0
+offset_right = 346.0
 offset_bottom = 79.0
 text = "TESTORD"
 label_settings = SubResource("LabelSettings_8c24o")
@@ -120,12 +120,13 @@ horizontal_alignment = 2
 
 [node name="Clear" type="TextureButton" parent="GameArea/UI"]
 layout_mode = 0
-offset_left = 35.0
-offset_top = 23.0
-offset_right = 137.0
-offset_bottom = 105.0
+offset_left = 25.0
+offset_top = 22.0
+offset_right = 139.0
+offset_bottom = 104.0
 texture_normal = SubResource("AtlasTexture_rujbl")
 texture_pressed = SubResource("AtlasTexture_drxw4")
+stretch_mode = 0
 
 [node name="Score" type="Label" parent="GameArea/UI"]
 layout_mode = 0
@@ -171,15 +172,6 @@ position = Vector2(480, 720)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="GameArea/floor and walls"]
 polygon = PackedVector2Array(0, -120, 0, 760, 540, 760, 540, -120, 560, 780, -30, 780)
-
-[node name="Mall" type="TextureRect" parent="."]
-visible = false
-layout_mode = 0
-offset_right = 540.0
-offset_bottom = 960.0
-texture = ExtResource("4_vx4g3")
-expand_mode = 1
-metadata/_edit_lock_ = true
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 1.5
