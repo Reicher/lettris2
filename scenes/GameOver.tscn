@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cap2k70wpcutv"]
+[gd_scene load_steps=9 format=3 uid="uid://cap2k70wpcutv"]
 
 [ext_resource type="Script" path="res://scripts/GameOver.gd" id="1_n6qrp"]
 [ext_resource type="Texture2D" uid="uid://86ey3tglhxfq" path="res://assets/spritesheet.png" id="2_8l1g2"]
@@ -14,6 +14,9 @@ region = Rect2(481, 0, 380, 720)
 [sub_resource type="AtlasTexture" id="AtlasTexture_whrtb"]
 atlas = ExtResource("2_8l1g2")
 region = Rect2(862, 750, 213, 177)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ieile"]
+font_size = 38
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x0vmf"]
 atlas = ExtResource("2_8l1g2")
@@ -75,6 +78,22 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = SubResource("AtlasTexture_whrtb")
+
+[node name="Label" type="Label" parent="Outer Margin/Inner Margin/Most inner/VBoxContainer/TentBack"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "666"
+label_settings = SubResource("LabelSettings_ieile")
+horizontal_alignment = 1
 
 [node name="Title" type="TextureRect" parent="Outer Margin"]
 layout_mode = 2

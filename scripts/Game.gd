@@ -104,7 +104,7 @@ func _on_confirm_pressed():
 	var points = 0
 	for box in selected_boxes:
 		points += box.value
-		box.destroy()
+		box.start_destroy()
 	selected_boxes.clear()
 	
 	karma += points - karma_threshold 

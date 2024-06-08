@@ -25,7 +25,7 @@ var letter = " "
 var value = 0
 var size = Vector2(80, 80) # TODO: Needs to be set dynamically
 
-func _get_semi_random_letter():
+func _get_semi_random_letter() -> String:
 	var random_number = randi() % (98 - 1) # Number of letter tiles
 	var count = 0
 	
@@ -34,19 +34,20 @@ func _get_semi_random_letter():
 		count += letterData[letter]['quantity']
 		if count > random_number:
 			return letter
+	return ""
 
-func _ready():
+func _ready() -> void:
 	letter = _get_semi_random_letter()
 	value = letterData[letter].value
 	value *= multiplier
 	get_node("Texture/Letter").text = letter		
 	get_node("Texture/Letter/Value").text = str(value)
 
-func _on_texture_button_pressed():
+func _on_texture_button_pressed() -> void:
 	select(not selected)
 	clicked.emit(self)
 	
-func select(status):
+func select(status: bool) -> void:
 	selected = status
 	
 	# TODO: This should really be a nice shader (maybe a frame?)
@@ -56,5 +57,15 @@ func select(status):
 	else:
 		$Texture.modulate = Color(1, 1, 1, 1)  # Reset to original color
 
-func destroy():
-	queue_free()
+func start_destroy() -> void:
+	set_physics_process(false)
+	set_process(false)
+	$Shape.disabled = true
+	$Texture.visible = false
+
+	$Animations.visible = true
+	$Animations.animation_finished.connect(end_destroy)
+	$Animations.play("Death")
+	
+func end_destroy() -> void:
+	queue_free() # Free the box from memory

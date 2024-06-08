@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://dxw5co5ucfkeo"]
+[gd_scene load_steps=12 format=3 uid="uid://dxw5co5ucfkeo"]
 
 [ext_resource type="Script" path="res://scripts/Basebox.gd" id="1_jem35"]
 [ext_resource type="Texture2D" uid="uid://86ey3tglhxfq" path="res://assets/spritesheet.png" id="2_1x50m"]
+[ext_resource type="Texture2D" uid="uid://dckm0o6ndc4yb" path="res://assets/box-break.png" id="3_6pauv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kivvd"]
 size = Vector2(80, 80)
@@ -18,8 +19,38 @@ font_color = Color(0, 0, 0, 1)
 font_size = 17
 font_color = Color(0, 0, 0, 1)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_o8m7t"]
+atlas = ExtResource("3_6pauv")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q0foh"]
+atlas = ExtResource("3_6pauv")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r0nh8"]
+atlas = ExtResource("3_6pauv")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_18k8g"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o8m7t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q0foh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r0nh8")
+}],
+"loop": false,
+"name": &"Death",
+"speed": 10.0
+}]
+
 [node name="box" type="RigidBody2D"]
 position = Vector2(0, -2)
+can_sleep = false
 script = ExtResource("1_jem35")
 
 [node name="Shape" type="CollisionShape2D" parent="."]
@@ -74,5 +105,12 @@ grow_vertical = 0
 text = "1"
 label_settings = SubResource("LabelSettings_3jls4")
 horizontal_alignment = 1
+
+[node name="Animations" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = SubResource("SpriteFrames_18k8g")
+animation = &"Death"
+frame = 2
+frame_progress = 1.0
 
 [connection signal="pressed" from="Texture" to="." method="_on_texture_button_pressed"]

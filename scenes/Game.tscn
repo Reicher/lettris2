@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/Game.gd" id="1_agnpc"]
 [ext_resource type="Texture2D" uid="uid://86ey3tglhxfq" path="res://assets/spritesheet.png" id="2_t8dp4"]
 [ext_resource type="PackedScene" uid="uid://dxw5co5ucfkeo" path="res://scenes/boxes/Basebox.tscn" id="3_g1sr4"]
-[ext_resource type="Texture2D" uid="uid://whxsdiyncy77" path="res://assets/mall.png" id="4_vx4g3"]
+[ext_resource type="Texture2D" path="res://assets/mall.png" id="4_vx4g3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_omyno"]
 atlas = ExtResource("2_t8dp4")
