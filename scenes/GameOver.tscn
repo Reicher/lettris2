@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://cap2k70wpcutv"]
+[gd_scene load_steps=21 format=3 uid="uid://cap2k70wpcutv"]
 
 [ext_resource type="Script" path="res://scripts/GameOver.gd" id="1_n6qrp"]
 [ext_resource type="Texture2D" uid="uid://86ey3tglhxfq" path="res://assets/spritesheet.png" id="2_8l1g2"]
+[ext_resource type="Texture2D" uid="uid://cxkflc30abj7r" path="res://assets/point-reveal.png" id="3_5782y"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vcqva"]
 atlas = ExtResource("2_8l1g2")
@@ -17,6 +18,84 @@ region = Rect2(862, 750, 213, 177)
 
 [sub_resource type="LabelSettings" id="LabelSettings_ieile"]
 font_size = 38
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f4vin"]
+atlas = ExtResource("3_5782y")
+region = Rect2(0, 0, 199, 91)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cka7q"]
+atlas = ExtResource("3_5782y")
+region = Rect2(199, 0, 199, 91)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2tydf"]
+atlas = ExtResource("3_5782y")
+region = Rect2(398, 0, 199, 91)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mmyjn"]
+atlas = ExtResource("3_5782y")
+region = Rect2(597, 0, 199, 91)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1bbob"]
+atlas = ExtResource("3_5782y")
+region = Rect2(796, 0, 199, 91)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3h21p"]
+atlas = ExtResource("3_5782y")
+region = Rect2(995, 0, 199, 91)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a2nny"]
+atlas = ExtResource("3_5782y")
+region = Rect2(1194, 0, 199, 91)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c0j6b"]
+atlas = ExtResource("3_5782y")
+region = Rect2(1393, 0, 199, 91)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h4spe"]
+atlas = ExtResource("3_5782y")
+region = Rect2(1592, 0, 199, 91)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uywr3"]
+atlas = ExtResource("3_5782y")
+region = Rect2(1791, 0, 199, 91)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uk0h0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f4vin")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cka7q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2tydf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mmyjn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1bbob")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3h21p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a2nny")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c0j6b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h4spe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uywr3")
+}],
+"loop": false,
+"name": &"open",
+"speed": 5.0
+}]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x0vmf"]
 atlas = ExtResource("2_8l1g2")
@@ -94,6 +173,12 @@ grow_vertical = 0
 text = "666"
 label_settings = SubResource("LabelSettings_ieile")
 horizontal_alignment = 1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Outer Margin/Inner Margin/Most inner/VBoxContainer/TentBack"]
+position = Vector2(7, 85)
+sprite_frames = SubResource("SpriteFrames_uk0h0")
+animation = &"open"
+centered = false
 
 [node name="Title" type="TextureRect" parent="Outer Margin"]
 layout_mode = 2

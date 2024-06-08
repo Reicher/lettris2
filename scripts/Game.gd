@@ -43,7 +43,7 @@ func _ready():
 	
 func _get_next_box_type():
 	# DEBUG CHAOS
-	# return [Normal, Silver, Gold, Ball, Case][randi() % 5]
+	return [Normal, Silver, Gold, Ball, Case][randi() % 5]
 	
 	var next = Normal
 	# Nice boxes

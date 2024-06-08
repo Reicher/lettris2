@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://b6xnhqcq67agu"]
+[gd_scene load_steps=10 format=3 uid="uid://b6xnhqcq67agu"]
 
 [ext_resource type="PackedScene" uid="uid://dxw5co5ucfkeo" path="res://scenes/boxes/Basebox.tscn" id="1_opawh"]
 [ext_resource type="Texture2D" uid="uid://86ey3tglhxfq" path="res://assets/spritesheet.png" id="2_8860a"]
+[ext_resource type="Texture2D" uid="uid://dv5a1yrv5drk0" path="res://assets/wide-box-break.png" id="3_vuly0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qk4eg"]
 size = Vector2(179, 80)
@@ -9,6 +10,35 @@ size = Vector2(179, 80)
 [sub_resource type="AtlasTexture" id="AtlasTexture_6ahjf"]
 atlas = ExtResource("2_8860a")
 region = Rect2(543, 1295, 180, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m2pdf"]
+atlas = ExtResource("3_vuly0")
+region = Rect2(0, 0, 150, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_460g3"]
+atlas = ExtResource("3_vuly0")
+region = Rect2(150, 0, 150, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_inqf0"]
+atlas = ExtResource("3_vuly0")
+region = Rect2(300, 0, 150, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p85ck"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m2pdf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_460g3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_inqf0")
+}],
+"loop": false,
+"name": &"Death",
+"speed": 10.0
+}]
 
 [node name="box" instance=ExtResource("1_opawh")]
 
@@ -20,3 +50,8 @@ shape = SubResource("RectangleShape2D_qk4eg")
 offset_left = -90.0
 offset_right = 90.0
 texture_normal = SubResource("AtlasTexture_6ahjf")
+
+[node name="Animations" parent="." index="2"]
+sprite_frames = SubResource("SpriteFrames_p85ck")
+frame = 0
+frame_progress = 0.0
