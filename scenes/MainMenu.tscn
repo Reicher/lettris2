@@ -2,14 +2,11 @@
 
 [ext_resource type="Texture2D" uid="uid://86ey3tglhxfq" path="res://assets/spritesheet.png" id="1_iwlrg"]
 [ext_resource type="Script" path="res://scripts/PlayButton.gd" id="2_8tw01"]
+[ext_resource type="PackedScene" uid="uid://bd4f240hk4wj8" path="res://scenes/components/Title.tscn" id="2_iafpb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e0nhk"]
 atlas = ExtResource("1_iwlrg")
 region = Rect2(0, 0, 480, 800)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0tuxg"]
-atlas = ExtResource("1_iwlrg")
-region = Rect2(401, 1002, 367, 192)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ki02p"]
 atlas = ExtResource("1_iwlrg")
@@ -48,10 +45,10 @@ theme_override_constants/margin_bottom = 75
 layout_mode = 2
 theme_override_constants/separation = 44
 
-[node name="Title" type="TextureRect" parent="MidStuff/VBoxContainer"]
-texture_filter = 1
+[node name="TextureRect" parent="MidStuff/VBoxContainer" instance=ExtResource("2_iafpb")]
 layout_mode = 2
-texture = SubResource("AtlasTexture_0tuxg")
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="RandomTipTitle" type="Label" parent="MidStuff/VBoxContainer"]
 layout_mode = 2
