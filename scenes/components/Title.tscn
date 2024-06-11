@@ -1,30 +1,30 @@
 [gd_scene load_steps=4 format=3 uid="uid://bd4f240hk4wj8"]
 
 [ext_resource type="Texture2D" uid="uid://86ey3tglhxfq" path="res://assets/spritesheet.png" id="1_ai4ge"]
-[ext_resource type="PackedScene" uid="uid://dbcbm117ug4jm" path="res://scenes/components/light.tscn" id="2_mb2j5"]
+[ext_resource type="PackedScene" uid="uid://dbcbm117ug4jm" path="res://scenes/components/Light.tscn" id="2_73dl8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6jkbj"]
 atlas = ExtResource("1_ai4ge")
 region = Rect2(401, 1002, 367, 192)
 
-[node name="TextureRect" type="TextureRect"]
+[node name="Title" type="TextureRect"]
 texture_filter = 1
 offset_right = 40.0
 offset_bottom = 40.0
 texture = SubResource("AtlasTexture_6jkbj")
 stretch_mode = 2
 
-[node name="Light NW" parent="." instance=ExtResource("2_mb2j5")]
+[node name="Light NW" parent="." instance=ExtResource("2_73dl8")]
 position = Vector2(12.5, 12.5)
 
-[node name="Light NE" parent="." instance=ExtResource("2_mb2j5")]
+[node name="Light NE" parent="." instance=ExtResource("2_73dl8")]
 position = Vector2(354.5, 12.5)
 
-[node name="Light SW" parent="." instance=ExtResource("2_mb2j5")]
+[node name="Light SW" parent="." instance=ExtResource("2_73dl8")]
 position = Vector2(12.5, 179.5)
 
-[node name="Light SE" parent="." instance=ExtResource("2_mb2j5")]
+[node name="Light SE" parent="." instance=ExtResource("2_73dl8")]
 position = Vector2(354.5, 179.5)
 
-[node name="Light i" parent="." instance=ExtResource("2_mb2j5")]
+[node name="Light i" parent="." instance=ExtResource("2_73dl8")]
 position = Vector2(265.5, 21.5)

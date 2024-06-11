@@ -1,8 +1,9 @@
-[gd_scene load_steps=21 format=3 uid="uid://cap2k70wpcutv"]
+[gd_scene load_steps=22 format=3 uid="uid://cap2k70wpcutv"]
 
 [ext_resource type="Script" path="res://scripts/GameOver.gd" id="1_n6qrp"]
 [ext_resource type="Texture2D" uid="uid://86ey3tglhxfq" path="res://assets/spritesheet.png" id="2_8l1g2"]
 [ext_resource type="Texture2D" uid="uid://cxkflc30abj7r" path="res://assets/point-reveal.png" id="3_5782y"]
+[ext_resource type="PackedScene" uid="uid://bgl1t1duhhvxh" path="res://scenes/components/BestWord.tscn" id="4_d0nd5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vcqva"]
 atlas = ExtResource("2_8l1g2")
@@ -179,6 +180,11 @@ position = Vector2(7, 85)
 sprite_frames = SubResource("SpriteFrames_uk0h0")
 animation = &"open"
 centered = false
+
+[node name="BestWord" parent="Outer Margin/Inner Margin/Most inner/VBoxContainer" instance=ExtResource("4_d0nd5")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="Title" type="TextureRect" parent="Outer Margin"]
 layout_mode = 2
