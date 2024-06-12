@@ -1,11 +1,6 @@
 extends RigidBody2D
 
-var Silver = preload("res://scenes/boxes/Silver.tscn")
-var Gold = preload("res://scenes/boxes/Gold.tscn")
-
 signal clicked(box)
-
-@export var multiplier = 1
 
 var letterData = {
 	'A': { 'value': 1, 'quantity': 9 },  'B': { 'value': 3, 'quantity': 2 },
@@ -26,10 +21,10 @@ var letterData = {
 var selected = false
 var letter = " "
 var value = 0
-var size = Vector2(80, 80) # TODO: Needs to be set dynamically
+var size = Vector2(80, 80)  # TODO: Needs to be set dynamically
 
 func _get_semi_random_letter() -> String:
-	var random_number = randi() % (98 - 1) # Number of letter tiles
+	var random_number = randi() % 98  # Number of letter tiles
 	var count = 0
 	
 	# Find the letter corresponding to the random_number
@@ -42,31 +37,45 @@ func _get_semi_random_letter() -> String:
 func _ready() -> void:
 	letter = _get_semi_random_letter()
 	value = letterData[letter].value
-	value *= multiplier
 	$AnimatedSprite.play("Idle")
-	$Letter.text = letter
-	$Letter/Value.text = str(value)
-
 	
+	# Special boxes with special needs
+	if scene_file_path.contains("Bomb"):
+		print("BOMB")
+	elif scene_file_path.contains("Silver"):
+		$"Letter/Value".text = str(value * 2)
+	elif scene_file_path.contains("Gold"):
+		$"Letter/Value".text = str(value * 3)
+	elif scene_file_path.contains("Double"):
+		letter = "x2"
+		$"Letter/Value".text = ""
+	elif scene_file_path.contains("Tripple"):
+		letter = "x3"
+		$"Letter/Value".text = ""
+	else:
+		$"Letter/Value".text = str(value)
+		
+	$"Letter".text = letter
+
 func select(status: bool) -> void:
 	selected = status
 	
-	# TODO: This should really be a nice shader (maybe a frame?)
+	# Update visual selection state
 	var golden_color = Color(1, 0.743, 0, 1)  # Golden color (RGBA)
 	if selected:
-		$AnimatedSprite.modulate = $AnimatedSprite.modulate.blend(golden_color)  # Blend with the golden color
+		$AnimatedSprite.modulate = $AnimatedSprite.modulate.blend(golden_color)
 	else:
 		$AnimatedSprite.modulate = Color(1, 1, 1, 1)  # Reset to original color
 
 func start_destroy() -> void:
 	select(false)
 	set_physics_process(false)
-	$Letter.visible = false
+	$"Letter".visible = false
 
 	$AnimatedSprite.play("Death")
 	$AnimatedSprite.animation_finished.connect(queue_free)
 
 func _on_input_event(viewport, event, shape_idx):
-	if event is InputEventMouseButton and event.pressed == true:
+	if event is InputEventMouseButton and event.pressed:
 		select(not selected)
 		clicked.emit(self)

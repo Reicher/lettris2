@@ -49,6 +49,7 @@ animations = [{
 size = Vector2(179, 80)
 
 [node name="box" instance=ExtResource("1_rugfe")]
+multiplier = null
 
 [node name="AnimatedSprite" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_4ifd4")

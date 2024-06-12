@@ -53,6 +53,7 @@ animations = [{
 }]
 
 [node name="box" instance=ExtResource("1_7uy8o")]
+multiplier = null
 
 [node name="AnimatedSprite" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_petev")
