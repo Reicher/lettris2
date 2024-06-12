@@ -1,72 +1,57 @@
 [gd_scene load_steps=10 format=3 uid="uid://d0ge5uagl5lv5"]
 
-[ext_resource type="PackedScene" uid="uid://dxw5co5ucfkeo" path="res://scenes/boxes/Basebox.tscn" id="1_2jfjb"]
-[ext_resource type="Texture2D" uid="uid://86ey3tglhxfq" path="res://assets/spritesheet.png" id="2_vvg21"]
+[ext_resource type="PackedScene" uid="uid://dxw5co5ucfkeo" path="res://scenes/boxes/Box.tscn" id="1_ufklt"]
 [ext_resource type="Texture2D" uid="uid://d0o7uiu3k84ft" path="res://assets/ball-break.png" id="3_jvjmr"]
+[ext_resource type="Texture2D" uid="uid://8ahrolcw2tjj" path="res://assets/ball-box.png" id="3_ow4d8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pqgui"]
+atlas = ExtResource("3_jvjmr")
+region = Rect2(0, 0, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p4fjw"]
+atlas = ExtResource("3_jvjmr")
+region = Rect2(120, 0, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jjdx0"]
+atlas = ExtResource("3_jvjmr")
+region = Rect2(240, 0, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s8teh"]
+atlas = ExtResource("3_ow4d8")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lke36"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pqgui")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p4fjw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jjdx0")
+}],
+"loop": false,
+"name": &"Death",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s8teh")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_eody5"]
 radius = 50.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_eqrwh"]
-atlas = ExtResource("2_vvg21")
-region = Rect2(1383, 1149, 100, 100)
+[node name="box" instance=ExtResource("1_ufklt")]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_d8784"]
-atlas = ExtResource("3_jvjmr")
-region = Rect2(0, 0, 120, 120)
+[node name="AnimatedSprite" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_lke36")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_p63qn"]
-atlas = ExtResource("3_jvjmr")
-region = Rect2(120, 0, 120, 120)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6anfa"]
-atlas = ExtResource("3_jvjmr")
-region = Rect2(240, 0, 120, 120)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_17wyq"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_d8784")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_p63qn")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6anfa")
-}],
-"loop": false,
-"name": &"Death",
-"speed": 10.0
-}]
-
-[node name="box" instance=ExtResource("1_2jfjb")]
-
-[node name="Shape" parent="." index="0"]
+[node name="Shape" parent="." index="2"]
 shape = SubResource("CircleShape2D_eody5")
-
-[node name="Texture" parent="." index="1"]
-offset_left = -50.0
-offset_top = -50.0
-offset_right = 50.0
-offset_bottom = 50.0
-texture_normal = SubResource("AtlasTexture_eqrwh")
-
-[node name="Value" parent="Texture/Letter" index="0"]
-layout_mode = 0
-anchors_preset = 0
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 50.0
-offset_top = 53.0
-offset_right = 73.0
-offset_bottom = 77.0
-grow_horizontal = 1
-grow_vertical = 1
-
-[node name="Animations" parent="." index="2"]
-sprite_frames = SubResource("SpriteFrames_17wyq")
-frame = 0
-frame_progress = 0.0

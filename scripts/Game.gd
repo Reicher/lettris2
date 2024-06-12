@@ -3,11 +3,15 @@ extends Control
 var game_over = preload("res://scenes/GameOver.tscn")
 
 # Preload the box scenes
-var Normal = preload("res://scenes/boxes/Basebox.tscn")
+var Normal = preload("res://scenes/boxes/Box.tscn")
 var Silver = preload("res://scenes/boxes/Silver.tscn")
 var Gold = preload("res://scenes/boxes/Gold.tscn")
 var Ball = preload("res://scenes/boxes/Ball.tscn")
 var Case = preload("res://scenes/boxes/Case.tscn")
+var Big = preload("res://scenes/boxes/Big.tscn")
+var Bomb = preload("res://scenes/boxes/Bomb.tscn")
+var Double = preload("res://scenes/boxes/Double.tscn")
+var Tripple = preload("res://scenes/boxes/Tripple.tscn")
 
 var rng = RandomNumberGenerator.new()
 var dictionary = []
@@ -43,7 +47,8 @@ func _ready():
 	
 func _get_next_box_type():
 	# DEBUG CHAOS
-	return [Normal, Silver, Gold, Ball, Case][randi() % 5]
+	var all = [Normal, Silver, Gold, Ball, Case, Bomb, Big, Double, Tripple]
+	return all[randi() % len(all)]
 	
 	var next = Normal
 	# Nice boxes

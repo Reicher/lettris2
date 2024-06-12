@@ -1,5 +1,8 @@
 extends RigidBody2D
 
+var Silver = preload("res://scenes/boxes/Silver.tscn")
+var Gold = preload("res://scenes/boxes/Gold.tscn")
+
 signal clicked(box)
 
 @export var multiplier = 1
@@ -40,12 +43,10 @@ func _ready() -> void:
 	letter = _get_semi_random_letter()
 	value = letterData[letter].value
 	value *= multiplier
-	get_node("Texture/Letter").text = letter		
-	get_node("Texture/Letter/Value").text = str(value)
+	$AnimatedSprite.play("Idle")
+	$Letter.text = letter
+	$Letter/Value.text = str(value)
 
-func _on_texture_button_pressed() -> void:
-	select(not selected)
-	clicked.emit(self)
 	
 func select(status: bool) -> void:
 	selected = status
@@ -53,19 +54,19 @@ func select(status: bool) -> void:
 	# TODO: This should really be a nice shader (maybe a frame?)
 	var golden_color = Color(1, 0.743, 0, 1)  # Golden color (RGBA)
 	if selected:
-		$Texture.modulate = $Texture.modulate.blend(golden_color)  # Blend with the golden color
+		$AnimatedSprite.modulate = $AnimatedSprite.modulate.blend(golden_color)  # Blend with the golden color
 	else:
-		$Texture.modulate = Color(1, 1, 1, 1)  # Reset to original color
+		$AnimatedSprite.modulate = Color(1, 1, 1, 1)  # Reset to original color
 
 func start_destroy() -> void:
+	select(false)
 	set_physics_process(false)
-	set_process(false)
-	$Shape.disabled = true
-	$Texture.visible = false
+	$Letter.visible = false
 
-	$Animations.visible = true
-	$Animations.animation_finished.connect(end_destroy)
-	$Animations.play("Death")
-	
-func end_destroy() -> void:
-	queue_free() # Free the box from memory
+	$AnimatedSprite.play("Death")
+	$AnimatedSprite.animation_finished.connect(queue_free)
+
+func _on_input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton and event.pressed == true:
+		select(not selected)
+		clicked.emit(self)

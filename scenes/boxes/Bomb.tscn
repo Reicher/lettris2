@@ -1,0 +1,58 @@
+[gd_scene load_steps=10 format=3 uid="uid://ble2dt1tx3x5x"]
+
+[ext_resource type="PackedScene" uid="uid://dxw5co5ucfkeo" path="res://scenes/boxes/Box.tscn" id="1_7uy8o"]
+[ext_resource type="Texture2D" uid="uid://r4kf1vuao113" path="res://assets/bomb-box-break.png" id="2_1iovn"]
+[ext_resource type="Texture2D" uid="uid://b6l6qfmnxwjjo" path="res://assets/bomb-box.png" id="3_wnge8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w7p8o"]
+atlas = ExtResource("2_1iovn")
+region = Rect2(0, 0, 180, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m6erg"]
+atlas = ExtResource("2_1iovn")
+region = Rect2(180, 0, 180, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_de1ke"]
+atlas = ExtResource("2_1iovn")
+region = Rect2(360, 0, 180, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qrl7s"]
+atlas = ExtResource("3_wnge8")
+region = Rect2(0, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iyylh"]
+atlas = ExtResource("3_wnge8")
+region = Rect2(80, 0, 80, 80)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_petev"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w7p8o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m6erg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_de1ke")
+}],
+"loop": false,
+"name": &"Death",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qrl7s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iyylh")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[node name="box" instance=ExtResource("1_7uy8o")]
+
+[node name="AnimatedSprite" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_petev")

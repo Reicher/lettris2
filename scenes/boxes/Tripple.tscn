@@ -1,0 +1,73 @@
+[gd_scene load_steps=12 format=3 uid="uid://8qwop0yxsvai"]
+
+[ext_resource type="PackedScene" uid="uid://dxw5co5ucfkeo" path="res://scenes/boxes/Box.tscn" id="1_3g444"]
+[ext_resource type="Texture2D" uid="uid://ijsnvx6kosku" path="res://assets/tripple-box-break.png" id="2_duv3a"]
+[ext_resource type="Texture2D" uid="uid://dgy8sg2kgwaun" path="res://assets/tripple-box.png" id="2_dysfe"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iu1du"]
+atlas = ExtResource("2_duv3a")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bqeg6"]
+atlas = ExtResource("2_duv3a")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6fcix"]
+atlas = ExtResource("2_duv3a")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ev42l"]
+atlas = ExtResource("2_duv3a")
+region = Rect2(300, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bi0nh"]
+atlas = ExtResource("2_duv3a")
+region = Rect2(400, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rhorr"]
+atlas = ExtResource("2_dysfe")
+region = Rect2(0, 0, 76, 76)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pa3k5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iu1du")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bqeg6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6fcix")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ev42l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bi0nh")
+}],
+"loop": false,
+"name": &"Death",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rhorr")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ln3wg"]
+size = Vector2(54, 56)
+
+[node name="box" instance=ExtResource("1_3g444")]
+
+[node name="AnimatedSprite" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_pa3k5")
+animation = &"Death"
+
+[node name="Shape" parent="." index="2"]
+rotation = 0.785397
+shape = SubResource("RectangleShape2D_ln3wg")

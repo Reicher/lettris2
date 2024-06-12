@@ -1,0 +1,57 @@
+[gd_scene load_steps=10 format=3 uid="uid://dgro4c8drwwbg"]
+
+[ext_resource type="PackedScene" uid="uid://dxw5co5ucfkeo" path="res://scenes/boxes/Box.tscn" id="1_kt214"]
+[ext_resource type="Texture2D" uid="uid://dckm0o6ndc4yb" path="res://assets/box-break.png" id="2_qhbt4"]
+[ext_resource type="Texture2D" uid="uid://yqhg2p4wqh50" path="res://assets/big-box.png" id="3_3e83q"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cj0r0"]
+atlas = ExtResource("2_qhbt4")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j6hqo"]
+atlas = ExtResource("2_qhbt4")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m2cl0"]
+atlas = ExtResource("2_qhbt4")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cof7f"]
+atlas = ExtResource("3_3e83q")
+region = Rect2(0, 0, 120, 120)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vtuys"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cj0r0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j6hqo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m2cl0")
+}],
+"loop": false,
+"name": &"Death",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cof7f")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s60q6"]
+size = Vector2(120, 120)
+
+[node name="box" instance=ExtResource("1_kt214")]
+
+[node name="AnimatedSprite" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_vtuys")
+
+[node name="Shape" parent="." index="2"]
+shape = SubResource("RectangleShape2D_s60q6")

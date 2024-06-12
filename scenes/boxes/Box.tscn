@@ -1,0 +1,164 @@
+[gd_scene load_steps=12 format=3 uid="uid://dxw5co5ucfkeo"]
+
+[ext_resource type="Texture2D" uid="uid://dckm0o6ndc4yb" path="res://assets/box-break.png" id="2_gxc4v"]
+[ext_resource type="Texture2D" uid="uid://s22in3av1d3d" path="res://assets/box.png" id="3_lxdrd"]
+
+[sub_resource type="GDScript" id="GDScript_0r63m"]
+script/source = "extends RigidBody2D
+
+signal clicked(box)
+
+@export var multiplier = 1
+
+var letterData = {
+	'A': { 'value': 1, 'quantity': 9 },  'B': { 'value': 3, 'quantity': 2 },
+	'C': { 'value': 3, 'quantity': 2 },  'D': { 'value': 2, 'quantity': 4 },
+	'E': { 'value': 1, 'quantity': 12 }, 'F': { 'value': 4, 'quantity': 2 },
+	'G': { 'value': 2, 'quantity': 3 },  'H': { 'value': 4, 'quantity': 2 },
+	'I': { 'value': 1, 'quantity': 9 },  'J': { 'value': 8, 'quantity': 1 },
+	'K': { 'value': 5, 'quantity': 1 },  'L': { 'value': 1, 'quantity': 4 },
+	'M': { 'value': 3, 'quantity': 2 },  'N': { 'value': 1, 'quantity': 6 },
+	'O': { 'value': 1, 'quantity': 8 },  'P': { 'value': 3, 'quantity': 2 },
+	'Q': { 'value': 10, 'quantity': 1 }, 'R': { 'value': 1, 'quantity': 6 },
+	'S': { 'value': 1, 'quantity': 4 },  'T': { 'value': 1, 'quantity': 6 },
+	'U': { 'value': 1, 'quantity': 4 },  'V': { 'value': 4, 'quantity': 2 },
+	'W': { 'value': 4, 'quantity': 2 },  'X': { 'value': 8, 'quantity': 1 },
+	'Y': { 'value': 4, 'quantity': 2 },  'Z': { 'value': 10, 'quantity': 1 }
+}
+
+var selected = false
+var letter = \" \"
+var value = 0
+var size = Vector2(80, 80) # TODO: Needs to be set dynamically
+
+func _get_semi_random_letter() -> String:
+	var random_number = randi() % (98 - 1) # Number of letter tiles
+	var count = 0
+	
+	# Find the letter corresponding to the random_number
+	for letter in letterData.keys():
+		count += letterData[letter]['quantity']
+		if count > random_number:
+			return letter
+	return \"\"
+
+func _ready() -> void:
+	letter = _get_semi_random_letter()
+	value = letterData[letter].value
+	value *= multiplier
+	$AnimatedSprite.play(\"Idle\")
+	$Letter.text = letter		
+	$Letter/Value.text = str(value)
+	
+func select(status: bool) -> void:
+	selected = status
+	
+	# TODO: This should really be a nice shader (maybe a frame?)
+	var golden_color = Color(1, 0.743, 0, 1)  # Golden color (RGBA)
+	if selected:
+		$AnimatedSprite.modulate = $AnimatedSprite.modulate.blend(golden_color)  # Blend with the golden color
+	else:
+		$AnimatedSprite.modulate = Color(1, 1, 1, 1)  # Reset to original color
+
+func start_destroy() -> void:
+	select(false)
+	set_physics_process(false)
+	$Letter.visible = false
+
+	$AnimatedSprite.play(\"Death\")
+	$AnimatedSprite.animation_finished.connect(queue_free)
+
+func _on_input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton and event.pressed == true:
+		select(not selected)
+		clicked.emit(self)
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cj0r0"]
+atlas = ExtResource("2_gxc4v")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j6hqo"]
+atlas = ExtResource("2_gxc4v")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m2cl0"]
+atlas = ExtResource("2_gxc4v")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4atqr"]
+atlas = ExtResource("3_lxdrd")
+region = Rect2(0, 0, 80, 80)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xmxv0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cj0r0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j6hqo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m2cl0")
+}],
+"loop": false,
+"name": &"Death",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4atqr")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="LabelSettings" id="LabelSettings_g6a4k"]
+font_size = 45
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_3jls4"]
+font_size = 17
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kivvd"]
+size = Vector2(80, 80)
+
+[node name="box" type="RigidBody2D"]
+input_pickable = true
+can_sleep = false
+script = SubResource("GDScript_0r63m")
+
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_xmxv0")
+animation = &"Idle"
+
+[node name="Letter" type="Label" parent="."]
+texture_filter = 1
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+text = "A"
+label_settings = SubResource("LabelSettings_g6a4k")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Value" type="Label" parent="Letter"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 57.0
+offset_top = 56.0
+offset_right = 80.0
+offset_bottom = 80.0
+text = "1"
+label_settings = SubResource("LabelSettings_3jls4")
+horizontal_alignment = 1
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_kivvd")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

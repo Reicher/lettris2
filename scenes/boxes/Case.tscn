@@ -1,57 +1,58 @@
 [gd_scene load_steps=10 format=3 uid="uid://b6xnhqcq67agu"]
 
-[ext_resource type="PackedScene" uid="uid://dxw5co5ucfkeo" path="res://scenes/boxes/Basebox.tscn" id="1_opawh"]
-[ext_resource type="Texture2D" uid="uid://86ey3tglhxfq" path="res://assets/spritesheet.png" id="2_8860a"]
+[ext_resource type="PackedScene" uid="uid://dxw5co5ucfkeo" path="res://scenes/boxes/Box.tscn" id="1_rugfe"]
+[ext_resource type="Texture2D" uid="uid://p4pkblp8h5p0" path="res://assets/wide-box.png" id="3_8pnjk"]
 [ext_resource type="Texture2D" uid="uid://dv5a1yrv5drk0" path="res://assets/wide-box-break.png" id="3_vuly0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2d744"]
+atlas = ExtResource("3_vuly0")
+region = Rect2(0, 0, 150, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5abr0"]
+atlas = ExtResource("3_vuly0")
+region = Rect2(150, 0, 150, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_epeid"]
+atlas = ExtResource("3_vuly0")
+region = Rect2(300, 0, 150, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_crw4s"]
+atlas = ExtResource("3_8pnjk")
+region = Rect2(0, 0, 180, 80)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4ifd4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2d744")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5abr0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_epeid")
+}],
+"loop": false,
+"name": &"Death",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_crw4s")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qk4eg"]
 size = Vector2(179, 80)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6ahjf"]
-atlas = ExtResource("2_8860a")
-region = Rect2(543, 1295, 180, 80)
+[node name="box" instance=ExtResource("1_rugfe")]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_m2pdf"]
-atlas = ExtResource("3_vuly0")
-region = Rect2(0, 0, 150, 100)
+[node name="AnimatedSprite" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_4ifd4")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_460g3"]
-atlas = ExtResource("3_vuly0")
-region = Rect2(150, 0, 150, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_inqf0"]
-atlas = ExtResource("3_vuly0")
-region = Rect2(300, 0, 150, 100)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_p85ck"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_m2pdf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_460g3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_inqf0")
-}],
-"loop": false,
-"name": &"Death",
-"speed": 10.0
-}]
-
-[node name="box" instance=ExtResource("1_opawh")]
-
-[node name="Shape" parent="." index="0"]
+[node name="Shape" parent="." index="2"]
 position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_qk4eg")
-
-[node name="Texture" parent="." index="1"]
-offset_left = -90.0
-offset_right = 90.0
-texture_normal = SubResource("AtlasTexture_6ahjf")
-
-[node name="Animations" parent="." index="2"]
-sprite_frames = SubResource("SpriteFrames_p85ck")
-frame = 0
-frame_progress = 0.0
