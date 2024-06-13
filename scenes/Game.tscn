@@ -9,18 +9,7 @@
 atlas = ExtResource("2_t8dp4")
 region = Rect2(0, 0, 480, 800)
 
-[node name="Game" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-script = ExtResource("1_agnpc")
-
-[node name="GameArea" type="Panel" parent="."]
-layout_mode = 1
+[node name="Game" type="Panel"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -29,8 +18,9 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 1
+script = ExtResource("1_agnpc")
 
-[node name="background" type="TextureRect" parent="GameArea"]
+[node name="background" type="TextureRect" parent="."]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
@@ -41,40 +31,34 @@ grow_vertical = 2
 size_flags_vertical = 3
 texture = SubResource("AtlasTexture_omyno")
 
-[node name="UI" parent="GameArea" instance=ExtResource("3_a4n50")]
+[node name="UI" parent="." instance=ExtResource("3_a4n50")]
 layout_mode = 1
 offset_top = -200.0
 
-[node name="StartBoxes" type="Node" parent="GameArea"]
+[node name="StartBoxes" type="Node" parent="."]
 
-[node name="box" parent="GameArea/StartBoxes" instance=ExtResource("3_g1sr4")]
+[node name="box" parent="StartBoxes" instance=ExtResource("3_g1sr4")]
 position = Vector2(96, 720)
 
-[node name="box2" parent="GameArea/StartBoxes" instance=ExtResource("3_g1sr4")]
+[node name="box2" parent="StartBoxes" instance=ExtResource("3_g1sr4")]
 position = Vector2(198, 719)
 
-[node name="box3" parent="GameArea/StartBoxes" instance=ExtResource("3_g1sr4")]
+[node name="box3" parent="StartBoxes" instance=ExtResource("3_g1sr4")]
 position = Vector2(147, 637)
 
-[node name="box4" parent="GameArea/StartBoxes" instance=ExtResource("3_g1sr4")]
+[node name="box4" parent="StartBoxes" instance=ExtResource("3_g1sr4")]
 position = Vector2(316, 719)
 
-[node name="box5" parent="GameArea/StartBoxes" instance=ExtResource("3_g1sr4")]
+[node name="box5" parent="StartBoxes" instance=ExtResource("3_g1sr4")]
 position = Vector2(398, 720)
 
-[node name="box6" parent="GameArea/StartBoxes" instance=ExtResource("3_g1sr4")]
+[node name="box6" parent="StartBoxes" instance=ExtResource("3_g1sr4")]
 position = Vector2(480, 720)
 
-[node name="floor and walls" type="StaticBody2D" parent="GameArea"]
+[node name="floor and walls" type="StaticBody2D" parent="."]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="GameArea/floor and walls"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="floor and walls"]
 polygon = PackedVector2Array(0, -120, 0, 760, 540, 760, 540, -120, 560, 780, -30, 780)
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 1.5
-autostart = true
-
-[connection signal="clear" from="GameArea/UI" to="." method="_on_ui_clear"]
-[connection signal="confirm" from="GameArea/UI" to="." method="_on_ui_confirm"]
-[connection signal="clicked" from="GameArea/StartBoxes/box" to="." method="_on_box_clicked"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="box_drop_time" from="UI" to="." method="_on_ui_box_drop_time"]
+[connection signal="word_accepted" from="UI" to="." method="_on_ui_word_accepted"]

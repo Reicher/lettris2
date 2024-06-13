@@ -113,5 +113,10 @@ offset_bottom = 168.0
 text = "Level: 1"
 label_settings = SubResource("LabelSettings_l54gl")
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.5
+autostart = true
+
 [connection signal="pressed" from="Confirm" to="." method="_on_confirm_pressed"]
 [connection signal="pressed" from="Clear" to="." method="_on_clear_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

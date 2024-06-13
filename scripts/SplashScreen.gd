@@ -11,5 +11,11 @@ func _on_animation_finished(anim_name):
 	if anim_name == "fade_from_black":
 		$AnimationPlayer.play("fade_to_black")
 	elif anim_name == "fade_to_black":
-		get_tree().change_scene_to_packed(main_menu)
+		_change_scene()
 		
+func _change_scene():
+	get_tree().change_scene_to_packed(main_menu)
+	
+func _input(event):
+	if event is InputEventMouseButton and event.is_pressed():
+		_change_scene()
