@@ -2,6 +2,7 @@ extends RigidBody2D
 
 signal clicked(box)
 
+const BLAST_RADIUS: float = 130.0
 const LETTER_DATA = {
 	'A': { 'value': 1, 'quantity': 9 },  'B': { 'value': 3, 'quantity': 2 },
 	'C': { 'value': 3, 'quantity': 2 },  'D': { 'value': 2, 'quantity': 4 },
@@ -19,6 +20,7 @@ const LETTER_DATA = {
 }
 
 var is_selected: bool = false
+var explosive: bool = false
 var letter: String = " "
 var value: int = 0
 var size: Vector2 = Vector2(80, 80)
@@ -40,8 +42,8 @@ func _ready() -> void:
 
 func adjust_special_box_properties() -> void:
 	if scene_file_path.contains("Bomb"):
-		print("BOMB")
-	elif scene_file_path.contains("Silver"):
+		explosive = true
+	if scene_file_path.contains("Silver"):
 		value *= 2
 	elif scene_file_path.contains("Gold"):
 		value *= 3

@@ -12,7 +12,7 @@ enum BoxType {
 	TRIPLE
 }
 
-const KARMA_THRESHOLD: int = 5
+const KARMA_THRESHOLD: int = 4
 const INITIAL_KARMA: int = 10
 const DICTIONARY_FILE_PATH: String = "res://assets/words_alpha.txt"
 const START_BOXES_NODE_PATH: String = "GameArea/StartBoxes"
@@ -36,7 +36,6 @@ var selected_boxes: Array = []
 var current_word: String = ""
 var karma: int = INITIAL_KARMA
 var score: int = 0
-var bad_boxes: Array = []
 
 @export var level: int = 1
 
@@ -50,6 +49,7 @@ func load_word_list(file_path: String) -> void:
 	print("Loaded %d words into dictionary" % dictionary.size())
 
 func _ready() -> void:
+	rng.randomize()  # Ensure RNG is seeded
 	load_word_list(DICTIONARY_FILE_PATH)
 	_update_word()
 	_update_score(0)
@@ -60,22 +60,40 @@ func initialize_box(box: Node) -> void:
 	box.add_to_group("boxes")
 	box.clicked.connect(box_clicked)
 
-func _get_next_box_type() -> PackedScene:
-	karma = 10
-	if karma > 20:
-		return box_scenes[BoxType.GOLD]
+
+func _get_next_box() -> Node:
+	var bad_boxes: Array = [BoxType.BALL, BoxType.CASE, BoxType.BIG]
+	var next_box = BoxType.NORMAL
+
+	if level >= 1 and rng.randi() % 3 == 0:
+		next_box = BoxType.BOMB
 	elif karma > 15:
-		return box_scenes[BoxType.SILVER]
-	elif karma < 7 and not bad_boxes.is_empty():
-		return bad_boxes[randi() % bad_boxes.size()]
-	return box_scenes.values()[randi() % box_scenes.size()]
+		karma = 10
+		if rng.randi() % 3 == 0:  # 1/3 chance
+			next_box = BoxType.TRIPLE
+		else:
+			next_box = BoxType.GOLD
+	elif karma > 13:
+		karma = 10
+		if rng.randi() % 3 == 0:  # 1/3 chance
+			next_box = BoxType.DOUBLE
+		else:
+			next_box = BoxType.SILVER
+	elif karma < 7:
+		karma = 10
+		next_box = bad_boxes[rng.randi() % bad_boxes.size()]
+
+	print("Selected box type: ", next_box, " | Karma: ", karma)
+	
+	return box_scenes[next_box].instantiate()
+
 
 func _on_timer_timeout() -> void:
 	if _check_game_over():
 		get_tree().change_scene_to_packed(game_over_scene)
 		return
 	
-	var box: Node = _get_next_box_type().instantiate()
+	var box: Node = _get_next_box()
 	var viewport_width: float = get_viewport_rect().size.x
 	var x_bounds: Vector2 = Vector2(box.size.x / 2, viewport_width - box.size.x / 2)
 	box.position = Vector2(rng.randf_range(x_bounds.x, x_bounds.y), -box.size.y / 2)
@@ -118,16 +136,37 @@ func _on_clear_pressed() -> void:
 	selected_boxes.clear()
 	_update_word()
 
+func _handle_explosions() -> void:
+	var boxes = get_tree().get_nodes_in_group("boxes")
+	for box in selected_boxes:
+		if box.explosive:
+			for other_box in boxes:
+				var distance = other_box.position.distance_to(box.position)
+				if distance <= box.BLAST_RADIUS:
+					box_clicked(other_box)
+					other_box.destroy()
+					
+			print("Bomb exploded! Destroyed nearby boxes.")
+
 func _on_confirm_pressed() -> void:
 	if not dictionary.has(current_word.to_lower()):
 		return
+		
+	# Karma is only depending on doing long words now, better
+	karma += (current_word.length() - KARMA_THRESHOLD )
 	
+	print("Selected Boxes before :" + str(len(selected_boxes)))
+	# If a bomb is part of it boxes might be destroyed before points could 
+	# be given, though luck..
+	_handle_explosions()
+	
+	print("Selected Boxes after :" + str(len(selected_boxes)))
 	var points: int = _get_points(selected_boxes)
+	
 	for box in selected_boxes:
 		box.destroy()
 	selected_boxes.clear()
-	
-	karma += points - KARMA_THRESHOLD
+
 	_update_word()
 	_update_score(points)
 
@@ -139,12 +178,9 @@ func _update_word() -> void:
 func _update_score(points: int) -> void:
 	score += points
 	level = 1 + int(score / 10)
+	var new_wait_time = max(0.5, 3 - 0.1 * (level - 1))  
+	print("Time between drops: " + str(new_wait_time))
 	
-	bad_boxes.clear()
-	if level >= 3:
-		bad_boxes.append(box_scenes[BoxType.BALL])
-	if level >= 5:
-		bad_boxes.append(box_scenes[BoxType.CASE])
-	
+	get_node("Timer").wait_time = new_wait_time
 	get_node("GameArea/UI/Score").text = str(score)
 	get_node("GameArea/UI/Level").text = "Level: " + str(level)
