@@ -76,6 +76,7 @@ text = "A"
 label_settings = SubResource("LabelSettings_g6a4k")
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Value" type="Label" parent="Letter"]
 texture_filter = 1
@@ -87,6 +88,7 @@ offset_bottom = 80.0
 text = "1"
 label_settings = SubResource("LabelSettings_3jls4")
 horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Shape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_kivvd")

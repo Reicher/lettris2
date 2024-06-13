@@ -1,0 +1,117 @@
+[gd_scene load_steps=12 format=3 uid="uid://nu8uwf6hxlii"]
+
+[ext_resource type="Texture2D" uid="uid://86ey3tglhxfq" path="res://assets/spritesheet.png" id="1_30te7"]
+[ext_resource type="Script" path="res://scripts/UI.gd" id="2_fb5if"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n3ir0"]
+atlas = ExtResource("1_30te7")
+region = Rect2(0, 801, 480, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yx4x2"]
+atlas = ExtResource("1_30te7")
+region = Rect2(481, 801, 313, 82)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pry53"]
+atlas = ExtResource("1_30te7")
+region = Rect2(481, 884, 313, 82)
+
+[sub_resource type="LabelSettings" id="LabelSettings_h1osj"]
+font_size = 49
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_auxey"]
+font_size = 29
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jdrij"]
+atlas = ExtResource("1_30te7")
+region = Rect2(1062, 1090, 102, 82)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4mu7e"]
+atlas = ExtResource("1_30te7")
+region = Rect2(1000, 1203, 102, 82)
+
+[sub_resource type="LabelSettings" id="LabelSettings_cpdqv"]
+font_size = 36
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_l54gl"]
+font_size = 22
+font_color = Color(0, 0, 0, 1)
+
+[node name="UI" type="TextureRect"]
+texture_filter = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+texture = SubResource("AtlasTexture_n3ir0")
+script = ExtResource("2_fb5if")
+
+[node name="Confirm" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 163.0
+offset_top = 22.0
+offset_right = 515.0
+offset_bottom = 104.0
+texture_normal = SubResource("AtlasTexture_yx4x2")
+texture_pressed = SubResource("AtlasTexture_pry53")
+stretch_mode = 0
+
+[node name="Word" type="Label" parent="Confirm"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 346.0
+offset_bottom = 79.0
+text = "TESTORD"
+label_settings = SubResource("LabelSettings_h1osj")
+vertical_alignment = 1
+
+[node name="Value" type="Label" parent="Confirm/Word"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+text = "0"
+label_settings = SubResource("LabelSettings_auxey")
+horizontal_alignment = 2
+
+[node name="Clear" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 22.0
+offset_right = 139.0
+offset_bottom = 104.0
+texture_normal = SubResource("AtlasTexture_jdrij")
+texture_pressed = SubResource("AtlasTexture_4mu7e")
+stretch_mode = 0
+
+[node name="Score" type="Label" parent="."]
+layout_mode = 0
+offset_left = 354.0
+offset_top = 129.0
+offset_right = 510.0
+offset_bottom = 176.0
+text = "420"
+label_settings = SubResource("LabelSettings_cpdqv")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Level" type="Label" parent="."]
+layout_mode = 0
+offset_left = 61.0
+offset_top = 137.0
+offset_right = 142.0
+offset_bottom = 168.0
+text = "Level: 1"
+label_settings = SubResource("LabelSettings_l54gl")
+
+[connection signal="pressed" from="Confirm" to="." method="_on_confirm_pressed"]
+[connection signal="pressed" from="Clear" to="." method="_on_clear_pressed"]

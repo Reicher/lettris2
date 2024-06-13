@@ -35,8 +35,8 @@ var dictionary: Array = []
 var selected_boxes: Array = []
 var current_word: String = ""
 var karma: int = INITIAL_KARMA
-var score: int = 0
 
+@export var score: int = 0
 @export var level: int = 1
 
 func load_word_list(file_path: String) -> void:
@@ -130,12 +130,6 @@ func _get_points(word_boxes: Array) -> int:
 	current_word = word
 	return points * multiplier
 
-func _on_clear_pressed() -> void:
-	for box in selected_boxes:
-		box.set_selected(false)
-	selected_boxes.clear()
-	_update_word()
-
 func _handle_explosions() -> void:
 	var boxes = get_tree().get_nodes_in_group("boxes")
 	for box in selected_boxes:
@@ -148,7 +142,29 @@ func _handle_explosions() -> void:
 					
 			print("Bomb exploded! Destroyed nearby boxes.")
 
-func _on_confirm_pressed() -> void:
+func _update_word() -> void:
+	var points: int = _get_points(selected_boxes)
+	get_node("GameArea/UI/Confirm/Word/Value").text = str(points) if points != 0 else ""
+	get_node("GameArea/UI/Confirm/Word").text = current_word
+
+func _update_score(points: int) -> void:
+	score += points
+	level = 1 + int(score / 10)
+	var new_wait_time = max(0.5, 3 - 0.1 * (level - 1))  
+	print("Time between drops: " + str(new_wait_time))
+	
+	get_node("Timer").wait_time = new_wait_time
+	get_node("GameArea/UI/Score").text = str(score)
+	get_node("GameArea/UI/Level").text = "Level: " + str(level)
+
+
+func _on_ui_clear():
+	for box in selected_boxes:
+		box.set_selected(false)
+	selected_boxes.clear()
+	_update_word()
+
+func _on_ui_confirm():
 	if not dictionary.has(current_word.to_lower()):
 		return
 		
@@ -169,18 +185,3 @@ func _on_confirm_pressed() -> void:
 
 	_update_word()
 	_update_score(points)
-
-func _update_word() -> void:
-	var points: int = _get_points(selected_boxes)
-	get_node("GameArea/UI/Confirm/Word/Value").text = str(points) if points != 0 else ""
-	get_node("GameArea/UI/Confirm/Word").text = current_word
-
-func _update_score(points: int) -> void:
-	score += points
-	level = 1 + int(score / 10)
-	var new_wait_time = max(0.5, 3 - 0.1 * (level - 1))  
-	print("Time between drops: " + str(new_wait_time))
-	
-	get_node("Timer").wait_time = new_wait_time
-	get_node("GameArea/UI/Score").text = str(score)
-	get_node("GameArea/UI/Level").text = "Level: " + str(level)

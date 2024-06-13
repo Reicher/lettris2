@@ -1,48 +1,13 @@
-[gd_scene load_steps=14 format=3 uid="uid://2dcfqcb5ygdl"]
+[gd_scene load_steps=6 format=3 uid="uid://2dcfqcb5ygdl"]
 
 [ext_resource type="Script" path="res://scripts/Game.gd" id="1_agnpc"]
 [ext_resource type="Texture2D" uid="uid://86ey3tglhxfq" path="res://assets/spritesheet.png" id="2_t8dp4"]
+[ext_resource type="PackedScene" uid="uid://nu8uwf6hxlii" path="res://scenes/ui.tscn" id="3_a4n50"]
 [ext_resource type="PackedScene" uid="uid://dxw5co5ucfkeo" path="res://scenes/boxes/Box.tscn" id="3_g1sr4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_omyno"]
 atlas = ExtResource("2_t8dp4")
 region = Rect2(0, 0, 480, 800)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4ax43"]
-atlas = ExtResource("2_t8dp4")
-region = Rect2(0, 801, 480, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_v3o3s"]
-atlas = ExtResource("2_t8dp4")
-region = Rect2(481, 801, 313, 82)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_m8ka1"]
-atlas = ExtResource("2_t8dp4")
-region = Rect2(481, 884, 313, 82)
-
-[sub_resource type="LabelSettings" id="LabelSettings_8c24o"]
-font_size = 49
-font_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_kfx31"]
-font_size = 29
-font_color = Color(0, 0, 0, 1)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rujbl"]
-atlas = ExtResource("2_t8dp4")
-region = Rect2(1062, 1090, 102, 82)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_drxw4"]
-atlas = ExtResource("2_t8dp4")
-region = Rect2(1000, 1203, 102, 82)
-
-[sub_resource type="LabelSettings" id="LabelSettings_nfvus"]
-font_size = 36
-font_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_6b4gm"]
-font_size = 22
-font_color = Color(0, 0, 0, 1)
 
 [node name="Game" type="Control"]
 layout_mode = 3
@@ -76,79 +41,9 @@ grow_vertical = 2
 size_flags_vertical = 3
 texture = SubResource("AtlasTexture_omyno")
 
-[node name="UI" type="TextureRect" parent="GameArea"]
-texture_filter = 1
+[node name="UI" parent="GameArea" instance=ExtResource("3_a4n50")]
 layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 0
-size_flags_vertical = 8
-texture = SubResource("AtlasTexture_4ax43")
-
-[node name="Confirm" type="TextureButton" parent="GameArea/UI"]
-layout_mode = 0
-offset_left = 163.0
-offset_top = 22.0
-offset_right = 515.0
-offset_bottom = 104.0
-texture_normal = SubResource("AtlasTexture_v3o3s")
-texture_pressed = SubResource("AtlasTexture_m8ka1")
-stretch_mode = 0
-
-[node name="Word" type="Label" parent="GameArea/UI/Confirm"]
-layout_mode = 0
-offset_left = 3.0
-offset_top = 3.0
-offset_right = 346.0
-offset_bottom = 79.0
-text = "TESTORD"
-label_settings = SubResource("LabelSettings_8c24o")
-vertical_alignment = 1
-
-[node name="Value" type="Label" parent="GameArea/UI/Confirm/Word"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -40.0
-offset_bottom = 23.0
-grow_horizontal = 0
-text = "0"
-label_settings = SubResource("LabelSettings_kfx31")
-horizontal_alignment = 2
-
-[node name="Clear" type="TextureButton" parent="GameArea/UI"]
-layout_mode = 0
-offset_left = 25.0
-offset_top = 22.0
-offset_right = 139.0
-offset_bottom = 104.0
-texture_normal = SubResource("AtlasTexture_rujbl")
-texture_pressed = SubResource("AtlasTexture_drxw4")
-stretch_mode = 0
-
-[node name="Score" type="Label" parent="GameArea/UI"]
-layout_mode = 0
-offset_left = 354.0
-offset_top = 129.0
-offset_right = 510.0
-offset_bottom = 176.0
-text = "420"
-label_settings = SubResource("LabelSettings_nfvus")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Level" type="Label" parent="GameArea/UI"]
-layout_mode = 0
-offset_left = 61.0
-offset_top = 137.0
-offset_right = 142.0
-offset_bottom = 168.0
-text = "Level: 1"
-label_settings = SubResource("LabelSettings_6b4gm")
+offset_top = -200.0
 
 [node name="StartBoxes" type="Node" parent="GameArea"]
 
@@ -179,7 +74,7 @@ polygon = PackedVector2Array(0, -120, 0, 760, 540, 760, 540, -120, 560, 780, -30
 wait_time = 1.5
 autostart = true
 
-[connection signal="pressed" from="GameArea/UI/Confirm" to="." method="_on_confirm_pressed"]
-[connection signal="pressed" from="GameArea/UI/Clear" to="." method="_on_clear_pressed"]
+[connection signal="clear" from="GameArea/UI" to="." method="_on_ui_clear"]
+[connection signal="confirm" from="GameArea/UI" to="." method="_on_ui_confirm"]
 [connection signal="clicked" from="GameArea/StartBoxes/box" to="." method="_on_box_clicked"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
