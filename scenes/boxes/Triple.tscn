@@ -1,31 +1,31 @@
 [gd_scene load_steps=12 format=3 uid="uid://8qwop0yxsvai"]
 
-[ext_resource type="PackedScene" uid="uid://dxw5co5ucfkeo" path="res://scenes/boxes/Box.tscn" id="1_3g444"]
-[ext_resource type="Texture2D" uid="uid://ijsnvx6kosku" path="res://assets/tripple-box-break.png" id="2_duv3a"]
-[ext_resource type="Texture2D" uid="uid://dgy8sg2kgwaun" path="res://assets/tripple-box.png" id="2_dysfe"]
+[ext_resource type="PackedScene" uid="uid://dxw5co5ucfkeo" path="res://scenes/boxes/Box.tscn" id="1_gnhyn"]
+[ext_resource type="Texture2D" uid="uid://ijsnvx6kosku" path="res://assets/triple-box-break.png" id="2_hry46"]
+[ext_resource type="Texture2D" uid="uid://dgy8sg2kgwaun" path="res://assets/triple-box.png" id="3_h2vut"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iu1du"]
-atlas = ExtResource("2_duv3a")
+atlas = ExtResource("2_hry46")
 region = Rect2(0, 0, 100, 100)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bqeg6"]
-atlas = ExtResource("2_duv3a")
+atlas = ExtResource("2_hry46")
 region = Rect2(100, 0, 100, 100)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6fcix"]
-atlas = ExtResource("2_duv3a")
+atlas = ExtResource("2_hry46")
 region = Rect2(200, 0, 100, 100)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ev42l"]
-atlas = ExtResource("2_duv3a")
+atlas = ExtResource("2_hry46")
 region = Rect2(300, 0, 100, 100)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bi0nh"]
-atlas = ExtResource("2_duv3a")
+atlas = ExtResource("2_hry46")
 region = Rect2(400, 0, 100, 100)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rhorr"]
-atlas = ExtResource("2_dysfe")
+atlas = ExtResource("3_h2vut")
 region = Rect2(0, 0, 76, 76)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pa3k5"]
@@ -62,8 +62,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ln3wg"]
 size = Vector2(54, 56)
 
-[node name="box" instance=ExtResource("1_3g444")]
-multiplier = null
+[node name="box" instance=ExtResource("1_gnhyn")]
 
 [node name="AnimatedSprite" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_pa3k5")

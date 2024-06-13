@@ -2,7 +2,7 @@ extends RigidBody2D
 
 signal clicked(box)
 
-var letterData = {
+const LETTER_DATA = {
 	'A': { 'value': 1, 'quantity': 9 },  'B': { 'value': 3, 'quantity': 2 },
 	'C': { 'value': 3, 'quantity': 2 },  'D': { 'value': 2, 'quantity': 4 },
 	'E': { 'value': 1, 'quantity': 12 }, 'F': { 'value': 4, 'quantity': 2 },
@@ -18,64 +18,56 @@ var letterData = {
 	'Y': { 'value': 4, 'quantity': 2 },  'Z': { 'value': 10, 'quantity': 1 }
 }
 
-var selected = false
-var letter = " "
-var value = 0
-var size = Vector2(80, 80)  # TODO: Needs to be set dynamically
+var is_selected: bool = false
+var letter: String = " "
+var value: int = 0
+var size: Vector2 = Vector2(80, 80)
 
-func _get_semi_random_letter() -> String:
-	var random_number = randi() % 98  # Number of letter tiles
-	var count = 0
-	
-	# Find the letter corresponding to the random_number
-	for letter in letterData.keys():
-		count += letterData[letter]['quantity']
-		if count > random_number:
-			return letter
+func _get_random_letter() -> String:
+	var random_number = randi() % 98
+	var cumulative_quantity = 0
+	for key in LETTER_DATA.keys():
+		cumulative_quantity += LETTER_DATA[key]['quantity']
+		if cumulative_quantity > random_number:
+			return key
 	return ""
 
 func _ready() -> void:
-	letter = _get_semi_random_letter()
-	value = letterData[letter].value
-	$AnimatedSprite.play("Idle")
-	
-	# Special boxes with special needs
+	letter = _get_random_letter()
+	value = LETTER_DATA[letter].value
+	adjust_special_box_properties()
+	_update_display()
+
+func adjust_special_box_properties() -> void:
 	if scene_file_path.contains("Bomb"):
 		print("BOMB")
 	elif scene_file_path.contains("Silver"):
-		$"Letter/Value".text = str(value * 2)
+		value *= 2
 	elif scene_file_path.contains("Gold"):
-		$"Letter/Value".text = str(value * 3)
+		value *= 3
 	elif scene_file_path.contains("Double"):
 		letter = "x2"
-		$"Letter/Value".text = ""
-	elif scene_file_path.contains("Tripple"):
+		value = 0
+	elif scene_file_path.contains("Triple"):
 		letter = "x3"
-		$"Letter/Value".text = ""
-	else:
-		$"Letter/Value".text = str(value)
-		
+		value = 0
+
+func _update_display() -> void:
+	$"Letter/Value".text = str(value) if value != 0 else ""
 	$"Letter".text = letter
 
-func select(status: bool) -> void:
-	selected = status
-	
-	# Update visual selection state
-	var golden_color = Color(1, 0.743, 0, 1)  # Golden color (RGBA)
-	if selected:
-		$AnimatedSprite.modulate = $AnimatedSprite.modulate.blend(golden_color)
-	else:
-		$AnimatedSprite.modulate = Color(1, 1, 1, 1)  # Reset to original color
+func set_selected(status: bool) -> void:
+	is_selected = status
+	var golden_color = Color(1, 0.743, 0, 1)
+	$AnimatedSprite.modulate = golden_color if is_selected else Color(1, 1, 1, 1)
 
-func start_destroy() -> void:
-	select(false)
-	set_physics_process(false)
+func destroy() -> void:
+	set_selected(false)
 	$"Letter".visible = false
-
 	$AnimatedSprite.play("Death")
 	$AnimatedSprite.animation_finished.connect(queue_free)
 
-func _on_input_event(viewport, event, shape_idx):
+func _on_input_event(viewport, event, shape_idx) -> void:
 	if event is InputEventMouseButton and event.pressed:
-		select(not selected)
+		set_selected(not is_selected)
 		clicked.emit(self)
