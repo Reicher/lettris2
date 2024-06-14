@@ -45,9 +45,9 @@ func _get_points(word_boxes: Array) -> int:
 	var word: String = ""
 	for box in word_boxes:
 		if box.letter == "x2":
-			multiplier *= 2
+			multiplier += 1
 		elif box.letter == "x3":
-			multiplier *= 3
+			multiplier += 2
 		else:
 			word += box.letter
 			points += box.value

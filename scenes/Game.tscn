@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://2dcfqcb5ygdl"]
 
-[ext_resource type="Script" path="res://scripts/Game.gd" id="1_agnpc"]
+[ext_resource type="Script" path="res://scripts/Game.gd" id="1_oolkt"]
 [ext_resource type="Texture2D" uid="uid://86ey3tglhxfq" path="res://assets/spritesheet.png" id="2_t8dp4"]
-[ext_resource type="PackedScene" uid="uid://nu8uwf6hxlii" path="res://scenes/ui.tscn" id="3_a4n50"]
-[ext_resource type="PackedScene" uid="uid://dxw5co5ucfkeo" path="res://scenes/boxes/Box.tscn" id="3_g1sr4"]
+[ext_resource type="PackedScene" uid="uid://nu8uwf6hxlii" path="res://scenes/ui.tscn" id="3_ors6h"]
+[ext_resource type="PackedScene" uid="uid://dxw5co5ucfkeo" path="res://scenes/boxes/Box.tscn" id="4_d333h"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_omyno"]
 atlas = ExtResource("2_t8dp4")
@@ -18,7 +18,7 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 1
-script = ExtResource("1_agnpc")
+script = ExtResource("1_oolkt")
 
 [node name="background" type="TextureRect" parent="."]
 texture_filter = 1
@@ -31,28 +31,28 @@ grow_vertical = 2
 size_flags_vertical = 3
 texture = SubResource("AtlasTexture_omyno")
 
-[node name="UI" parent="." instance=ExtResource("3_a4n50")]
+[node name="UI" parent="." instance=ExtResource("3_ors6h")]
 layout_mode = 1
 offset_top = -200.0
 
 [node name="StartBoxes" type="Node" parent="."]
 
-[node name="box" parent="StartBoxes" instance=ExtResource("3_g1sr4")]
+[node name="box" parent="StartBoxes" instance=ExtResource("4_d333h")]
 position = Vector2(96, 720)
 
-[node name="box2" parent="StartBoxes" instance=ExtResource("3_g1sr4")]
+[node name="box2" parent="StartBoxes" instance=ExtResource("4_d333h")]
 position = Vector2(198, 719)
 
-[node name="box3" parent="StartBoxes" instance=ExtResource("3_g1sr4")]
+[node name="box3" parent="StartBoxes" instance=ExtResource("4_d333h")]
 position = Vector2(147, 637)
 
-[node name="box4" parent="StartBoxes" instance=ExtResource("3_g1sr4")]
+[node name="box4" parent="StartBoxes" instance=ExtResource("4_d333h")]
 position = Vector2(316, 719)
 
-[node name="box5" parent="StartBoxes" instance=ExtResource("3_g1sr4")]
+[node name="box5" parent="StartBoxes" instance=ExtResource("4_d333h")]
 position = Vector2(398, 720)
 
-[node name="box6" parent="StartBoxes" instance=ExtResource("3_g1sr4")]
+[node name="box6" parent="StartBoxes" instance=ExtResource("4_d333h")]
 position = Vector2(480, 720)
 
 [node name="floor and walls" type="StaticBody2D" parent="."]

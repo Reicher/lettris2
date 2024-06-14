@@ -12,7 +12,6 @@ enum BoxType {
 	TRIPLE
 }
 
-var game_over_scene: PackedScene = preload("res://scenes/GameOver.tscn")
 var box_scenes: Dictionary = {
 	BoxType.NORMAL: preload("res://scenes/boxes/Box.tscn"),
 	BoxType.SILVER: preload("res://scenes/boxes/Silver.tscn"),
@@ -25,10 +24,11 @@ var box_scenes: Dictionary = {
 	BoxType.TRIPLE: preload("res://scenes/boxes/Triple.tscn")
 }
 
-var rng: RandomNumberGenerator = RandomNumberGenerator.new()
-
 const KARMA_THRESHOLD: float = 3.5
+
 @export var karma: float = 10
+var game_over_scene: PackedScene = preload("res://scenes/GameOver.tscn")
+var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
 func _ready() -> void:
 	rng.randomize()  # Ensure RNG is seeded
