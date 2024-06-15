@@ -40,6 +40,8 @@ func initialize_box(box: Node) -> void:
 	box.clicked.connect($UI.box_clicked)
 
 func _get_next_box() -> Node:
+	#return box_scenes[[BoxType.BALL, BoxType.CASE, BoxType.BIG, BoxType.NORMAL, BoxType.SILVER, BoxType.GOLD, BoxType.DOUBLE, BoxType.TRIPLE, BoxType.BOMB][rng.randi() % 9]].instantiate()
+	
 	var bad_boxes: Array = [BoxType.BALL, BoxType.CASE, BoxType.BIG]
 	var next_box = BoxType.NORMAL
 

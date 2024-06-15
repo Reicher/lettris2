@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwj3rgk1e5x2d"]
+
+[ext_resource type="Texture2D" uid="uid://cb1dyrjc6nv42" path="res://assets/particles/board1.png" id="1_m5tbv"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_c8g4t"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(30, 30, 1)
+emission_shape = 1
+emission_sphere_radius = 1.0
+angle_min = -180.0
+angle_max = 180.0
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 86.61
+initial_velocity_max = 350.0
+angular_velocity_min = -180.0
+angular_velocity_max = 180.0
+gravity = Vector3(0, 700, 0)
+
+[node name="DeathParticles" type="GPUParticles2D"]
+emitting = false
+amount = 4
+process_material = SubResource("ParticleProcessMaterial_c8g4t")
+texture = ExtResource("1_m5tbv")
+lifetime = 3.0
+one_shot = true
+explosiveness = 1.0

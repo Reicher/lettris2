@@ -1,5 +1,7 @@
 extends RigidBody2D
 
+var DeathParticles = preload("res://scenes/components/DeathParticles.tscn")
+
 signal clicked(box)
 
 const BLAST_RADIUS: float = 130.0
@@ -23,7 +25,9 @@ var is_selected: bool = false
 var explosive: bool = false
 var letter: String = " "
 var value: int = 0
-var size: Vector2 = Vector2(80, 80)
+var size: Vector2 = Vector2(80, 80) # TODO, get real
+var emitters: Array[GPUParticles2D] = []
+
 
 func _get_random_letter() -> String:
 	var random_number = randi() % 98
@@ -43,9 +47,17 @@ func _ready() -> void:
 func adjust_special_box_properties() -> void:
 	if scene_file_path.contains("Bomb"):
 		explosive = true
-	if scene_file_path.contains("Silver"):
+	if scene_file_path.contains("Ball"):
+		_add_emitter("res://assets/particles/ball-piece-red.png")
+		_add_emitter("res://assets/particles/ball-piece-redyellow.png")
+		_add_emitter("res://assets/particles/ball-piece-yellow.png")
+	elif scene_file_path.contains("Silver"):
+		_add_emitter("res://assets/particles/silver-board1.png")
+		_add_emitter("res://assets/particles/silver-board2.png")
 		value *= 2
 	elif scene_file_path.contains("Gold"):
+		_add_emitter("res://assets/particles/gold-board1.png")
+		_add_emitter("res://assets/particles/gold-board2.png")
 		value *= 3
 	elif scene_file_path.contains("Double"):
 		letter = "x2"
@@ -53,6 +65,22 @@ func adjust_special_box_properties() -> void:
 	elif scene_file_path.contains("Triple"):
 		letter = "x3"
 		value = 0
+	elif scene_file_path.contains("Case"):
+		_add_emitter("res://assets/bowtie.png")
+		_add_emitter("res://assets/particles/tophat.png")
+		_add_emitter("res://assets/particles/wand.png")
+		_add_emitter("res://assets/particles/suitcase-piece1.png")
+		_add_emitter("res://assets/particles/suitcase-piece2.png")
+		_add_emitter("res://assets/particles/suitcase-piece3.png")
+	else: # box or bigbox
+		_add_emitter("res://assets/board1.png")
+		_add_emitter("res://assets/board2.png")
+		
+func _add_emitter(texture_path) -> void:
+	var new_emitter = DeathParticles.instantiate()
+	new_emitter.texture = load(texture_path)
+	add_child(new_emitter)
+	emitters.append(new_emitter)
 
 func _update_display() -> void:
 	$"Letter/Value".text = str(value) if value != 0 else ""
@@ -65,9 +93,26 @@ func set_selected(status: bool) -> void:
 
 func destroy() -> void:
 	set_selected(false)
-	$"Letter".visible = false
+	$Letter.visible = false
+	self.collision_layer = 0
+
 	$AnimatedSprite.play("Death")
-	$AnimatedSprite.animation_finished.connect(queue_free)
+	$AnimatedSprite.animation_finished.connect(destroy_done)
+	
+	for emitter in emitters:
+		emitter.restart()
+		emitter.finished.connect(destroy_done)
+	
+func destroy_done() -> void:
+	if not $AnimatedSprite.is_playing():
+		$AnimatedSprite.hide()
+		var all_emitters_finished = true
+		for emitter in emitters:
+			if emitter.emitting:
+				all_emitters_finished = false
+				break
+		if all_emitters_finished:
+			queue_free()
 
 func _on_input_event(viewport, event, shape_idx) -> void:
 	if event is InputEventMouseButton and event.pressed:
