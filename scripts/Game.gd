@@ -31,6 +31,7 @@ var game_over_scene: PackedScene = preload("res://scenes/GameOver.tscn")
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
 func _ready() -> void:
+	print("THE WHAT")
 	rng.randomize()  # Ensure RNG is seeded
 	for box in $StartBoxes.get_children():
 		initialize_box(box)
@@ -69,6 +70,8 @@ func _get_next_box() -> Node:
 	
 func _on_ui_box_drop_time():
 	if _check_game_over():
+		game_over_scene.score = $UI.score
+		game_over_scene.best_word = $UI.best_word
 		get_tree().change_scene_to_packed(game_over_scene)
 		return
 	

@@ -12,6 +12,8 @@ var dictionary: Array = []
 var selected_boxes: Array = []
 var current_word: String = ""
 
+var best_word = ""
+var best_word_score = 0
 
 func load_word_list(file_path: String) -> void:
 	var file: FileAccess = FileAccess.open(file_path, FileAccess.READ)
@@ -52,6 +54,12 @@ func _get_points(word_boxes: Array) -> int:
 			word += box.letter
 			points += box.value
 	current_word = word
+	
+	# Do not count multiples, maybe should be counting silver and gold either.
+	if points > best_word_score:
+		best_word = word
+		best_word_score = points
+	
 	return points * multiplier
 	
 func box_clicked(box: Node) -> void:

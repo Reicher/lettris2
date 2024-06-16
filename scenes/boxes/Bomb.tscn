@@ -1,40 +1,40 @@
 [gd_scene load_steps=10 format=3 uid="uid://ble2dt1tx3x5x"]
 
 [ext_resource type="PackedScene" uid="uid://dxw5co5ucfkeo" path="res://scenes/boxes/Box.tscn" id="1_7uy8o"]
-[ext_resource type="Texture2D" uid="uid://r4kf1vuao113" path="res://assets/bomb-box-break.png" id="2_1iovn"]
-[ext_resource type="Texture2D" uid="uid://b6l6qfmnxwjjo" path="res://assets/bomb-box.png" id="3_wnge8"]
+[ext_resource type="Texture2D" uid="uid://bxvvinmafvisd" path="res://assets/images/bomb-box-break.png" id="2_n2uss"]
+[ext_resource type="Texture2D" uid="uid://bqkrjlvpqayit" path="res://assets/images/bomb-box.png" id="3_1d44v"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_w7p8o"]
-atlas = ExtResource("2_1iovn")
+[sub_resource type="AtlasTexture" id="AtlasTexture_6v7dh"]
+atlas = ExtResource("2_n2uss")
 region = Rect2(0, 0, 180, 180)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_m6erg"]
-atlas = ExtResource("2_1iovn")
+[sub_resource type="AtlasTexture" id="AtlasTexture_ruub7"]
+atlas = ExtResource("2_n2uss")
 region = Rect2(180, 0, 180, 180)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_de1ke"]
-atlas = ExtResource("2_1iovn")
+[sub_resource type="AtlasTexture" id="AtlasTexture_3u12k"]
+atlas = ExtResource("2_n2uss")
 region = Rect2(360, 0, 180, 180)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qrl7s"]
-atlas = ExtResource("3_wnge8")
+[sub_resource type="AtlasTexture" id="AtlasTexture_x5eua"]
+atlas = ExtResource("3_1d44v")
 region = Rect2(0, 0, 80, 80)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_iyylh"]
-atlas = ExtResource("3_wnge8")
+[sub_resource type="AtlasTexture" id="AtlasTexture_c1ovw"]
+atlas = ExtResource("3_1d44v")
 region = Rect2(80, 0, 80, 80)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_petev"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_w7p8o")
+"texture": SubResource("AtlasTexture_6v7dh")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_m6erg")
+"texture": SubResource("AtlasTexture_ruub7")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_de1ke")
+"texture": SubResource("AtlasTexture_3u12k")
 }],
 "loop": false,
 "name": &"Death",
@@ -42,10 +42,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_qrl7s")
+"texture": SubResource("AtlasTexture_x5eua")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_iyylh")
+"texture": SubResource("AtlasTexture_c1ovw")
 }],
 "loop": true,
 "name": &"Idle",

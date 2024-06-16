@@ -1,11 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://c2yi43o6tsgym"]
+[gd_scene load_steps=7 format=3 uid="uid://c2yi43o6tsgym"]
 
 [ext_resource type="Script" path="res://scripts/SplashScreen.gd" id="1_l5vb3"]
-[ext_resource type="Texture2D" uid="uid://86ey3tglhxfq" path="res://assets/spritesheet.png" id="2_uehmu"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mnwhc"]
-atlas = ExtResource("2_uehmu")
-region = Rect2(0, 1002, 400, 200)
+[ext_resource type="Texture2D" uid="uid://dpi3ayggypvli" path="res://assets/images/TNS_logo.png" id="2_hak18"]
 
 [sub_resource type="Animation" id="Animation_8rf6t"]
 length = 0.001
@@ -85,13 +81,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -200.0
-offset_top = -100.0
-offset_right = 200.0
-offset_bottom = 100.0
+offset_left = -194.0
+offset_top = -103.0
+offset_right = 206.0
+offset_bottom = 97.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("AtlasTexture_mnwhc")
+texture = ExtResource("2_hak18")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

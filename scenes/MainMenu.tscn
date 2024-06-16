@@ -1,16 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://bwk0yfe8x4cki"]
 
-[ext_resource type="Texture2D" uid="uid://86ey3tglhxfq" path="res://assets/spritesheet.png" id="1_iwlrg"]
+[ext_resource type="Texture2D" uid="uid://cmcigm8tdjf45" path="res://assets/images/background.png" id="1_pglg3"]
 [ext_resource type="Script" path="res://scripts/PlayButton.gd" id="2_8tw01"]
 [ext_resource type="PackedScene" uid="uid://bd4f240hk4wj8" path="res://scenes/components/Title.tscn" id="2_iafpb"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_e0nhk"]
-atlas = ExtResource("1_iwlrg")
-region = Rect2(0, 0, 480, 800)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ki02p"]
-atlas = ExtResource("1_iwlrg")
-region = Rect2(481, 721, 210, 70)
+[ext_resource type="Texture2D" uid="uid://gmp3afxv83x7" path="res://assets/images/button.png" id="3_2oydh"]
+[ext_resource type="Texture2D" uid="uid://81dglvjyglkr" path="res://assets/images/button-pressed.png" id="4_226yn"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -27,7 +21,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("AtlasTexture_e0nhk")
+texture = ExtResource("1_pglg3")
 
 [node name="MidStuff" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -63,7 +57,8 @@ horizontal_alignment = 1
 [node name="PlayButton" type="TextureButton" parent="MidStuff/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-texture_normal = SubResource("AtlasTexture_ki02p")
+texture_normal = ExtResource("3_2oydh")
+texture_pressed = ExtResource("4_226yn")
 script = ExtResource("2_8tw01")
 
 [node name="PlayText" type="Label" parent="MidStuff/VBoxContainer/PlayButton"]
@@ -86,7 +81,8 @@ vertical_alignment = 1
 [node name="Credits" type="TextureButton" parent="MidStuff/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-texture_normal = SubResource("AtlasTexture_ki02p")
+texture_normal = ExtResource("3_2oydh")
+texture_pressed = ExtResource("4_226yn")
 script = ExtResource("2_8tw01")
 
 [node name="creditsText" type="Label" parent="MidStuff/VBoxContainer/Credits"]
@@ -109,7 +105,8 @@ vertical_alignment = 1
 [node name="Language" type="TextureButton" parent="MidStuff/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-texture_normal = SubResource("AtlasTexture_ki02p")
+texture_normal = ExtResource("3_2oydh")
+texture_pressed = ExtResource("4_226yn")
 script = ExtResource("2_8tw01")
 
 [node name="LanguageText" type="Label" parent="MidStuff/VBoxContainer/Language"]

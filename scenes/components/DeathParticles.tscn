@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cwj3rgk1e5x2d"]
 
-[ext_resource type="Texture2D" uid="uid://cb1dyrjc6nv42" path="res://assets/particles/board1.png" id="1_m5tbv"]
+[ext_resource type="Texture2D" uid="uid://cb1dyrjc6nv42" path="res://assets/images/particles/board1.png" id="1_wv671"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_c8g4t"]
 particle_flag_disable_z = true
@@ -20,7 +20,7 @@ gravity = Vector3(0, 700, 0)
 emitting = false
 amount = 4
 process_material = SubResource("ParticleProcessMaterial_c8g4t")
-texture = ExtResource("1_m5tbv")
+texture = ExtResource("1_wv671")
 lifetime = 3.0
 one_shot = true
 explosiveness = 1.0

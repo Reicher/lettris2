@@ -1,36 +1,36 @@
 [gd_scene load_steps=9 format=3 uid="uid://bpyhyqrplwfil"]
 
 [ext_resource type="PackedScene" uid="uid://dxw5co5ucfkeo" path="res://scenes/boxes/Box.tscn" id="1_rh5b4"]
-[ext_resource type="Texture2D" uid="uid://b18adgviecilb" path="res://assets/silver-box.png" id="3_i4ofs"]
-[ext_resource type="Texture2D" uid="uid://c86maoy702vuq" path="res://assets/silver-box-break.png" id="3_ne27i"]
+[ext_resource type="Texture2D" uid="uid://q71mfo37c624" path="res://assets/images/silver-box-break.png" id="2_jcilj"]
+[ext_resource type="Texture2D" uid="uid://dh01l0vcv8m3i" path="res://assets/images/silver-box.png" id="3_6bo1k"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_frs04"]
-atlas = ExtResource("3_ne27i")
+[sub_resource type="AtlasTexture" id="AtlasTexture_lg80p"]
+atlas = ExtResource("2_jcilj")
 region = Rect2(0, 0, 100, 100)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_gmi4u"]
-atlas = ExtResource("3_ne27i")
+[sub_resource type="AtlasTexture" id="AtlasTexture_gfjds"]
+atlas = ExtResource("2_jcilj")
 region = Rect2(100, 0, 100, 100)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ifbga"]
-atlas = ExtResource("3_ne27i")
+[sub_resource type="AtlasTexture" id="AtlasTexture_7oien"]
+atlas = ExtResource("2_jcilj")
 region = Rect2(200, 0, 100, 100)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_t4e4d"]
-atlas = ExtResource("3_i4ofs")
+[sub_resource type="AtlasTexture" id="AtlasTexture_21caw"]
+atlas = ExtResource("3_6bo1k")
 region = Rect2(0, 0, 80, 80)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_43i32"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_frs04")
+"texture": SubResource("AtlasTexture_lg80p")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_gmi4u")
+"texture": SubResource("AtlasTexture_gfjds")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ifbga")
+"texture": SubResource("AtlasTexture_7oien")
 }],
 "loop": false,
 "name": &"Death",
@@ -38,7 +38,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_t4e4d")
+"texture": SubResource("AtlasTexture_21caw")
 }],
 "loop": true,
 "name": &"Idle",
@@ -46,7 +46,6 @@ animations = [{
 }]
 
 [node name="box" instance=ExtResource("1_rh5b4")]
-multiplier = 2
 
 [node name="AnimatedSprite" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_43i32")

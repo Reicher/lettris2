@@ -1,19 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://nu8uwf6hxlii"]
+[gd_scene load_steps=11 format=3 uid="uid://nu8uwf6hxlii"]
 
-[ext_resource type="Texture2D" uid="uid://86ey3tglhxfq" path="res://assets/spritesheet.png" id="1_30te7"]
+[ext_resource type="Texture2D" uid="uid://cohdb46w6imx0" path="res://assets/images/panel.png" id="1_gj2ol"]
 [ext_resource type="Script" path="res://scripts/UI.gd" id="2_fb5if"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_n3ir0"]
-atlas = ExtResource("1_30te7")
-region = Rect2(0, 801, 480, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_yx4x2"]
-atlas = ExtResource("1_30te7")
-region = Rect2(481, 801, 313, 82)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pry53"]
-atlas = ExtResource("1_30te7")
-region = Rect2(481, 884, 313, 82)
+[ext_resource type="Texture2D" uid="uid://ci0c13rgnss4f" path="res://assets/images/accept.png" id="3_2uy1r"]
+[ext_resource type="Texture2D" uid="uid://tgolblali2xn" path="res://assets/images/accept-pressed.png" id="4_jrw3c"]
+[ext_resource type="Texture2D" uid="uid://keejhdcyf8qw" path="res://assets/images/clear.png" id="5_ffvsw"]
+[ext_resource type="Texture2D" uid="uid://c3clwngeibcm" path="res://assets/images/clear-pressed.png" id="6_nosdh"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_h1osj"]
 font_size = 49
@@ -22,14 +14,6 @@ font_color = Color(0, 0, 0, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_auxey"]
 font_size = 29
 font_color = Color(0, 0, 0, 1)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jdrij"]
-atlas = ExtResource("1_30te7")
-region = Rect2(1062, 1090, 102, 82)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4mu7e"]
-atlas = ExtResource("1_30te7")
-region = Rect2(1000, 1203, 102, 82)
 
 [sub_resource type="LabelSettings" id="LabelSettings_cpdqv"]
 font_size = 36
@@ -48,7 +32,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_vertical = 8
-texture = SubResource("AtlasTexture_n3ir0")
+texture = ExtResource("1_gj2ol")
 script = ExtResource("2_fb5if")
 
 [node name="Confirm" type="TextureButton" parent="."]
@@ -57,8 +41,8 @@ offset_left = 163.0
 offset_top = 22.0
 offset_right = 515.0
 offset_bottom = 104.0
-texture_normal = SubResource("AtlasTexture_yx4x2")
-texture_pressed = SubResource("AtlasTexture_pry53")
+texture_normal = ExtResource("3_2uy1r")
+texture_pressed = ExtResource("4_jrw3c")
 stretch_mode = 0
 
 [node name="Word" type="Label" parent="Confirm"]
@@ -89,8 +73,8 @@ offset_left = 25.0
 offset_top = 22.0
 offset_right = 139.0
 offset_bottom = 104.0
-texture_normal = SubResource("AtlasTexture_jdrij")
-texture_pressed = SubResource("AtlasTexture_4mu7e")
+texture_normal = ExtResource("5_ffvsw")
+texture_pressed = ExtResource("6_nosdh")
 stretch_mode = 0
 
 [node name="Score" type="Label" parent="."]

@@ -1,13 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://2dcfqcb5ygdl"]
+[gd_scene load_steps=5 format=3 uid="uid://cs3bl4sm2csj6"]
 
 [ext_resource type="Script" path="res://scripts/Game.gd" id="1_oolkt"]
-[ext_resource type="Texture2D" uid="uid://86ey3tglhxfq" path="res://assets/spritesheet.png" id="2_t8dp4"]
+[ext_resource type="Texture2D" uid="uid://cmcigm8tdjf45" path="res://assets/images/background.png" id="2_o60xs"]
 [ext_resource type="PackedScene" uid="uid://nu8uwf6hxlii" path="res://scenes/ui.tscn" id="3_ors6h"]
 [ext_resource type="PackedScene" uid="uid://dxw5co5ucfkeo" path="res://scenes/boxes/Box.tscn" id="4_d333h"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_omyno"]
-atlas = ExtResource("2_t8dp4")
-region = Rect2(0, 0, 480, 800)
 
 [node name="Game" type="Panel"]
 anchors_preset = 15
@@ -29,7 +25,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
-texture = SubResource("AtlasTexture_omyno")
+texture = ExtResource("2_o60xs")
 
 [node name="UI" parent="." instance=ExtResource("3_ors6h")]
 layout_mode = 1

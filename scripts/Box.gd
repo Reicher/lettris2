@@ -48,16 +48,16 @@ func adjust_special_box_properties() -> void:
 	if scene_file_path.contains("Bomb"):
 		explosive = true
 	if scene_file_path.contains("Ball"):
-		_add_emitter("res://assets/particles/ball-piece-red.png")
-		_add_emitter("res://assets/particles/ball-piece-redyellow.png")
-		_add_emitter("res://assets/particles/ball-piece-yellow.png")
+		_add_emitter("res://assets/images/particles/ball-piece-red.png")
+		_add_emitter("res://assets/images/particles/ball-piece-redyellow.png")
+		_add_emitter("res://assets/images/particles/ball-piece-yellow.png")
 	elif scene_file_path.contains("Silver"):
-		_add_emitter("res://assets/particles/silver-board1.png")
-		_add_emitter("res://assets/particles/silver-board2.png")
+		_add_emitter("res://assets/images/particles/silver-board1.png")
+		_add_emitter("res://assets/images/particles/silver-board2.png")
 		value *= 2
 	elif scene_file_path.contains("Gold"):
-		_add_emitter("res://assets/particles/gold-board1.png")
-		_add_emitter("res://assets/particles/gold-board2.png")
+		_add_emitter("res://assets/images/particles/gold-board1.png")
+		_add_emitter("res://assets/images/particles/gold-board2.png")
 		value *= 3
 	elif scene_file_path.contains("Double"):
 		letter = "x2"
@@ -66,15 +66,15 @@ func adjust_special_box_properties() -> void:
 		letter = "x3"
 		value = 0
 	elif scene_file_path.contains("Case"):
-		_add_emitter("res://assets/bowtie.png")
-		_add_emitter("res://assets/particles/tophat.png")
-		_add_emitter("res://assets/particles/wand.png")
-		_add_emitter("res://assets/particles/suitcase-piece1.png")
-		_add_emitter("res://assets/particles/suitcase-piece2.png")
-		_add_emitter("res://assets/particles/suitcase-piece3.png")
+		_add_emitter("res://assets/images/bowtie.png")
+		_add_emitter("res://assets/images/particles/tophat.png")
+		_add_emitter("res://assets/images/particles/wand.png")
+		_add_emitter("res://assets/images/particles/suitcase-piece1.png")
+		_add_emitter("res://assets/images/particles/suitcase-piece2.png")
+		_add_emitter("res://assets/images/particles/suitcase-piece3.png")
 	else: # box or bigbox
-		_add_emitter("res://assets/board1.png")
-		_add_emitter("res://assets/board2.png")
+		_add_emitter("res://assets/images/particles/board1.png")
+		_add_emitter("res://assets/images/particles/board2.png")
 		
 func _add_emitter(texture_path) -> void:
 	var new_emitter = DeathParticles.instantiate()
@@ -115,7 +115,7 @@ func destroy_done() -> void:
 		if all_emitters_finished:
 			queue_free()
 
-func _on_input_event(viewport, event, shape_idx) -> void:
+func _on_input_event(_viewport, event, _shape_idx) -> void:
 	if event is InputEventMouseButton and event.pressed:
 		set_selected(not is_selected)
 		clicked.emit(self)
