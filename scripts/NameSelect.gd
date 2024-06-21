@@ -1,5 +1,7 @@
 extends Control
 
+signal submit(name)
+
 var english_alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 
 						'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 
 						'W', 'X', 'Y', 'Z']
@@ -41,3 +43,6 @@ func get_previous_letter(current_letter):
 	var index = english_alphabet.find(current_letter)
 	index = (index - 1 + english_alphabet.size()) % english_alphabet.size()
 	return english_alphabet[index]
+
+func _on_texture_button_pressed():
+	submit.emit(get_Name())

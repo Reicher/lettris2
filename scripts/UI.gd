@@ -25,8 +25,9 @@ func load_word_list(file_path: String) -> void:
 	print("Loaded %d words into dictionary" % dictionary.size())
 
 func _ready():	
-	load_word_list(DICTIONARY_FILE_PATH)	
+	load_word_list(DICTIONARY_FILE_PATH)		
 	_update_word()
+	update_score(0)
 
 func update_score(points: int) -> void:
 	score += points

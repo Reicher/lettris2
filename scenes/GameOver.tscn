@@ -5,8 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://bfoqw2q013wkp" path="res://assets/images/big-panel.png" id="3_jlaw8"]
 [ext_resource type="Texture2D" uid="uid://bneb6ixn0indf" path="res://assets/images/point-tent.png" id="4_528kk"]
 [ext_resource type="PackedScene" uid="uid://bgl1t1duhhvxh" path="res://scenes/components/BestWord.tscn" id="4_d0nd5"]
-[ext_resource type="PackedScene" uid="uid://dxmu8xik26g24" path="res://scenes/components/NameSelect.tscn" id="5_8k068"]
 [ext_resource type="Texture2D" uid="uid://lkas3ocumds3" path="res://assets/images/point-reveal.png" id="5_bueqk"]
+[ext_resource type="PackedScene" uid="uid://bsmhcauntsqrq" path="res://scenes/components/HighScore.tscn" id="7_hlfdv"]
 [ext_resource type="Texture2D" uid="uid://bl41afja8gntn" path="res://assets/images/game-over.png" id="8_ql0ae"]
 [ext_resource type="Texture2D" uid="uid://gmp3afxv83x7" path="res://assets/images/button.png" id="9_xke0u"]
 [ext_resource type="Texture2D" uid="uid://81dglvjyglkr" path="res://assets/images/button-pressed.png" id="10_8icua"]
@@ -134,7 +134,7 @@ texture = ExtResource("3_jlaw8")
 [node name="Most inner" type="MarginContainer" parent="Outer Margin/Inner Margin"]
 layout_mode = 2
 theme_override_constants/margin_top = 75
-theme_override_constants/margin_bottom = 200
+theme_override_constants/margin_bottom = 220
 
 [node name="TentBack" type="TextureRect" parent="Outer Margin/Inner Margin/Most inner"]
 layout_mode = 2
@@ -169,8 +169,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="NameSelect" parent="Outer Margin/Inner Margin/Most inner" instance=ExtResource("5_8k068")]
-visible = false
+[node name="HighScore" parent="Outer Margin/Inner Margin/Most inner" instance=ExtResource("7_hlfdv")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
