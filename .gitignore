@@ -2,3 +2,5 @@
 .godot/
 *.tmp
 *.import
+assets/images/unused
+bin
