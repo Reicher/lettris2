@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://blkm5cun88g8b"]
+
+[ext_resource type="Script" path="res://scripts/AudioManager.gd" id="1_ndt8n"]
+[ext_resource type="AudioStream" uid="uid://c5uiicl7kjme7" path="res://assets/audio/TNS_splash.wav" id="2_8xdv4"]
+
+[node name="AudioManager" type="Node"]
+script = ExtResource("1_ndt8n")
+
+[node name="SplashSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_8xdv4")

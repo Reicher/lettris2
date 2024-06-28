@@ -20,6 +20,7 @@ config/icon="res://assets/favicon.png"
 [autoload]
 
 Global="*res://scripts/Global.gd"
+AudioManager="*res://scenes/AudioManager.tscn"
 
 [display]
 
