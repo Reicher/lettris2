@@ -16,7 +16,7 @@ func _on_musictoggle_toggled(toggled_on):
 
 func _on_effectstoggle_toggled(toggled_on):
 	Global.effects_on = not Global.effects_on
-	if toggled_on:
+	if Global.effects_on:
 		$"effect-toggle".texture_normal = effect_on_texture
 		# play a little sound
 	else:
