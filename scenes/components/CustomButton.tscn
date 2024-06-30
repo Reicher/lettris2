@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://cee6bkso6bcso"]
+
+[ext_resource type="Texture2D" uid="uid://gmp3afxv83x7" path="res://assets/images/button.png" id="1_s3j11"]
+[ext_resource type="Texture2D" uid="uid://81dglvjyglkr" path="res://assets/images/button-pressed.png" id="2_jtyul"]
+[ext_resource type="Script" path="res://scripts/CustomButton.gd" id="3_hbqom"]
+
+[node name="Button" type="TextureButton"]
+offset_right = 210.0
+offset_bottom = 70.0
+texture_normal = ExtResource("1_s3j11")
+texture_pressed = ExtResource("2_jtyul")
+script = ExtResource("3_hbqom")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Sample Text"
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

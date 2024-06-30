@@ -1,10 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://bwk0yfe8x4cki"]
+[gd_scene load_steps=14 format=3 uid="uid://bwk0yfe8x4cki"]
 
+[ext_resource type="Script" path="res://scripts/MainMenu.gd" id="1_ir6i1"]
 [ext_resource type="Texture2D" uid="uid://cmcigm8tdjf45" path="res://assets/images/background.png" id="1_pglg3"]
-[ext_resource type="Script" path="res://scripts/PlayButton.gd" id="2_8tw01"]
 [ext_resource type="PackedScene" uid="uid://bd4f240hk4wj8" path="res://scenes/components/Title.tscn" id="2_iafpb"]
-[ext_resource type="Texture2D" uid="uid://gmp3afxv83x7" path="res://assets/images/button.png" id="3_2oydh"]
-[ext_resource type="Texture2D" uid="uid://81dglvjyglkr" path="res://assets/images/button-pressed.png" id="4_226yn"]
+[ext_resource type="PackedScene" uid="uid://cee6bkso6bcso" path="res://scenes/components/CustomButton.tscn" id="3_cxvp4"]
 [ext_resource type="Texture2D" uid="uid://dedgjyx4va6yh" path="res://assets/images/sound_control.png" id="6_b6lu6"]
 [ext_resource type="Script" path="res://scripts/SoundSettings.gd" id="6_x55fq"]
 [ext_resource type="Texture2D" uid="uid://b1twuwfjquvnk" path="res://assets/images/music-control.png" id="7_3wbos"]
@@ -40,6 +39,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_ir6i1")
 
 [node name="background" type="TextureRect" parent="."]
 layout_mode = 1
@@ -71,87 +71,16 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="RandomTipTitle" type="Label" parent="MidStuff/VBoxContainer"]
+[node name="Credits" type="Label" parent="MidStuff/VBoxContainer"]
 layout_mode = 2
-text = "Random Tip: "
+text = "Made by: 
+Robin Reicher and David Levi"
 horizontal_alignment = 1
 
-[node name="RandomTip" type="Label" parent="MidStuff/VBoxContainer"]
-layout_mode = 2
-text = "Det är najs att kissa blundande"
-horizontal_alignment = 1
-
-[node name="PlayButton" type="TextureButton" parent="MidStuff/VBoxContainer"]
+[node name="PlayButton" parent="MidStuff/VBoxContainer" instance=ExtResource("3_cxvp4")]
 layout_mode = 2
 size_flags_horizontal = 4
-texture_normal = ExtResource("3_2oydh")
-texture_pressed = ExtResource("4_226yn")
-script = ExtResource("2_8tw01")
-
-[node name="PlayText" type="Label" parent="MidStuff/VBoxContainer/PlayButton"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "PLAY"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Credits" type="TextureButton" parent="MidStuff/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-texture_normal = ExtResource("3_2oydh")
-texture_pressed = ExtResource("4_226yn")
-script = ExtResource("2_8tw01")
-
-[node name="creditsText" type="Label" parent="MidStuff/VBoxContainer/Credits"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "CREDITS"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Language" type="TextureButton" parent="MidStuff/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-texture_normal = ExtResource("3_2oydh")
-texture_pressed = ExtResource("4_226yn")
-script = ExtResource("2_8tw01")
-
-[node name="LanguageText" type="Label" parent="MidStuff/VBoxContainer/Language"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "LANGUAGE"
-horizontal_alignment = 1
-vertical_alignment = 1
+button_text = "Play"
 
 [node name="BottomStuff" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -192,8 +121,6 @@ size_flags_horizontal = 8
 size_flags_vertical = 8
 text = "Version 2 alpha"
 
-[connection signal="pressed" from="MidStuff/VBoxContainer/PlayButton" to="MidStuff/VBoxContainer/PlayButton" method="_on_pressed"]
-[connection signal="pressed" from="MidStuff/VBoxContainer/Credits" to="MidStuff/VBoxContainer/Credits" method="_on_pressed"]
-[connection signal="pressed" from="MidStuff/VBoxContainer/Language" to="MidStuff/VBoxContainer/Language" method="_on_pressed"]
+[connection signal="pressed" from="MidStuff/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="toggled" from="BottomStuff/SoundSettings/effect-toggle" to="BottomStuff/SoundSettings" method="_on_effectstoggle_toggled"]
 [connection signal="toggled" from="BottomStuff/SoundSettings/music-toggle" to="BottomStuff/SoundSettings" method="_on_musictoggle_toggled"]
