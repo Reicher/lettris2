@@ -19,7 +19,7 @@ func _ready() -> void:
 		_show_highscore_table()
 
 func _show_highscore_table() -> void:
-	$"Outer Margin/TextureButton/Label".text = "Main Menu"
+	$"Outer Margin/TextureöButton/Label".text = "Main Menu"
 
 func _on_texture_button_pressed() -> void:
 	if submit_highscore:

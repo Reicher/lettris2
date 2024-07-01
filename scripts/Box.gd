@@ -88,9 +88,13 @@ func _update_display() -> void:
 
 func set_selected(status: bool) -> void:
 	is_selected = status
-	var golden_color = Color(1, 0.743, 0, 1)
-	$AnimatedSprite.modulate = golden_color if is_selected else Color(1, 1, 1, 1)
 	$SelectEffect.emitting = is_selected
+	if is_selected:
+		AudioManager.letter_select.play()
+		$AnimatedSprite.modulate = Color(1, 0.743, 0, 1)
+	else:
+		AudioManager.letter_deselect.play()
+		$AnimatedSprite.modulate = Color(1, 1, 1, 1)
 
 func destroy() -> void:
 	set_selected(false)

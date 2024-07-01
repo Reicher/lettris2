@@ -1,8 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://cee6bkso6bcso"]
+[gd_scene load_steps=6 format=3 uid="uid://cee6bkso6bcso"]
 
 [ext_resource type="Texture2D" uid="uid://gmp3afxv83x7" path="res://assets/images/button.png" id="1_s3j11"]
 [ext_resource type="Texture2D" uid="uid://81dglvjyglkr" path="res://assets/images/button-pressed.png" id="2_jtyul"]
 [ext_resource type="Script" path="res://scripts/CustomButton.gd" id="3_hbqom"]
+[ext_resource type="FontFile" uid="uid://yjlmka0depa5" path="res://assets/Dinofans.otf" id="4_c3b11"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_y1tg4"]
+font = ExtResource("4_c3b11")
+font_size = 30
+outline_size = 1
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Button" type="TextureButton"]
 offset_right = 210.0
@@ -24,6 +31,10 @@ offset_right = 20.0
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "Sample Text"
+text = "Main Menu"
+label_settings = SubResource("LabelSettings_y1tg4")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]

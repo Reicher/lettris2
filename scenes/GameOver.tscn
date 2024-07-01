@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cap2k70wpcutv"]
+[gd_scene load_steps=22 format=3 uid="uid://cap2k70wpcutv"]
 
 [ext_resource type="Script" path="res://scripts/GameOver.gd" id="1_n6qrp"]
 [ext_resource type="Texture2D" uid="uid://cmcigm8tdjf45" path="res://assets/images/background.png" id="2_bxkeq"]
@@ -8,8 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://lkas3ocumds3" path="res://assets/images/point-reveal.png" id="5_bueqk"]
 [ext_resource type="PackedScene" uid="uid://bsmhcauntsqrq" path="res://scenes/components/HighScore.tscn" id="7_hlfdv"]
 [ext_resource type="Texture2D" uid="uid://bl41afja8gntn" path="res://assets/images/game-over.png" id="8_ql0ae"]
-[ext_resource type="Texture2D" uid="uid://gmp3afxv83x7" path="res://assets/images/button.png" id="9_xke0u"]
-[ext_resource type="Texture2D" uid="uid://81dglvjyglkr" path="res://assets/images/button-pressed.png" id="10_8icua"]
+[ext_resource type="PackedScene" uid="uid://cee6bkso6bcso" path="res://scenes/components/CustomButton.tscn" id="9_okera"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ieile"]
 font_size = 38
@@ -180,26 +179,8 @@ size_flags_horizontal = 4
 size_flags_vertical = 0
 texture = ExtResource("8_ql0ae")
 
-[node name="TextureButton" type="TextureButton" parent="Outer Margin"]
+[node name="Button" parent="Outer Margin" instance=ExtResource("9_okera")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
-texture_normal = ExtResource("9_xke0u")
-texture_pressed = ExtResource("10_8icua")
-
-[node name="Label" type="Label" parent="Outer Margin/TextureButton"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -44.0
-offset_top = -11.5
-offset_right = 44.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "Main Menu"
-
-[connection signal="pressed" from="Outer Margin/TextureButton" to="." method="_on_texture_button_pressed"]
+button_text = "Main Menu"
