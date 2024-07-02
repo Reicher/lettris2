@@ -87,8 +87,8 @@ func _handle_explosions() -> void:
 
 func _update_word() -> void:
 	var points: int = _get_points(selected_boxes)
-	get_node("Confirm/Word/Value").text = str(points) if points != 0 else ""
-	get_node("Confirm/Word").text = current_word
+	get_node("Confirm/Margins/Value").text = str(points) if points != 0 else ""
+	get_node("Confirm/Margins/Word").text = current_word
 
 func _on_clear_pressed():
 	for box in selected_boxes:
@@ -98,8 +98,10 @@ func _on_clear_pressed():
 
 func _on_confirm_pressed():
 	if not dictionary.has(current_word.to_lower()):
+		AudioManager.word_not_accepted.play()
 		return
 	
+	AudioManager.word_accepted.play()
 	word_accepted.emit(current_word)
 	
 	# If a bomb is part of it boxes might be destroyed before points could 

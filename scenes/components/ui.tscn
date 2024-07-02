@@ -1,27 +1,37 @@
-[gd_scene load_steps=11 format=3 uid="uid://nu8uwf6hxlii"]
+[gd_scene load_steps=12 format=3 uid="uid://nu8uwf6hxlii"]
 
 [ext_resource type="Texture2D" uid="uid://cohdb46w6imx0" path="res://assets/images/panel.png" id="1_gj2ol"]
 [ext_resource type="Script" path="res://scripts/UI.gd" id="2_fb5if"]
 [ext_resource type="Texture2D" uid="uid://ci0c13rgnss4f" path="res://assets/images/accept.png" id="3_2uy1r"]
 [ext_resource type="Texture2D" uid="uid://tgolblali2xn" path="res://assets/images/accept-pressed.png" id="4_jrw3c"]
+[ext_resource type="FontFile" uid="uid://yjlmka0depa5" path="res://assets/Dinofans.otf" id="5_662gf"]
 [ext_resource type="Texture2D" uid="uid://keejhdcyf8qw" path="res://assets/images/clear.png" id="5_ffvsw"]
 [ext_resource type="Texture2D" uid="uid://c3clwngeibcm" path="res://assets/images/clear-pressed.png" id="6_nosdh"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_h1osj"]
+line_spacing = 0.0
+font = ExtResource("5_662gf")
 font_size = 49
-font_color = Color(0, 0, 0, 1)
+outline_size = 7
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_auxey"]
+font = ExtResource("5_662gf")
 font_size = 29
-font_color = Color(0, 0, 0, 1)
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_cpdqv"]
+font = ExtResource("5_662gf")
 font_size = 36
-font_color = Color(0, 0, 0, 1)
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_l54gl"]
-font_size = 22
-font_color = Color(0, 0, 0, 1)
+font = ExtResource("5_662gf")
+font_size = 27
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
 
 [node name="UI" type="TextureRect"]
 texture_filter = 1
@@ -45,24 +55,29 @@ texture_normal = ExtResource("3_2uy1r")
 texture_pressed = ExtResource("4_jrw3c")
 stretch_mode = 0
 
-[node name="Word" type="Label" parent="Confirm"]
-layout_mode = 0
-offset_left = 3.0
-offset_top = 3.0
-offset_right = 346.0
-offset_bottom = 79.0
+[node name="Margins" type="MarginContainer" parent="Confirm"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Word" type="Label" parent="Confirm/Margins"]
+layout_mode = 2
+size_flags_horizontal = 0
 text = "TESTORD"
 label_settings = SubResource("LabelSettings_h1osj")
 vertical_alignment = 1
 
-[node name="Value" type="Label" parent="Confirm/Word"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -40.0
-offset_bottom = 23.0
-grow_horizontal = 0
+[node name="Value" type="Label" parent="Confirm/Margins"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
 text = "0"
 label_settings = SubResource("LabelSettings_auxey")
 horizontal_alignment = 2
@@ -79,10 +94,10 @@ stretch_mode = 0
 
 [node name="Score" type="Label" parent="."]
 layout_mode = 0
-offset_left = 354.0
-offset_top = 129.0
-offset_right = 510.0
-offset_bottom = 176.0
+offset_left = 350.0
+offset_top = 127.0
+offset_right = 517.0
+offset_bottom = 179.0
 text = "420"
 label_settings = SubResource("LabelSettings_cpdqv")
 horizontal_alignment = 1
@@ -90,12 +105,14 @@ vertical_alignment = 1
 
 [node name="Level" type="Label" parent="."]
 layout_mode = 0
-offset_left = 61.0
-offset_top = 137.0
-offset_right = 142.0
-offset_bottom = 168.0
+offset_left = 24.0
+offset_top = 127.0
+offset_right = 189.0
+offset_bottom = 179.0
 text = "Level: 1"
 label_settings = SubResource("LabelSettings_l54gl")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 1.5
