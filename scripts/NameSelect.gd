@@ -44,5 +44,5 @@ func get_previous_letter(current_letter):
 	index = (index - 1 + english_alphabet.size()) % english_alphabet.size()
 	return english_alphabet[index]
 
-func _on_texture_button_pressed():
+func _on_submit_button_pressed():
 	submit.emit(get_Name())

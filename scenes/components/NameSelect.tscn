@@ -1,11 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://dxmu8xik26g24"]
+[gd_scene load_steps=7 format=3 uid="uid://dxmu8xik26g24"]
 
 [ext_resource type="Script" path="res://scripts/NameSelect.gd" id="1_ri8la"]
 [ext_resource type="Texture2D" uid="uid://ch6uiyv0bnit" path="res://assets/images/arrow.png" id="2_mk3xv"]
 [ext_resource type="Texture2D" uid="uid://cj72x5s5pku3u" path="res://assets/images/arrow-pressed.png" id="3_jh3t5"]
 [ext_resource type="Texture2D" uid="uid://jyy5qx2akhtn" path="res://assets/images/box.png" id="4_di1tq"]
-[ext_resource type="Texture2D" uid="uid://gmp3afxv83x7" path="res://assets/images/button.png" id="4_umphq"]
-[ext_resource type="Texture2D" uid="uid://81dglvjyglkr" path="res://assets/images/button-pressed.png" id="5_u126w"]
+[ext_resource type="PackedScene" uid="uid://cee6bkso6bcso" path="res://scenes/components/CustomButton.tscn" id="5_wd0s8"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0me8d"]
 font_size = 50
@@ -133,29 +132,11 @@ texture_normal = ExtResource("2_mk3xv")
 texture_pressed = ExtResource("3_jh3t5")
 flip_v = true
 
-[node name="TextureButton" type="TextureButton" parent="."]
+[node name="SubmitButton" parent="." instance=ExtResource("5_wd0s8")]
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 8
-texture_normal = ExtResource("4_umphq")
-texture_pressed = ExtResource("5_u126w")
-
-[node name="Label" type="Label" parent="TextureButton"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -44.0
-offset_top = -11.5
-offset_right = 44.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "Submit"
-horizontal_alignment = 1
-vertical_alignment = 1
+size_flags_vertical = 4
+button_text = "Submit"
 
 [connection signal="pressed" from="GridContainer/Up1" to="." method="_on_up_1_pressed"]
 [connection signal="pressed" from="GridContainer/Up2" to="." method="_on_up_2_pressed"]
@@ -163,4 +144,4 @@ vertical_alignment = 1
 [connection signal="pressed" from="GridContainer/Down1" to="." method="_on_down_1_pressed"]
 [connection signal="pressed" from="GridContainer/Down2" to="." method="_on_down_2_pressed"]
 [connection signal="pressed" from="GridContainer/Down3" to="." method="_on_down_3_pressed"]
-[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="SubmitButton" to="." method="_on_submit_button_pressed"]

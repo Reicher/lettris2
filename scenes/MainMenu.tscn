@@ -1,12 +1,16 @@
-[gd_scene load_steps=14 format=3 uid="uid://bwk0yfe8x4cki"]
+[gd_scene load_steps=16 format=3 uid="uid://bwk0yfe8x4cki"]
 
 [ext_resource type="Script" path="res://scripts/MainMenu.gd" id="1_ir6i1"]
 [ext_resource type="Texture2D" uid="uid://cmcigm8tdjf45" path="res://assets/images/background.png" id="1_pglg3"]
 [ext_resource type="PackedScene" uid="uid://bd4f240hk4wj8" path="res://scenes/components/Title.tscn" id="2_iafpb"]
 [ext_resource type="PackedScene" uid="uid://cee6bkso6bcso" path="res://scenes/components/CustomButton.tscn" id="3_cxvp4"]
+[ext_resource type="FontFile" uid="uid://yjlmka0depa5" path="res://assets/Dinofans.otf" id="4_adbsr"]
 [ext_resource type="Texture2D" uid="uid://dedgjyx4va6yh" path="res://assets/images/sound_control.png" id="6_b6lu6"]
 [ext_resource type="Script" path="res://scripts/SoundSettings.gd" id="6_x55fq"]
 [ext_resource type="Texture2D" uid="uid://b1twuwfjquvnk" path="res://assets/images/music-control.png" id="7_3wbos"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wlqii"]
+font = ExtResource("4_adbsr")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ply7e"]
 atlas = ExtResource("7_3wbos")
@@ -50,39 +54,32 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_pglg3")
 
-[node name="MidStuff" type="MarginContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 75
-theme_override_constants/margin_top = 75
-theme_override_constants/margin_right = 75
-theme_override_constants/margin_bottom = 75
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MidStuff"]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
-theme_override_constants/separation = 44
+offset_left = 75.0
+offset_top = 75.0
+offset_right = 465.0
+offset_bottom = 885.0
+theme_override_constants/separation = 55
 
-[node name="TextureRect" parent="MidStuff/VBoxContainer" instance=ExtResource("2_iafpb")]
+[node name="TextureRect" parent="VBoxContainer" instance=ExtResource("2_iafpb")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Credits" type="Label" parent="MidStuff/VBoxContainer"]
+[node name="Credits" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "Made by: 
+text = "By: 
 Robin Reicher and David Levi"
+label_settings = SubResource("LabelSettings_wlqii")
 horizontal_alignment = 1
 
-[node name="PlayButton" parent="MidStuff/VBoxContainer" instance=ExtResource("3_cxvp4")]
+[node name="PlayButton" parent="VBoxContainer" instance=ExtResource("3_cxvp4")]
 layout_mode = 2
 size_flags_horizontal = 4
 button_text = "Play"
 
-[node name="BottomStuff" type="MarginContainer" parent="."]
+[node name="footer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -96,7 +93,7 @@ theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 15
 
-[node name="SoundSettings" type="HBoxContainer" parent="BottomStuff"]
+[node name="SoundSettings" type="HBoxContainer" parent="footer"]
 layout_mode = 2
 theme_override_constants/separation = 9
 script = ExtResource("6_x55fq")
@@ -105,22 +102,24 @@ music_off_texture = SubResource("AtlasTexture_3cgj3")
 effect_on_texture = SubResource("AtlasTexture_vjngr")
 effect_off_texture = SubResource("AtlasTexture_r0ftu")
 
-[node name="effect-toggle" type="TextureButton" parent="BottomStuff/SoundSettings"]
+[node name="effect-toggle" type="TextureButton" parent="footer/SoundSettings"]
 layout_mode = 2
 toggle_mode = true
 texture_normal = SubResource("AtlasTexture_lduwq")
 
-[node name="music-toggle" type="TextureButton" parent="BottomStuff/SoundSettings"]
+[node name="music-toggle" type="TextureButton" parent="footer/SoundSettings"]
 layout_mode = 2
 toggle_mode = true
 texture_normal = SubResource("AtlasTexture_5dt8m")
 
-[node name="Versionlabel" type="Label" parent="BottomStuff"]
+[node name="Versionlabel" type="Label" parent="footer"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 text = "Version 2 alpha"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[connection signal="pressed" from="MidStuff/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
-[connection signal="toggled" from="BottomStuff/SoundSettings/effect-toggle" to="BottomStuff/SoundSettings" method="_on_effectstoggle_toggled"]
-[connection signal="toggled" from="BottomStuff/SoundSettings/music-toggle" to="BottomStuff/SoundSettings" method="_on_musictoggle_toggled"]
+[connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="toggled" from="footer/SoundSettings/effect-toggle" to="footer/SoundSettings" method="_on_effectstoggle_toggled"]
+[connection signal="toggled" from="footer/SoundSettings/music-toggle" to="footer/SoundSettings" method="_on_musictoggle_toggled"]

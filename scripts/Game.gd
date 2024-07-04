@@ -46,7 +46,7 @@ func _get_next_box() -> Node:
 	var bad_boxes: Array = [BoxType.BALL, BoxType.CASE, BoxType.BIG]
 	var next_box = BoxType.NORMAL
 
-	if $UI.level >= 5 and rng.randi() % 10 == 0:
+	if Global.level >= 5 and rng.randi() % 10 == 0:
 		next_box = BoxType.BOMB
 	elif karma > 15:
 		karma = 10

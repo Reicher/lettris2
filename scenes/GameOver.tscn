@@ -179,8 +179,10 @@ size_flags_horizontal = 4
 size_flags_vertical = 0
 texture = ExtResource("8_ql0ae")
 
-[node name="Button" parent="Outer Margin" instance=ExtResource("9_okera")]
+[node name="BackButton" parent="Outer Margin" instance=ExtResource("9_okera")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 button_text = "Main Menu"
+
+[connection signal="pressed" from="Outer Margin/BackButton" to="." method="_on_back_button_pressed"]

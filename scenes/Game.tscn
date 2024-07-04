@@ -1,9 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://cs3bl4sm2csj6"]
+[gd_scene load_steps=7 format=3 uid="uid://cs3bl4sm2csj6"]
 
 [ext_resource type="Script" path="res://scripts/Game.gd" id="1_2thpe"]
 [ext_resource type="Texture2D" uid="uid://cmcigm8tdjf45" path="res://assets/images/background.png" id="2_n0t3j"]
 [ext_resource type="PackedScene" uid="uid://nu8uwf6hxlii" path="res://scenes/components/UI.tscn" id="3_nf4me"]
 [ext_resource type="PackedScene" uid="uid://dxw5co5ucfkeo" path="res://scenes/boxes/Box.tscn" id="4_spu1t"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_p7x6c"]
+a = Vector2(0, -132)
+b = Vector2(1, 979)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_tdsbe"]
+a = Vector2(543, 1)
+b = Vector2(-1, 1)
 
 [node name="Game" type="Panel"]
 anchors_preset = 15
@@ -15,7 +23,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 1
 script = ExtResource("1_2thpe")
-karma = null
 
 [node name="background" type="TextureRect" parent="."]
 texture_filter = 1
@@ -52,10 +59,19 @@ position = Vector2(398, 720)
 [node name="box6" parent="StartBoxes" instance=ExtResource("4_spu1t")]
 position = Vector2(480, 720)
 
-[node name="floor and walls" type="StaticBody2D" parent="."]
+[node name="WallsAndFloor" type="StaticBody2D" parent="."]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="floor and walls"]
-polygon = PackedVector2Array(0, -120, 0, 760, 540, 760, 540, -120, 560, 780, -30, 780)
+[node name="LeftWall" type="CollisionShape2D" parent="WallsAndFloor"]
+position = Vector2(-1, 0)
+shape = SubResource("SegmentShape2D_p7x6c")
+
+[node name="RightWall" type="CollisionShape2D" parent="WallsAndFloor"]
+position = Vector2(541, 0)
+shape = SubResource("SegmentShape2D_p7x6c")
+
+[node name="Floor" type="CollisionShape2D" parent="WallsAndFloor"]
+position = Vector2(-1, 760)
+shape = SubResource("SegmentShape2D_tdsbe")
 
 [connection signal="box_drop_time" from="UI" to="." method="_on_ui_box_drop_time"]
 [connection signal="word_accepted" from="UI" to="." method="_on_ui_word_accepted"]

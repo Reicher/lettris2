@@ -5,9 +5,6 @@ signal word_accepted(word)
 
 const DICTIONARY_FILE_PATH: String = "res://assets/words_alpha.txt"
 
-@export var score: int = 0
-@export var level: int = 1
-
 var dictionary: Array = []
 var selected_boxes: Array = []
 var current_word: String = ""
@@ -25,19 +22,19 @@ func load_word_list(file_path: String) -> void:
 	print("Loaded %d words into dictionary" % dictionary.size())
 
 func _ready():	
-	load_word_list(DICTIONARY_FILE_PATH)		
+	load_word_list(DICTIONARY_FILE_PATH)			
 	_update_word()
 	update_score(0)
 
 func update_score(points: int) -> void:
-	score += points
-	level = 1 + int(score / 10)
-	var new_wait_time = max(0.5, 3 - 0.1 * (level - 1))  
+	Global.score += points
+	Global.level = 1 + int(Global.score / 10)
+	var new_wait_time = max(0.5, 3 - 0.1 * (Global.level - 1))  
 	print("Time between drops: " + str(new_wait_time))
 	
 	$Timer.wait_time = new_wait_time
-	$Score.text = str(score)
-	$Level.text = "Level: " + str(level)
+	$Score.text = str(Global.score)
+	$Level.text = "Level: " + str(Global.level)
 
 func _on_timer_timeout():
 	box_drop_time.emit()

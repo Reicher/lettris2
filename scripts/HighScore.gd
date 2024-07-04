@@ -23,9 +23,17 @@ func _ready():
 		show_table()
 		
 func show_table():
-	for nick in save_data.high_score:
+	# Get the high scores as a list of tuples and sort them
+	var high_score_list = save_data.high_score.keys()
+	high_score_list.sort_custom(func(a, b):
+		return int(save_data.high_score[b]) - int(save_data.high_score[a]) # Sort in descending order based on score
+	)
+	
+	# Display the sorted high scores
+	for nick in high_score_list:
+		var score = save_data.high_score[nick]
 		var label = Label.new()
-		label.text = nick + ": " + str(save_data.high_score[nick])
+		label.text = nick + ": " + str(score)
 		$Table.add_child(label)
 	$Table.show()
 
