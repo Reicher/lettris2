@@ -29,7 +29,8 @@ func _ready():
 func update_score(points: int) -> void:
 	Global.score += points
 	Global.level = 1 + int(Global.score / 10)
-	var new_wait_time = max(0.5, 3 - 0.1 * (Global.level - 1))  
+	#var new_wait_time = max(0.5, 3 - 0.1 * (Global.level - 1))  
+	var new_wait_time = 0.4 # To test
 	print("Time between drops: " + str(new_wait_time))
 	
 	$Timer.wait_time = new_wait_time

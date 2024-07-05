@@ -2,15 +2,15 @@ class_name SaveData extends Resource
 
 @export var high_score = {}
 
-const SAVE_PATH:String = "user://save_data.tres"
+const SAVE_PATH: String = "user://save_data.tres"
 
 func save() -> void:
 	ResourceSaver.save(self, SAVE_PATH)
-	
+
 static func load_or_create() -> SaveData:
-	var res:SaveData
+	var res: SaveData
 	if FileAccess.file_exists(SAVE_PATH):
-		res = load(SAVE_PATH) as SaveData
+		res = ResourceLoader.load(SAVE_PATH) as SaveData
 	else: 
 		res = SaveData.new()
 	return res

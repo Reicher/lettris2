@@ -70,8 +70,8 @@ func _get_next_box() -> Node:
 	
 func _on_ui_box_drop_time():
 	if _check_game_over():
-		Global.score = $UI.score
-		Global.best_word = $UI.best_word
+		Global.score = Global.score
+		Global.best_word = Global.best_word
 		get_tree().change_scene_to_packed(game_over_scene)
 		return
 	
