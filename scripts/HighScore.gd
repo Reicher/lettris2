@@ -1,17 +1,16 @@
 extends Control
 
-var save_data:SaveData # Shoudl maybe be in some sort of global later? 
 var length:int = 5
 
+var high_score = Global.high_score
+
 func high_score_worthy(score)-> bool:
-	save_data = SaveData.load_or_create()
-	if !save_data.high_score or len(save_data.high_score) < length:
+	if len(high_score) < length:
 		return true
 		
-	for nick in save_data.high_score:
-		if save_data.high_score[nick] < score:
+	for nick in high_score:
+		if high_score[nick] < score:
 			return true # Someone had worse score
-			
 	return false
 
 # Called when the node enters the scene tree for the first time.
@@ -24,14 +23,14 @@ func _ready():
 		
 func show_table():
 	# Get the high scores as a list of tuples and sort them
-	var high_score_list = save_data.high_score.keys()
+	var high_score_list = high_score.keys()
 	high_score_list.sort_custom(func(a, b):
-		return int(save_data.high_score[b]) - int(save_data.high_score[a]) # Sort in descending order based on score
+		return int(high_score[b]) - int(high_score[a]) # Sort in descending order based on score
 	)
 	
 	# Display the sorted high scores
 	for nick in high_score_list:
-		var score = save_data.high_score[nick]
+		var score = high_score[nick]
 		var label = Label.new()
 		label.text = nick + ": " + str(score)
 		$Table.add_child(label)
@@ -40,7 +39,7 @@ func show_table():
 
 func _on_name_select_submit(name):
 	# Use name in some way? 
-	save_data.high_score[name] = Global.score
-	save_data.save()
+	high_score[name] = Global.score
+	Global.save()
 	$NameSelect.hide()
 	show_table()
