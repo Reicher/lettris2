@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cap2k70wpcutv"]
+[gd_scene load_steps=23 format=3 uid="uid://cap2k70wpcutv"]
 
 [ext_resource type="Script" path="res://scripts/GameOver.gd" id="1_n6qrp"]
 [ext_resource type="Texture2D" uid="uid://cmcigm8tdjf45" path="res://assets/images/background.png" id="2_bxkeq"]
@@ -6,12 +6,16 @@
 [ext_resource type="Texture2D" uid="uid://bneb6ixn0indf" path="res://assets/images/point-tent.png" id="4_528kk"]
 [ext_resource type="PackedScene" uid="uid://bgl1t1duhhvxh" path="res://scenes/components/BestWord.tscn" id="4_d0nd5"]
 [ext_resource type="Texture2D" uid="uid://lkas3ocumds3" path="res://assets/images/point-reveal.png" id="5_bueqk"]
+[ext_resource type="FontFile" uid="uid://yjlmka0depa5" path="res://assets/Dinofans.otf" id="5_wwmfi"]
 [ext_resource type="PackedScene" uid="uid://bsmhcauntsqrq" path="res://scenes/components/HighScore.tscn" id="7_hlfdv"]
 [ext_resource type="Texture2D" uid="uid://bl41afja8gntn" path="res://assets/images/game-over.png" id="8_ql0ae"]
 [ext_resource type="PackedScene" uid="uid://cee6bkso6bcso" path="res://scenes/components/CustomButton.tscn" id="9_okera"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ieile"]
-font_size = 38
+font = ExtResource("5_wwmfi")
+font_size = 45
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6ndh4"]
 atlas = ExtResource("5_bueqk")
@@ -141,16 +145,17 @@ size_flags_horizontal = 4
 size_flags_vertical = 0
 texture = ExtResource("4_528kk")
 
-[node name="Label" type="Label" parent="Outer Margin/Inner Margin/Most inner/TentBack"]
+[node name="Score" type="Label" parent="Outer Margin/Inner Margin/Most inner/TentBack"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -23.0
-offset_right = 20.0
+offset_left = -43.5
+offset_top = -54.0
+offset_right = 43.5
+offset_bottom = -11.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "666"

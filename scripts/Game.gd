@@ -24,7 +24,7 @@ var box_scenes: Dictionary = {
 	BoxType.TRIPLE: preload("res://scenes/boxes/Triple.tscn")
 }
 
-const KARMA_THRESHOLD: float = 3.5
+const KARMA_THRESHOLD: float = 3.3
 
 @export var karma: float = 10
 var game_over_scene: PackedScene = preload("res://scenes/GameOver.tscn")

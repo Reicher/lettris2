@@ -6,7 +6,8 @@ var main_menu = preload("res://scenes/MainMenu.tscn")
 func _ready():
 	$AnimationPlayer.play("fade_from_black")
 	$AnimationPlayer.animation_finished.connect(_on_animation_finished)
-	AudioManager.splash_sfx.play()
+	if Global.sfx_on: # TODO: This is before the main menu mutes this bus, maybe should be done inside global? 
+		AudioManager.splash_sfx.play()
 
 func _on_animation_finished(anim_name):
 	if anim_name == "fade_from_black":

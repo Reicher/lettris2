@@ -7,9 +7,9 @@ var english_alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K',
 						'W', 'X', 'Y', 'Z']
 
 func _ready():
-	$GridContainer/Box1/Label.text = english_alphabet[0]
-	$GridContainer/Box2/Label.text = english_alphabet[0]
-	$GridContainer/Box3/Label.text = english_alphabet[0]
+	$GridContainer/Box1/Label.text = Global.last_nick[0]
+	$GridContainer/Box2/Label.text = Global.last_nick[1]
+	$GridContainer/Box3/Label.text = Global.last_nick[2]
 	
 func get_Name() -> String:
 	return ($GridContainer/Box1/Label.text + 
@@ -45,4 +45,7 @@ func get_previous_letter(current_letter):
 	return english_alphabet[index]
 
 func _on_submit_button_pressed():
-	submit.emit(get_Name())
+	var name = get_Name()
+	Global.last_nick = name
+	Global.save()
+	submit.emit(name)

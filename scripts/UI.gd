@@ -9,7 +9,6 @@ var dictionary: Array = []
 var selected_boxes: Array = []
 var current_word: String = ""
 
-var best_word = ""
 var best_word_score = 0
 
 func load_word_list(file_path: String) -> void:
@@ -29,6 +28,12 @@ func _ready():
 func update_score(points: int) -> void:
 	Global.score += points
 	Global.level = 1 + int(Global.score / 10)
+	
+	# TODO: Do not count multiples or silver/gold either.
+	if points > best_word_score:
+		Global.best_word = current_word
+		best_word_score = points
+	
 	#var new_wait_time = max(0.5, 3 - 0.1 * (Global.level - 1))  
 	var new_wait_time = 0.4 # To test
 	print("Time between drops: " + str(new_wait_time))
@@ -53,11 +58,6 @@ func _get_points(word_boxes: Array) -> int:
 			word += box.letter
 			points += box.value
 	current_word = word
-	
-	# Do not count multiples, maybe should be counting silver and gold either.
-	if points > best_word_score:
-		best_word = word
-		best_word_score = points
 	
 	return points * multiplier
 	
@@ -106,8 +106,9 @@ func _on_confirm_pressed():
 	# be given, tough luck..
 	_handle_explosions()
 	
-	update_score(_get_points(selected_boxes))
-	
+	var points = _get_points(selected_boxes)
+	update_score(points)
+		
 	for box in selected_boxes:
 		box.destroy()
 	selected_boxes.clear()

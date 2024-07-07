@@ -16,7 +16,6 @@ func _ready():
 		$"effect-toggle".texture_normal = effect_off_texture
 
 func _on_musictoggle_toggled(toggled_on):
-	print(toggled_on)
 	Global.music_on = not Global.music_on
 	var music_bus_index = AudioServer.get_bus_index("Music")
 	AudioServer.set_bus_mute(music_bus_index, not Global.music_on)

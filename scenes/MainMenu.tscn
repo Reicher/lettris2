@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bwk0yfe8x4cki"]
+[gd_scene load_steps=17 format=3 uid="uid://bwk0yfe8x4cki"]
 
 [ext_resource type="Script" path="res://scripts/MainMenu.gd" id="1_ir6i1"]
 [ext_resource type="Texture2D" uid="uid://cmcigm8tdjf45" path="res://assets/images/background.png" id="1_pglg3"]
@@ -35,6 +35,9 @@ region = Rect2(0, 0, 45, 45)
 [sub_resource type="AtlasTexture" id="AtlasTexture_5dt8m"]
 atlas = ExtResource("7_3wbos")
 region = Rect2(0, 0, 45, 45)
+
+[sub_resource type="LabelSettings" id="LabelSettings_s5fvm"]
+font = ExtResource("4_adbsr")
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -117,6 +120,7 @@ layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 text = "Version 2 alpha"
+label_settings = SubResource("LabelSettings_s5fvm")
 horizontal_alignment = 1
 vertical_alignment = 1
 

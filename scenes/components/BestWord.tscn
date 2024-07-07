@@ -1,7 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://bgl1t1duhhvxh"]
+[gd_scene load_steps=6 format=3 uid="uid://bgl1t1duhhvxh"]
 
+[ext_resource type="Texture2D" uid="uid://cnpydqiwdtk78" path="res://assets/images/frame.png" id="1_2klnj"]
+[ext_resource type="FontFile" uid="uid://yjlmka0depa5" path="res://assets/Dinofans.otf" id="1_8shih"]
 [ext_resource type="Script" path="res://scripts/BestWord.gd" id="1_ba6sq"]
-[ext_resource type="Texture2D" uid="uid://g6kt8d74m4a4" path="res://assets/frame.png" id="2_udnnx"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_jtkyf"]
+font = ExtResource("1_8shih")
+font_size = 25
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_3sebb"]
+font = ExtResource("1_8shih")
+font_size = 25
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
 
 [node name="VSplitContainer" type="VSplitContainer"]
 offset_right = 120.0
@@ -10,17 +23,18 @@ offset_bottom = 80.0
 [node name="Label" type="Label" parent="."]
 layout_mode = 2
 text = "Best Word"
+label_settings = SubResource("LabelSettings_jtkyf")
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 texture_filter = 1
 layout_mode = 2
-texture = ExtResource("2_udnnx")
-region_rect = Rect2(10, 10, 80, 80)
+texture = ExtResource("1_2klnj")
+region_rect = Rect2(0, 0, 100, 100)
 script = ExtResource("1_ba6sq")
 
-[node name="Label" type="Label" parent="NinePatchRect"]
+[node name="Best_word" type="Label" parent="NinePatchRect"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -34,5 +48,6 @@ offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "BEST WORD"
+label_settings = SubResource("LabelSettings_3sebb")
 horizontal_alignment = 1
 vertical_alignment = 1
