@@ -162,7 +162,7 @@ text = "666"
 label_settings = SubResource("LabelSettings_ieile")
 horizontal_alignment = 1
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Outer Margin/Inner Margin/Most inner/TentBack"]
+[node name="TentDoor" type="AnimatedSprite2D" parent="Outer Margin/Inner Margin/Most inner/TentBack"]
 position = Vector2(7, 85)
 sprite_frames = SubResource("SpriteFrames_uk0h0")
 animation = &"open"

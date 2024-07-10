@@ -30,8 +30,7 @@ const KARMA_THRESHOLD: float = 3.3
 var game_over_scene: PackedScene = preload("res://scenes/GameOver.tscn")
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
-func _ready() -> void:
-	print("THE WHAT")
+func _ready() -> void:	
 	rng.randomize()  # Ensure RNG is seeded
 	for box in $StartBoxes.get_children():
 		initialize_box(box)
@@ -63,8 +62,6 @@ func _get_next_box() -> Node:
 	elif karma < 7:
 		karma = 10
 		next_box = bad_boxes[rng.randi() % bad_boxes.size()]
-
-	print("Selected box type: ", next_box, " | Karma: ", karma)
 	
 	return box_scenes[next_box].instantiate()
 	

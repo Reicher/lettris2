@@ -1,45 +1,40 @@
 extends Control
 
-var length:int = 5
+var max_length: int = 5
 
-var high_score = Global.high_score
-
-func high_score_worthy(score)-> bool:
-	if len(high_score) < length:
+func high_score_worthy(score) -> bool:
+	if Global.high_scores.size() < max_length:
 		return true
 		
-	for nick in high_score:
-		if high_score[nick] < score:
-			return true # Someone had worse score
+	for entry in Global.high_scores:
+		if entry["score"] < score:
+			return true
 	return false
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	if high_score_worthy(Global.score):
-		print("new high score")
 		$NameSelect.show()
 	else:
 		show_table()
 		
 func show_table():
-	# Get the high scores as a list of tuples and sort them
-	var high_score_list = high_score.keys()
-	high_score_list.sort_custom(func(a, b):
-		return int(high_score[b]) - int(high_score[a]) # Sort in descending order based on score
-	)
-	
-	# Display the sorted high scores
-	for nick in high_score_list:
-		var score = high_score[nick]
+	for entry in Global.high_scores:
 		var label = Label.new()
-		label.text = nick + ": " + str(score)
+		label.text = entry["nick"] + ": " + str(entry["score"])
 		$Table.add_child(label)
 	$Table.show()
 
-
 func _on_name_select_submit(name):
-	# Use name in some way? 
-	high_score[name] = Global.score
+	# Add new high score entry
+	Global.high_scores.append({"nick": name, "score": Global.score})
+	print(Global.high_scores)
+	# Sort and trim to max_length
+	Global.high_scores.sort_custom(func(a, b):
+		return int(a["score"]) > int(b["score"])
+	)
+	print(Global.high_scores)
+	if Global.high_scores.size() > max_length:
+		Global.high_scores = Global.high_scores.slice(0, max_length)
 	Global.save()
 	$NameSelect.hide()
 	show_table()

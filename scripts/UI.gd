@@ -23,6 +23,7 @@ func load_word_list(file_path: String) -> void:
 func _ready():	
 	load_word_list(DICTIONARY_FILE_PATH)			
 	_update_word()
+	Global.score = 0
 	update_score(0)
 
 func update_score(points: int) -> void:
