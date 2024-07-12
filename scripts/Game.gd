@@ -34,6 +34,8 @@ func _ready() -> void:
 	rng.randomize()  # Ensure RNG is seeded
 	for box in $StartBoxes.get_children():
 		initialize_box(box)
+		
+	resize_walls_and_floors()
 
 func initialize_box(box: Node) -> void:
 	box.add_to_group("boxes")
@@ -88,3 +90,29 @@ func _check_game_over() -> bool:
 func _on_ui_word_accepted(word):
 	# Karma is only depending on doing long words now, better
 	karma += (word.length() - KARMA_THRESHOLD)
+	
+func _on_resized():
+	resize_walls_and_floors()
+	
+func resize_walls_and_floors():
+	var ui_height = $UI.get_global_rect().size.y
+	var root_size = get_global_rect().size
+	var floor_y_position = root_size.y - ui_height  # Position at the top of the UI
+	
+	# Set the position of the WallsAndFloor node
+	$WallsAndFloor.position = Vector2(0, floor_y_position)
+
+	# Update the Floor CollisionShape2D segment shape
+	var segment_shape = $WallsAndFloor/Floor.shape as SegmentShape2D
+	segment_shape.a = Vector2(0, 0)
+	segment_shape.b = Vector2(root_size.x, 0)
+
+	# Update the LeftWall CollisionShape2D segment shape
+	var left_wall_shape = $WallsAndFloor/LeftWall.shape as SegmentShape2D
+	left_wall_shape.a = Vector2(0, 0)
+	left_wall_shape.b = Vector2(0, -floor_y_position)
+
+	# Update the RightWall CollisionShape2D segment shape
+	var right_wall_shape = $WallsAndFloor/RightWall.shape as SegmentShape2D
+	right_wall_shape.a = Vector2(root_size.x, 0)
+	right_wall_shape.b = Vector2(root_size.x, -floor_y_position)

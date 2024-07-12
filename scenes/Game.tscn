@@ -1,17 +1,19 @@
-[gd_scene load_steps=7 format=3 uid="uid://cs3bl4sm2csj6"]
+[gd_scene load_steps=8 format=3 uid="uid://cs3bl4sm2csj6"]
 
-[ext_resource type="Script" path="res://scripts/Game.gd" id="1_2thpe"]
-[ext_resource type="Texture2D" uid="uid://cmcigm8tdjf45" path="res://assets/images/background.png" id="2_n0t3j"]
-[ext_resource type="PackedScene" uid="uid://nu8uwf6hxlii" path="res://scenes/components/UI.tscn" id="3_nf4me"]
-[ext_resource type="PackedScene" uid="uid://dxw5co5ucfkeo" path="res://scenes/boxes/Box.tscn" id="4_spu1t"]
+[ext_resource type="Script" path="res://scripts/Game.gd" id="1_k7ob8"]
+[ext_resource type="Texture2D" uid="uid://cmcigm8tdjf45" path="res://assets/images/background.png" id="2_8nkoc"]
+[ext_resource type="PackedScene" uid="uid://nu8uwf6hxlii" path="res://scenes/components/UI.tscn" id="3_fhvel"]
+[ext_resource type="PackedScene" uid="uid://dxw5co5ucfkeo" path="res://scenes/boxes/Box.tscn" id="4_llwwo"]
 
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_p7x6c"]
-a = Vector2(0, -132)
-b = Vector2(1, 979)
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_e5stl"]
+b = Vector2(0, -770)
 
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_tdsbe"]
-a = Vector2(543, 1)
-b = Vector2(-1, 1)
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_qocxn"]
+a = Vector2(540, 0)
+b = Vector2(540, -770)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_1ppla"]
+b = Vector2(540, 0)
 
 [node name="Game" type="Panel"]
 anchors_preset = 15
@@ -22,7 +24,7 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 1
-script = ExtResource("1_2thpe")
+script = ExtResource("1_k7ob8")
 
 [node name="background" type="TextureRect" parent="."]
 texture_filter = 1
@@ -33,45 +35,44 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
-texture = ExtResource("2_n0t3j")
+texture = ExtResource("2_8nkoc")
 
-[node name="UI" parent="." instance=ExtResource("3_nf4me")]
+[node name="UI" parent="." instance=ExtResource("3_fhvel")]
 layout_mode = 1
 offset_top = -200.0
 
 [node name="StartBoxes" type="Node" parent="."]
 
-[node name="box" parent="StartBoxes" instance=ExtResource("4_spu1t")]
-position = Vector2(96, 720)
+[node name="box" parent="StartBoxes" instance=ExtResource("4_llwwo")]
+position = Vector2(79, 718)
 
-[node name="box2" parent="StartBoxes" instance=ExtResource("4_spu1t")]
-position = Vector2(198, 719)
+[node name="box2" parent="StartBoxes" instance=ExtResource("4_llwwo")]
+position = Vector2(181, 717)
 
-[node name="box3" parent="StartBoxes" instance=ExtResource("4_spu1t")]
-position = Vector2(147, 637)
+[node name="box3" parent="StartBoxes" instance=ExtResource("4_llwwo")]
+position = Vector2(130, 635)
 
-[node name="box4" parent="StartBoxes" instance=ExtResource("4_spu1t")]
-position = Vector2(316, 719)
+[node name="box4" parent="StartBoxes" instance=ExtResource("4_llwwo")]
+position = Vector2(299, 717)
 
-[node name="box5" parent="StartBoxes" instance=ExtResource("4_spu1t")]
-position = Vector2(398, 720)
+[node name="box5" parent="StartBoxes" instance=ExtResource("4_llwwo")]
+position = Vector2(381, 718)
 
-[node name="box6" parent="StartBoxes" instance=ExtResource("4_spu1t")]
-position = Vector2(480, 720)
+[node name="box6" parent="StartBoxes" instance=ExtResource("4_llwwo")]
+position = Vector2(463, 718)
 
 [node name="WallsAndFloor" type="StaticBody2D" parent="."]
+position = Vector2(0, 758)
 
 [node name="LeftWall" type="CollisionShape2D" parent="WallsAndFloor"]
-position = Vector2(-1, 0)
-shape = SubResource("SegmentShape2D_p7x6c")
+shape = SubResource("SegmentShape2D_e5stl")
 
 [node name="RightWall" type="CollisionShape2D" parent="WallsAndFloor"]
-position = Vector2(541, 0)
-shape = SubResource("SegmentShape2D_p7x6c")
+shape = SubResource("SegmentShape2D_qocxn")
 
 [node name="Floor" type="CollisionShape2D" parent="WallsAndFloor"]
-position = Vector2(-1, 760)
-shape = SubResource("SegmentShape2D_tdsbe")
+shape = SubResource("SegmentShape2D_1ppla")
 
+[connection signal="resized" from="." to="." method="_on_resized"]
 [connection signal="box_drop_time" from="UI" to="." method="_on_ui_box_drop_time"]
 [connection signal="word_accepted" from="UI" to="." method="_on_ui_word_accepted"]
