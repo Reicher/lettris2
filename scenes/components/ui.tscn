@@ -39,14 +39,26 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -199.0
+offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_vertical = 8
 texture = ExtResource("1_gj2ol")
 script = ExtResource("2_fb5if")
 
+[node name="Clear" type="TextureButton" parent="."]
+layout_mode = 1
+offset_left = 25.0
+offset_top = 22.0
+offset_right = 139.0
+offset_bottom = 104.0
+texture_normal = ExtResource("5_ffvsw")
+texture_pressed = ExtResource("6_nosdh")
+stretch_mode = 0
+
 [node name="Confirm" type="TextureButton" parent="."]
-layout_mode = 0
+layout_mode = 1
 offset_left = 163.0
 offset_top = 22.0
 offset_right = 515.0
@@ -72,7 +84,6 @@ layout_mode = 2
 size_flags_horizontal = 0
 text = "TESTORD"
 label_settings = SubResource("LabelSettings_h1osj")
-vertical_alignment = 1
 
 [node name="Value" type="Label" parent="Confirm/Margins"]
 layout_mode = 2
@@ -81,16 +92,6 @@ size_flags_vertical = 0
 text = "0"
 label_settings = SubResource("LabelSettings_auxey")
 horizontal_alignment = 2
-
-[node name="Clear" type="TextureButton" parent="."]
-layout_mode = 0
-offset_left = 25.0
-offset_top = 22.0
-offset_right = 139.0
-offset_bottom = 104.0
-texture_normal = ExtResource("5_ffvsw")
-texture_pressed = ExtResource("6_nosdh")
-stretch_mode = 0
 
 [node name="Score" type="Label" parent="."]
 layout_mode = 0
@@ -118,6 +119,6 @@ vertical_alignment = 1
 autostart = true
 
 [connection signal="resized" from="." to="." method="_on_resized"]
-[connection signal="pressed" from="Confirm" to="." method="_on_confirm_pressed"]
 [connection signal="pressed" from="Clear" to="." method="_on_clear_pressed"]
+[connection signal="pressed" from="Confirm" to="." method="_on_confirm_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

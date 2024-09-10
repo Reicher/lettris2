@@ -1,24 +1,24 @@
 [gd_scene load_steps=6 format=3 uid="uid://dbcbm117ug4jm"]
 
 [ext_resource type="Script" path="res://scripts/light.gd" id="1_l2v45"]
-[ext_resource type="Texture2D" uid="uid://c5hsecy1opht8" path="res://assets/lamp.png" id="2_li80j"]
+[ext_resource type="Texture2D" uid="uid://ve60blf6m3kp" path="res://assets/images/lamp.png" id="2_o7om8"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7kn3p"]
-atlas = ExtResource("2_li80j")
+[sub_resource type="AtlasTexture" id="AtlasTexture_wvqmd"]
+atlas = ExtResource("2_o7om8")
 region = Rect2(0, 0, 17, 17)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_suox8"]
-atlas = ExtResource("2_li80j")
+[sub_resource type="AtlasTexture" id="AtlasTexture_1drie"]
+atlas = ExtResource("2_o7om8")
 region = Rect2(17, 0, 17, 17)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ed8aj"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_7kn3p")
+"texture": SubResource("AtlasTexture_wvqmd")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_suox8")
+"texture": SubResource("AtlasTexture_1drie")
 }],
 "loop": true,
 "name": &"default",
@@ -31,5 +31,4 @@ script = ExtResource("1_l2v45")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_ed8aj")
-frame = 1
 frame_progress = 0.360665
