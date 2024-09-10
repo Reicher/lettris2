@@ -9,4 +9,7 @@ func _ready() -> void:
 	tent.play("open")
 
 func _on_back_button_pressed():
-	get_tree().change_scene_to_packed(main_menu)
+	print(get_tree().change_scene_to_packed(main_menu))
+	print(get_tree().change_scene_to_file("res://scenes/MainMenu.tscn"))
+
+	print("THE FUCK")

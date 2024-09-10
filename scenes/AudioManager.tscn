@@ -1,12 +1,12 @@
 [gd_scene load_steps=8 format=3 uid="uid://blkm5cun88g8b"]
 
 [ext_resource type="Script" path="res://scripts/AudioManager.gd" id="1_ndt8n"]
-[ext_resource type="AudioStream" uid="uid://c5uiicl7kjme7" path="res://assets/audio/TNS_splash.wav" id="2_8xdv4"]
-[ext_resource type="AudioStream" uid="uid://flp0xfg8hji7" path="res://assets/audio/button_click.wav" id="3_wotac"]
-[ext_resource type="AudioStream" uid="uid://ba8foj3s1wdaa" path="res://assets/audio/letter_click.wav" id="4_v2jrs"]
-[ext_resource type="AudioStream" uid="uid://c2bq607ntb0rq" path="res://assets/audio/letter_declick.wav" id="5_86lbl"]
-[ext_resource type="AudioStream" uid="uid://dcvi6h4fiw61l" path="res://assets/audio/accept.wav" id="6_2h5h4"]
-[ext_resource type="AudioStream" uid="uid://djvxt5gihypyq" path="res://assets/audio/unaccepted.wav" id="7_4c7lv"]
+[ext_resource type="AudioStream" uid="uid://cx46t446bn7jl" path="res://assets/audio/TNS_splash.wav" id="2_8xdv4"]
+[ext_resource type="AudioStream" uid="uid://c46da7c8uwu1p" path="res://assets/audio/button_click.wav" id="3_wotac"]
+[ext_resource type="AudioStream" uid="uid://cj20fpl7q1k3q" path="res://assets/audio/letter_click.wav" id="4_v2jrs"]
+[ext_resource type="AudioStream" uid="uid://dv6p2wnjswwp7" path="res://assets/audio/letter_declick.wav" id="5_86lbl"]
+[ext_resource type="AudioStream" uid="uid://577aq7mmkrky" path="res://assets/audio/accept.wav" id="6_2h5h4"]
+[ext_resource type="AudioStream" uid="uid://b6rknyj1hvqbh" path="res://assets/audio/unaccepted.wav" id="7_4c7lv"]
 
 [node name="AudioManager" type="Node"]
 script = ExtResource("1_ndt8n")
