@@ -1,0 +1,9 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://cgqbmxai5yb7f"]
+
+[ext_resource type="FontFile" uid="uid://yjlmka0depa5" path="res://assets/Dinofans.otf" id="1_tkog6"]
+
+[resource]
+font = ExtResource("1_tkog6")
+font_size = 18
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)

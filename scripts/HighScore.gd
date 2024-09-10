@@ -18,10 +18,18 @@ func _ready():
 		show_table()
 		
 func show_table():
-	for entry in Global.high_scores:
-		var label = Label.new()
-		label.text = entry["nick"] + ": " + str(entry["score"])
-		$Table.add_child(label)
+	var entry_size = 10	
+	for entry in Global.high_scores:		
+		var nick = $Table/Nick/Header.duplicate()
+		nick.text = entry["nick"]
+		nick.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		$Table/Nick.add_child(nick)
+		
+		var score = $Table/Score/Header.duplicate()
+		score.text = str(entry["score"])
+		score.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		$Table/Score.add_child(score)
+		
 	$Table.show()
 
 func _on_name_select_submit(name):
