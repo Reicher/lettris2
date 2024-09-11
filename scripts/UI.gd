@@ -1,4 +1,4 @@
-extends TextureRect
+extends NinePatchRect
 
 signal box_drop_time
 signal word_accepted(word)
@@ -8,8 +8,14 @@ const DICTIONARY_FILE_PATH: String = "res://assets/words_alpha.txt"
 var dictionary: Array = []
 var selected_boxes: Array = []
 var current_word: String = ""
-
 var best_word_score = 0
+
+# Nodes
+@onready var score_label = $MarginContainer/Info/score_num
+@onready var level_label = $MarginContainer/Info/level_num
+@onready var confirm_word_label =  $MarginContainer/Buttons/Confirm/Margins/Word
+@onready var confirm_value_label =  $MarginContainer/Buttons/Confirm/Margins/Value
+@onready var clear_button = $MarginContainer/Buttons/Clear
 
 func load_word_list(file_path: String) -> void:
 	var file: FileAccess = FileAccess.open(file_path, FileAccess.READ)
@@ -40,8 +46,8 @@ func update_score(points: int) -> void:
 	print("Time between drops: " + str(new_wait_time))
 	
 	$Timer.wait_time = new_wait_time
-	$Score.text = str(Global.score)
-	$Level.text = "Level: " + str(Global.level)
+	score_label.text = str(Global.score)
+	level_label.text = str(Global.level)
 
 func _on_timer_timeout():
 	box_drop_time.emit()
@@ -86,8 +92,8 @@ func _handle_explosions() -> void:
 
 func _update_word() -> void:
 	var points: int = _get_points(selected_boxes)
-	get_node("Confirm/Margins/Value").text = str(points) if points != 0 else ""
-	get_node("Confirm/Margins/Word").text = current_word
+	confirm_value_label.text = str(points) if points != 0 else ""
+	confirm_word_label.text = current_word
 
 func _on_clear_pressed():
 	for box in selected_boxes:

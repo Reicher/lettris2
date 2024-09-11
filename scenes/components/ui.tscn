@@ -1,6 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://nu8uwf6hxlii"]
+[gd_scene load_steps=12 format=3 uid="uid://ptgp81nsmrl"]
 
-[ext_resource type="Texture2D" uid="uid://cohdb46w6imx0" path="res://assets/images/panel.png" id="1_gj2ol"]
+[ext_resource type="Texture2D" uid="uid://dajckqcuxod52" path="res://assets/images/UI_frame.png" id="1_r8ovy"]
 [ext_resource type="Script" path="res://scripts/UI.gd" id="2_fb5if"]
 [ext_resource type="Texture2D" uid="uid://ci0c13rgnss4f" path="res://assets/images/accept.png" id="3_2uy1r"]
 [ext_resource type="Texture2D" uid="uid://tgolblali2xn" path="res://assets/images/accept-pressed.png" id="4_jrw3c"]
@@ -8,66 +8,69 @@
 [ext_resource type="Texture2D" uid="uid://keejhdcyf8qw" path="res://assets/images/clear.png" id="5_ffvsw"]
 [ext_resource type="Texture2D" uid="uid://c3clwngeibcm" path="res://assets/images/clear-pressed.png" id="6_nosdh"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_h1osj"]
+[sub_resource type="LabelSettings" id="LabelSettings_nl0jq"]
 line_spacing = 0.0
 font = ExtResource("5_662gf")
 font_size = 49
 outline_size = 7
 outline_color = Color(0, 0, 0, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_auxey"]
+[sub_resource type="LabelSettings" id="LabelSettings_lrigx"]
 font = ExtResource("5_662gf")
 font_size = 29
 outline_size = 5
 outline_color = Color(0, 0, 0, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_cpdqv"]
-font = ExtResource("5_662gf")
-font_size = 36
-outline_size = 5
-outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_l54gl"]
+[sub_resource type="LabelSettings" id="LabelSettings_wr63m"]
 font = ExtResource("5_662gf")
 font_size = 27
 outline_size = 5
 outline_color = Color(0, 0, 0, 1)
 
-[node name="UI" type="TextureRect"]
+[sub_resource type="LabelSettings" id="LabelSettings_ae6pw"]
+font = ExtResource("5_662gf")
+font_size = 27
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[node name="NinePatchRect" type="NinePatchRect"]
 texture_filter = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -199.0
-offset_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 0
-size_flags_vertical = 8
-texture = ExtResource("1_gj2ol")
+custom_minimum_size = Vector2(500, 160)
+texture = ExtResource("1_r8ovy")
+region_rect = Rect2(2, 2, 96, 96)
 script = ExtResource("2_fb5if")
 
-[node name="Clear" type="TextureButton" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
-offset_left = 25.0
-offset_top = 22.0
-offset_right = 139.0
-offset_bottom = 104.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="Buttons" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 20
+
+[node name="Clear" type="TextureButton" parent="MarginContainer/Buttons"]
+layout_mode = 2
 texture_normal = ExtResource("5_ffvsw")
 texture_pressed = ExtResource("6_nosdh")
 stretch_mode = 0
 
-[node name="Confirm" type="TextureButton" parent="."]
-layout_mode = 1
-offset_left = 163.0
-offset_top = 22.0
-offset_right = 515.0
-offset_bottom = 104.0
+[node name="Confirm" type="TextureButton" parent="MarginContainer/Buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
 texture_normal = ExtResource("3_2uy1r")
 texture_pressed = ExtResource("4_jrw3c")
 stretch_mode = 0
 
-[node name="Margins" type="MarginContainer" parent="Confirm"]
+[node name="Margins" type="MarginContainer" parent="MarginContainer/Buttons/Confirm"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -79,46 +82,50 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="Word" type="Label" parent="Confirm/Margins"]
+[node name="Word" type="Label" parent="MarginContainer/Buttons/Confirm/Margins"]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "TESTORD"
-label_settings = SubResource("LabelSettings_h1osj")
+label_settings = SubResource("LabelSettings_nl0jq")
 
-[node name="Value" type="Label" parent="Confirm/Margins"]
+[node name="Value" type="Label" parent="MarginContainer/Buttons/Confirm/Margins"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 text = "0"
-label_settings = SubResource("LabelSettings_auxey")
+label_settings = SubResource("LabelSettings_lrigx")
 horizontal_alignment = 2
 
-[node name="Score" type="Label" parent="."]
-layout_mode = 0
-offset_left = 350.0
-offset_top = 127.0
-offset_right = 517.0
-offset_bottom = 179.0
-text = "420"
-label_settings = SubResource("LabelSettings_cpdqv")
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="Info" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 8
 
-[node name="Level" type="Label" parent="."]
-layout_mode = 0
-offset_left = 24.0
-offset_top = 127.0
-offset_right = 189.0
-offset_bottom = 179.0
-text = "Level: 1"
-label_settings = SubResource("LabelSettings_l54gl")
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="level_txt" type="Label" parent="MarginContainer/Info"]
+layout_mode = 2
+text = "Level: "
+label_settings = SubResource("LabelSettings_wr63m")
+
+[node name="level_num" type="Label" parent="MarginContainer/Info"]
+layout_mode = 2
+text = "1"
+label_settings = SubResource("LabelSettings_ae6pw")
+
+[node name="Score_txt" type="Label" parent="MarginContainer/Info"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Score: "
+label_settings = SubResource("LabelSettings_wr63m")
+horizontal_alignment = 2
+
+[node name="score_num" type="Label" parent="MarginContainer/Info"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "0"
+label_settings = SubResource("LabelSettings_ae6pw")
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
 
-[connection signal="resized" from="." to="." method="_on_resized"]
-[connection signal="pressed" from="Clear" to="." method="_on_clear_pressed"]
-[connection signal="pressed" from="Confirm" to="." method="_on_confirm_pressed"]
+[connection signal="pressed" from="MarginContainer/Buttons/Clear" to="." method="_on_clear_pressed"]
+[connection signal="pressed" from="MarginContainer/Buttons/Confirm" to="." method="_on_confirm_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

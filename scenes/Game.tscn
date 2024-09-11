@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/Game.gd" id="1_k7ob8"]
 [ext_resource type="Texture2D" uid="uid://cmcigm8tdjf45" path="res://assets/images/background.png" id="2_8nkoc"]
-[ext_resource type="PackedScene" uid="uid://nu8uwf6hxlii" path="res://scenes/components/UI.tscn" id="3_fhvel"]
+[ext_resource type="PackedScene" uid="uid://ptgp81nsmrl" path="res://scenes/components/UI.tscn" id="4_2xtxi"]
 [ext_resource type="PackedScene" uid="uid://dxw5co5ucfkeo" path="res://scenes/boxes/Box.tscn" id="4_llwwo"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_e5stl"]
@@ -37,32 +37,37 @@ grow_vertical = 2
 size_flags_vertical = 3
 texture = ExtResource("2_8nkoc")
 
-[node name="UI" parent="." instance=ExtResource("3_fhvel")]
+[node name="UI" parent="." instance=ExtResource("4_2xtxi")]
 layout_mode = 1
-offset_top = -200.0
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
 
 [node name="StartBoxes" type="Node" parent="."]
 
 [node name="box" parent="StartBoxes" instance=ExtResource("4_llwwo")]
-position = Vector2(79, 718)
+position = Vector2(75, 751)
 
 [node name="box2" parent="StartBoxes" instance=ExtResource("4_llwwo")]
-position = Vector2(181, 717)
+position = Vector2(177, 750)
 
 [node name="box3" parent="StartBoxes" instance=ExtResource("4_llwwo")]
-position = Vector2(130, 635)
+position = Vector2(126, 668)
 
 [node name="box4" parent="StartBoxes" instance=ExtResource("4_llwwo")]
-position = Vector2(299, 717)
+position = Vector2(295, 750)
 
 [node name="box5" parent="StartBoxes" instance=ExtResource("4_llwwo")]
-position = Vector2(381, 718)
+position = Vector2(377, 751)
 
 [node name="box6" parent="StartBoxes" instance=ExtResource("4_llwwo")]
-position = Vector2(463, 718)
+position = Vector2(459, 751)
 
 [node name="WallsAndFloor" type="StaticBody2D" parent="."]
-position = Vector2(0, 758)
+position = Vector2(0, 800)
 
 [node name="LeftWall" type="CollisionShape2D" parent="WallsAndFloor"]
 shape = SubResource("SegmentShape2D_e5stl")
