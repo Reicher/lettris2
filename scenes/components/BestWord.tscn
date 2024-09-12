@@ -17,8 +17,8 @@ outline_size = 4
 outline_color = Color(0, 0, 0, 1)
 
 [node name="VSplitContainer" type="VSplitContainer"]
-offset_right = 120.0
-offset_bottom = 80.0
+offset_right = 135.0
+offset_bottom = 46.0
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2
@@ -32,6 +32,10 @@ texture_filter = 1
 layout_mode = 2
 texture = ExtResource("1_2klnj")
 region_rect = Rect2(0, 0, 100, 100)
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
 script = ExtResource("1_ba6sq")
 
 [node name="Best_word" type="Label" parent="NinePatchRect"]
@@ -47,7 +51,7 @@ offset_right = 46.0
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "BEST WORD"
+text = "KUKEN"
 label_settings = SubResource("LabelSettings_3sebb")
 horizontal_alignment = 1
 vertical_alignment = 1

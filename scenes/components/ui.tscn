@@ -1,23 +1,17 @@
 [gd_scene load_steps=12 format=3 uid="uid://ptgp81nsmrl"]
 
-[ext_resource type="Texture2D" uid="uid://dajckqcuxod52" path="res://assets/images/UI_frame.png" id="1_r8ovy"]
+[ext_resource type="Texture2D" uid="uid://cmwjq1p83yhgf" path="res://assets/images/9-frame.png" id="1_duwis"]
 [ext_resource type="Script" path="res://scripts/UI.gd" id="2_fb5if"]
 [ext_resource type="Texture2D" uid="uid://ci0c13rgnss4f" path="res://assets/images/accept.png" id="3_2uy1r"]
 [ext_resource type="Texture2D" uid="uid://tgolblali2xn" path="res://assets/images/accept-pressed.png" id="4_jrw3c"]
 [ext_resource type="FontFile" uid="uid://yjlmka0depa5" path="res://assets/Dinofans.otf" id="5_662gf"]
 [ext_resource type="Texture2D" uid="uid://keejhdcyf8qw" path="res://assets/images/clear.png" id="5_ffvsw"]
 [ext_resource type="Texture2D" uid="uid://c3clwngeibcm" path="res://assets/images/clear-pressed.png" id="6_nosdh"]
+[ext_resource type="LabelSettings" uid="uid://ce88av7h5dxyj" path="res://resources/UI_label_setting.tres" id="7_rnol4"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_nl0jq"]
-line_spacing = 0.0
+[sub_resource type="LabelSettings" id="LabelSettings_mnrjb"]
 font = ExtResource("5_662gf")
-font_size = 49
-outline_size = 7
-outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_lrigx"]
-font = ExtResource("5_662gf")
-font_size = 29
+font_size = 33
 outline_size = 5
 outline_color = Color(0, 0, 0, 1)
 
@@ -36,8 +30,12 @@ outline_color = Color(0, 0, 0, 1)
 [node name="NinePatchRect" type="NinePatchRect"]
 texture_filter = 1
 custom_minimum_size = Vector2(500, 160)
-texture = ExtResource("1_r8ovy")
-region_rect = Rect2(2, 2, 96, 96)
+texture = ExtResource("1_duwis")
+region_rect = Rect2(0, 0, 15, 15)
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
 script = ExtResource("2_fb5if")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -86,14 +84,15 @@ theme_override_constants/margin_bottom = 10
 layout_mode = 2
 size_flags_horizontal = 0
 text = "TESTORD"
-label_settings = SubResource("LabelSettings_nl0jq")
+label_settings = ExtResource("7_rnol4")
 
 [node name="Value" type="Label" parent="MarginContainer/Buttons/Confirm/Margins"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
+theme_override_font_sizes/font_size = 10
 text = "0"
-label_settings = SubResource("LabelSettings_lrigx")
+label_settings = SubResource("LabelSettings_mnrjb")
 horizontal_alignment = 2
 
 [node name="Info" type="HBoxContainer" parent="MarginContainer"]

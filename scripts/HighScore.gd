@@ -18,17 +18,19 @@ func _ready():
 		show_table()
 		
 func show_table():
+	print("show table!")
 	var entry_size = 10	
 	for entry in Global.high_scores:		
-		var nick = $Table/Nick/Header.duplicate()
+		print("Got scores!")
+		var nick = $Table/Header/Nick.duplicate()
 		nick.text = entry["nick"]
 		nick.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		$Table/Nick.add_child(nick)
+		$Table/Entries/Nick.add_child(nick)
 		
-		var score = $Table/Score/Header.duplicate()
+		var score = $Table/Header/Score.duplicate()
 		score.text = str(entry["score"])
 		score.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		$Table/Score.add_child(score)
+		$Table/Entries/Score.add_child(score)
 		
 	$Table.show()
 
