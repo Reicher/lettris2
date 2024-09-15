@@ -1,13 +1,13 @@
 [gd_scene load_steps=3 format=3 uid="uid://bd4f240hk4wj8"]
 
-[ext_resource type="Texture2D" uid="uid://8unjc5bolmlw" path="res://assets/images/title.png" id="1_7qmqo"]
+[ext_resource type="Texture2D" uid="uid://xkjeb3oqeip4" path="res://assets/images/logo.png" id="1_1x546"]
 [ext_resource type="PackedScene" uid="uid://dbcbm117ug4jm" path="res://scenes/components/light.tscn" id="2_73dl8"]
 
 [node name="Title" type="TextureRect"]
 texture_filter = 1
 offset_right = 40.0
 offset_bottom = 40.0
-texture = ExtResource("1_7qmqo")
+texture = ExtResource("1_1x546")
 stretch_mode = 2
 
 [node name="Light NW" parent="." instance=ExtResource("2_73dl8")]

@@ -11,11 +11,11 @@ var current_word: String = ""
 var best_word_score = 0
 
 # Nodes
-@onready var score_label = $MarginContainer/Info/score_num
-@onready var level_label = $MarginContainer/Info/level_num
-@onready var confirm_word_label =  $MarginContainer/Buttons/Confirm/Margins/Word
-@onready var confirm_value_label =  $MarginContainer/Buttons/Confirm/Margins/Value
-@onready var clear_button = $MarginContainer/Buttons/Clear
+@onready var score_label = $InnerMargin/Info/score_num
+@onready var level_label = $InnerMargin/Info/level_num
+@onready var confirm_word_label =  $InnerMargin/Buttons/Confirm/Margins/Word
+@onready var confirm_value_label =  $InnerMargin/Buttons/Confirm/Margins/Value
+@onready var clear_button = $InnerMargin/Buttons/Clear
 
 func load_word_list(file_path: String) -> void:
 	var file: FileAccess = FileAccess.open(file_path, FileAccess.READ)
