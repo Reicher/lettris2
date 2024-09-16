@@ -41,11 +41,10 @@ func update_score(points: int) -> void:
 		Global.best_word = current_word
 		best_word_score = points
 	
-	#var new_wait_time = max(0.5, 3 - 0.1 * (Global.level - 1))  
-	var new_wait_time = 0.4 # To test
+	var new_wait_time = max(0.5, 2 - 0.1 * (Global.level - 1))  
+	$Timer.wait_time = new_wait_time
 	print("Time between drops: " + str(new_wait_time))
 	
-	$Timer.wait_time = new_wait_time
 	score_label.text = str(Global.score)
 	level_label.text = str(Global.level)
 
