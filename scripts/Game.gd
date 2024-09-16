@@ -40,49 +40,31 @@ func _ready() -> void:
 		
 	resize_walls_and_floors()
 
-func initialize_box(box: Node) -> void:
+func initialize_box(box: Node2D) -> void:
 	box.add_to_group("boxes")
 	box.clicked.connect($UI.box_clicked)
-
+	
 func _get_next_box() -> Node:
-	var weights = {}
+	var good_karma_factor = (karma - MID_KARMA) / (MAX_KARMA - MID_KARMA)
+	var bad_karma_factor = (MID_KARMA - karma) / MID_KARMA
+	
+	var weights = {
+		BoxType.NORMAL: 10.0,
+		BoxType.BOMB: (1.5 if Global.level >= 5 else 0.0),
+		BoxType.SILVER: (2.0 * good_karma_factor if karma > MID_KARMA else 0.0),
+		BoxType.GOLD: (1.5 * good_karma_factor if karma > MID_KARMA else 0.0),
+		BoxType.DOUBLE: (1.0 * good_karma_factor if karma > MID_KARMA else 0.0),
+		BoxType.TRIPLE: (0.5 * good_karma_factor if karma > MID_KARMA else 0.0),
+		BoxType.BALL: (1.5 * bad_karma_factor if karma < MID_KARMA else 0.0),
+		BoxType.CASE: (1.5 * bad_karma_factor if karma < MID_KARMA else 0.0),
+		BoxType.BIG: (1.0 * bad_karma_factor if karma < MID_KARMA else 0.0),
+	}
 	var total_weight = 0.0
-
-	# Base weights for neutral boxes
-	weights[BoxType.NORMAL] = 10.0
-	weights[BoxType.BOMB] = 0.0
-
-	if Global.level >= 5:
-		weights[BoxType.BOMB] = 1.5
-
-	# Adjust weights for good boxes based on karma
-	if karma > MID_KARMA:
-		var good_karma_factor = (karma - MID_KARMA) / (MAX_KARMA - MID_KARMA)
-		weights[BoxType.SILVER] = 2.0 * good_karma_factor
-		weights[BoxType.GOLD] = 1.5 * good_karma_factor
-		weights[BoxType.DOUBLE] = 1.0 * good_karma_factor
-		weights[BoxType.TRIPLE] = 0.5 * good_karma_factor
-	else:
-		weights[BoxType.SILVER] = 0.0
-		weights[BoxType.GOLD] = 0.0
-		weights[BoxType.DOUBLE] = 0.0
-		weights[BoxType.TRIPLE] = 0.0
-
-	# Adjust weights for bad boxes based on karma
-	if karma < MID_KARMA:
-		var bad_karma_factor = (MID_KARMA - karma) / MID_KARMA
-		weights[BoxType.BALL] = 2.0 * bad_karma_factor
-		weights[BoxType.CASE] = 1.5 * bad_karma_factor
-		weights[BoxType.BIG] = 1.0 * bad_karma_factor
-	else:
-		weights[BoxType.BALL] = 0.0
-		weights[BoxType.CASE] = 0.0
-		weights[BoxType.BIG] = 0.0
 
 	# Calculate total weight
 	for weight in weights.values():
 		total_weight += weight
-
+		
 	# Randomly select a box based on weights
 	var rand_value = rng.randf_range(0, total_weight)
 	var cumulative_weight = 0.0
@@ -105,8 +87,6 @@ func _get_next_box() -> Node:
 	
 func _on_ui_box_drop_time():
 	if _check_game_over():
-		Global.score = Global.score
-		Global.best_word = Global.best_word
 		get_tree().change_scene_to_packed(game_over_scene)
 		return
 	

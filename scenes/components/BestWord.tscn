@@ -16,9 +16,10 @@ font_size = 25
 outline_size = 4
 outline_color = Color(0, 0, 0, 1)
 
-[node name="VSplitContainer" type="VSplitContainer"]
+[node name="VBoxContainer" type="VBoxContainer"]
 offset_right = 135.0
 offset_bottom = 46.0
+theme_override_constants/separation = 10
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2
