@@ -5,3 +5,4 @@
 assets/images/unused
 assets/audio/unused
 bin
+*.keystore
