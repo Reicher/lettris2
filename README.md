@@ -9,6 +9,7 @@ since i had all the game assets allready.
 ### Musts
 - Fix the design of the lower UI. 
 - Fireworks!
+- A paus when game over
 - Sounds
 	- falling block
 	- bomb

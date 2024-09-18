@@ -49,8 +49,8 @@ func _get_next_box() -> Node:
 	var bad_karma_factor = (MID_KARMA - karma) / MID_KARMA
 	
 	var weights = {
-		BoxType.NORMAL: 10.0,
-		BoxType.BOMB: (1.5 if Global.level >= 5 else 0.0),
+		BoxType.NORMAL: 3.0,
+		BoxType.BOMB: (1.0 if Global.level >= 5 else 0.0),
 		BoxType.SILVER: (2.0 * good_karma_factor if karma > MID_KARMA else 0.0),
 		BoxType.GOLD: (1.5 * good_karma_factor if karma > MID_KARMA else 0.0),
 		BoxType.DOUBLE: (1.0 * good_karma_factor if karma > MID_KARMA else 0.0),
@@ -74,9 +74,9 @@ func _get_next_box() -> Node:
 			# Adjust karma after selecting a box
 			if box_type in [BoxType.SILVER, BoxType.GOLD, 
 							BoxType.DOUBLE, BoxType.TRIPLE]:
-				karma -= 2.0  # Slightly decrease karma
+				karma -= 0.5  # Slightly decrease karma
 			elif box_type in [BoxType.BALL, BoxType.CASE, BoxType.BIG]:
-				karma += 2.0  # Slightly increase karma
+				karma += 0.5  # Slightly increase karma
 			# Clamp karma within bounds
 			karma = clamp(karma, MIN_KARMA, MAX_KARMA)
 			return box_scenes[box_type].instantiate()
