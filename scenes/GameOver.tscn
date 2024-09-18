@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cap2k70wpcutv"]
+[gd_scene load_steps=38 format=3 uid="uid://cap2k70wpcutv"]
 
 [ext_resource type="Script" path="res://scripts/GameOver.gd" id="1_n6qrp"]
 [ext_resource type="Texture2D" uid="uid://cmcigm8tdjf45" path="res://assets/images/background.png" id="2_bxkeq"]
@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://bsmhcauntsqrq" path="res://scenes/components/HighScore.tscn" id="7_hlfdv"]
 [ext_resource type="Texture2D" uid="uid://bl41afja8gntn" path="res://assets/images/game-over.png" id="8_ql0ae"]
 [ext_resource type="PackedScene" uid="uid://cee6bkso6bcso" path="res://scenes/components/CustomButton.tscn" id="9_okera"]
+[ext_resource type="Texture2D" uid="uid://c3n20o5agaa3k" path="res://assets/images/rocket.png" id="11_557kp"]
+[ext_resource type="Texture2D" uid="uid://cb7eyaawis16h" path="res://assets/images/firework-explode.png" id="12_vi74v"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ieile"]
 font = ExtResource("5_wwmfi")
@@ -94,6 +96,98 @@ animations = [{
 "name": &"open",
 "speed": 5.0
 }]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0hgbo"]
+atlas = ExtResource("11_557kp")
+region = Rect2(0, 0, 20, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_onfeu"]
+atlas = ExtResource("11_557kp")
+region = Rect2(20, 0, 20, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jjkop"]
+atlas = ExtResource("11_557kp")
+region = Rect2(40, 0, 20, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ajqt"]
+atlas = ExtResource("12_vi74v")
+region = Rect2(0, 0, 180, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_53q7o"]
+atlas = ExtResource("12_vi74v")
+region = Rect2(180, 0, 180, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nkcdp"]
+atlas = ExtResource("12_vi74v")
+region = Rect2(360, 0, 180, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y7l40"]
+atlas = ExtResource("12_vi74v")
+region = Rect2(540, 0, 180, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kfgcc"]
+atlas = ExtResource("12_vi74v")
+region = Rect2(720, 0, 180, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b30hd"]
+atlas = ExtResource("12_vi74v")
+region = Rect2(900, 0, 180, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qux5e"]
+atlas = ExtResource("12_vi74v")
+region = Rect2(1080, 0, 180, 180)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u5642"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0hgbo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_onfeu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jjkop")
+}],
+"loop": true,
+"name": &"alive",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ajqt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_53q7o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nkcdp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y7l40")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kfgcc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b30hd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qux5e")
+}],
+"loop": true,
+"name": &"dead",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_b2nq7"]
+resource_name = "RocketMove"
+length = 2.0
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vtoi4"]
+_data = {
+"RocketMove": SubResource("Animation_b2nq7")
+}
 
 [node name="GameOver" type="Control"]
 layout_mode = 3
@@ -190,5 +284,16 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 button_text = "Main Menu"
+
+[node name="Rocket" type="AnimatedSprite2D" parent="."]
+position = Vector2(249, 1020)
+sprite_frames = SubResource("SpriteFrames_u5642")
+animation = &"alive"
+autoplay = "alive"
+
+[node name="RocketAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_vtoi4")
+}
 
 [connection signal="pressed" from="Outer Margin/BackButton" to="." method="_on_back_button_pressed"]

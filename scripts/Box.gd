@@ -4,7 +4,6 @@ var DeathParticles = preload("res://scenes/components/DeathParticles.tscn")
 
 signal clicked(box)
 
-const BLAST_RADIUS: float = 130.0
 const LETTER_DATA = {
 	'A': { 'value': 1, 'quantity': 9 },  'B': { 'value': 3, 'quantity': 2 },
 	'C': { 'value': 3, 'quantity': 2 },  'D': { 'value': 2, 'quantity': 4 },
@@ -20,6 +19,8 @@ const LETTER_DATA = {
 	'W': { 'value': 4, 'quantity': 2 },  'X': { 'value': 8, 'quantity': 1 },
 	'Y': { 'value': 4, 'quantity': 2 },  'Z': { 'value': 10, 'quantity': 1 }
 }
+
+const BLAST_RADIUS: float = 130.0
 
 var is_selected: bool = false
 var explosive: bool = false
