@@ -8,12 +8,13 @@ since i had all the game assets allready.
 
 ### Musts
 - Fix the design of the lower UI. 
-- Fireworks!
+- ~~Fireworks!~~
 - A paus when game over
 - Add the pixelart-setting to alllll	
 - Sounds
 	- falling block
 	- bomb
+	- rockets
 	- etc?
 
 ### Nice to have
