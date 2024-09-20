@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bwk0yfe8x4cki"]
+[gd_scene load_steps=19 format=3 uid="uid://bwk0yfe8x4cki"]
 
 [ext_resource type="Script" path="res://scripts/MainMenu.gd" id="1_ir6i1"]
 [ext_resource type="Texture2D" uid="uid://cmcigm8tdjf45" path="res://assets/images/background.png" id="1_pglg3"]
@@ -8,6 +8,18 @@
 [ext_resource type="Texture2D" uid="uid://dedgjyx4va6yh" path="res://assets/images/sound_control.png" id="6_b6lu6"]
 [ext_resource type="Script" path="res://scripts/SoundSettings.gd" id="6_x55fq"]
 [ext_resource type="Texture2D" uid="uid://b1twuwfjquvnk" path="res://assets/images/music-control.png" id="7_3wbos"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ory0c"]
+font = ExtResource("4_adbsr")
+font_size = 22
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_o73yy"]
+font = ExtResource("4_adbsr")
+font_size = 18
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_wlqii"]
 font = ExtResource("4_adbsr")
@@ -70,24 +82,43 @@ offset_right = 195.0
 offset_bottom = 405.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 55
+theme_override_constants/separation = 11
 
 [node name="TextureRect" parent="VBoxContainer" instance=ExtResource("2_iafpb")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Credits" type="Label" parent="VBoxContainer"]
+[node name="random_label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "By: 
-Robin Reicher and David Levi"
-label_settings = SubResource("LabelSettings_wlqii")
+text = "
+
+Random info of the day: "
+label_settings = SubResource("LabelSettings_ory0c")
 horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="random_tip" type="Label" parent="VBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+text = "The red button in the lower left corner clears current word."
+label_settings = SubResource("LabelSettings_o73yy")
+horizontal_alignment = 1
+autowrap_mode = 3
 
 [node name="PlayButton" parent="VBoxContainer" instance=ExtResource("3_cxvp4")]
 layout_mode = 2
 size_flags_horizontal = 4
+size_flags_vertical = 6
 button_text = "Play"
+
+[node name="Credits" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "By: 
+Robin Reicher and David Levi"
+label_settings = SubResource("LabelSettings_wlqii")
+horizontal_alignment = 1
 
 [node name="footer" type="MarginContainer" parent="."]
 layout_mode = 1

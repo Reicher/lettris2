@@ -18,7 +18,7 @@ since i had all the game assets allready.
 	- etc?
 
 ### Nice to have
-- Add "Random tip for the day"
+- ~~Add "Random tip for the day"~~
 - Make webversion
 - Make Iphone-version
 
