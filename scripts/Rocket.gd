@@ -18,8 +18,4 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 
 func _on_AnimatedSprite2D_animation_finished():
 	if $AnimatedSprite2D.animation == "dead":
-		# Hide the rocket sprite or remove it from the scene
-		# Option 1: Hide the node
-		$AnimatedSprite2D.hide()
-		# Option 2: Remove the entire rocket node from the scene
-		# self.queue_free()
+		self.queue_free()
