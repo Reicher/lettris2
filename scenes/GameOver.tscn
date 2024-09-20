@@ -176,6 +176,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="HighScore" parent="Outer Margin/Inner Margin/Most inner" instance=ExtResource("7_hlfdv")]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
@@ -187,6 +188,7 @@ size_flags_vertical = 0
 texture = ExtResource("8_ql0ae")
 
 [node name="BackButton" parent="Outer Margin" instance=ExtResource("9_okera")]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
