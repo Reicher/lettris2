@@ -7,7 +7,7 @@ since i had all the game assets allready.
 ## Todos
 
 ### Musts
-- Fix the design of the lower UI. 
+- ~~Fix the design of the lower UI. ~~
 - ~~Fireworks!~~
 - ~~A paus when game over~~
 - Add the pixelart-setting to alllll	
@@ -19,7 +19,7 @@ since i had all the game assets allready.
 
 ### Nice to have
 - ~~Add "Random tip for the day"~~
-- Make webversion
+- ~~Make webversion ~~
 - Make Iphone-version
 
 ### When all is done
