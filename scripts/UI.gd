@@ -11,8 +11,8 @@ var current_word: String = ""
 var best_word_score = 0
 
 # Nodes
-@onready var score_label = $OuterMargin/InnerMargin/Info/score_num
-@onready var level_label = $OuterMargin/InnerMargin/Info/level_num
+@onready var score_label = $LowerInfo/HBoxContainer/Scorebox/MarginContainer/Info/score_num
+@onready var level_label = $LowerInfo/HBoxContainer/Levelbox/MarginContainer/Info/level_num
 @onready var confirm_word_label =  $OuterMargin/InnerMargin/Buttons/Confirm/Margins/Word
 @onready var confirm_value_label =  $OuterMargin/InnerMargin/Buttons/Confirm/Margins/Value
 @onready var clear_button = $OuterMargin/InnerMargin/Buttons/Clear

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://ptgp81nsmrl"]
+[gd_scene load_steps=14 format=3 uid="uid://ptgp81nsmrl"]
 
 [ext_resource type="Texture2D" uid="uid://cmwjq1p83yhgf" path="res://assets/images/9-frame.png" id="1_duwis"]
 [ext_resource type="Script" path="res://scripts/UI.gd" id="2_fb5if"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://c3clwngeibcm" path="res://assets/images/clear-pressed.png" id="6_nosdh"]
 [ext_resource type="LabelSettings" uid="uid://ce88av7h5dxyj" path="res://resources/UI_label_setting.tres" id="7_rnol4"]
 [ext_resource type="PackedScene" uid="uid://dbcbm117ug4jm" path="res://scenes/components/light.tscn" id="9_gb6r7"]
+[ext_resource type="Texture2D" uid="uid://dr4w6jqjbg0tk" path="res://assets/images/9frame_bottom.png" id="10_33dyy"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_mnrjb"]
 font = ExtResource("5_662gf")
@@ -188,8 +189,11 @@ theme_override_constants/margin_bottom = 10
 [node name="Word" type="Label" parent="OuterMargin/InnerMargin/Buttons/Confirm/Margins"]
 layout_mode = 2
 size_flags_horizontal = 0
+size_flags_vertical = 1
 text = "TESTORD"
 label_settings = ExtResource("7_rnol4")
+vertical_alignment = 2
+uppercase = true
 
 [node name="Value" type="Label" parent="OuterMargin/InnerMargin/Buttons/Confirm/Margins"]
 layout_mode = 2
@@ -200,40 +204,103 @@ text = "0"
 label_settings = SubResource("LabelSettings_mnrjb")
 horizontal_alignment = 2
 
-[node name="Info" type="HBoxContainer" parent="OuterMargin/InnerMargin"]
-layout_mode = 2
-size_flags_vertical = 8
-
-[node name="level_txt" type="Label" parent="OuterMargin/InnerMargin/Info"]
-layout_mode = 2
-text = "Level: "
-label_settings = SubResource("LabelSettings_wr63m")
-
-[node name="level_num" type="Label" parent="OuterMargin/InnerMargin/Info"]
-layout_mode = 2
-text = "1"
-label_settings = SubResource("LabelSettings_ae6pw")
-
-[node name="Score_txt" type="Label" parent="OuterMargin/InnerMargin/Info"]
-layout_mode = 2
-size_flags_horizontal = 10
-text = "Score: "
-label_settings = SubResource("LabelSettings_wr63m")
-horizontal_alignment = 2
-
-[node name="score_num" type="Label" parent="OuterMargin/InnerMargin/Info"]
-layout_mode = 2
-size_flags_horizontal = 8
-text = "0"
-label_settings = SubResource("LabelSettings_ae6pw")
-
 [node name="Timer" type="Timer" parent="."]
 autostart = true
 
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="LowerInfo" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -50.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 45
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 45
+
+[node name="HBoxContainer" type="HBoxContainer" parent="LowerInfo"]
+layout_mode = 2
+theme_override_constants/separation = 100
+
+[node name="Levelbox" type="NinePatchRect" parent="LowerInfo/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("10_33dyy")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="LowerInfo/HBoxContainer/Levelbox"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="Info" type="HBoxContainer" parent="LowerInfo/HBoxContainer/Levelbox/MarginContainer"]
+layout_mode = 2
+
+[node name="level_txt" type="Label" parent="LowerInfo/HBoxContainer/Levelbox/MarginContainer/Info"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+text = "Level: "
+label_settings = SubResource("LabelSettings_wr63m")
+
+[node name="level_num" type="Label" parent="LowerInfo/HBoxContainer/Levelbox/MarginContainer/Info"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+text = "1"
+label_settings = SubResource("LabelSettings_ae6pw")
+horizontal_alignment = 2
+
+[node name="Scorebox" type="NinePatchRect" parent="LowerInfo/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("10_33dyy")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="LowerInfo/HBoxContainer/Scorebox"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="Info" type="HBoxContainer" parent="LowerInfo/HBoxContainer/Scorebox/MarginContainer"]
+layout_mode = 2
+
+[node name="Score_txt" type="Label" parent="LowerInfo/HBoxContainer/Scorebox/MarginContainer/Info"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+text = "Score: "
+label_settings = SubResource("LabelSettings_wr63m")
+
+[node name="score_num" type="Label" parent="LowerInfo/HBoxContainer/Scorebox/MarginContainer/Info"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+text = "0"
+label_settings = SubResource("LabelSettings_ae6pw")
+horizontal_alignment = 2
 
 [connection signal="pressed" from="OuterMargin/InnerMargin/Buttons/Clear" to="." method="_on_clear_pressed"]
 [connection signal="pressed" from="OuterMargin/InnerMargin/Buttons/Confirm" to="." method="_on_confirm_pressed"]
