@@ -11,16 +11,36 @@ texture = ExtResource("1_1x546")
 stretch_mode = 2
 
 [node name="Light NW" parent="." instance=ExtResource("2_73dl8")]
-position = Vector2(12.5, 12.5)
+layout_mode = 1
+offset_left = 12.5
+offset_top = 12.5
+offset_right = 12.5
+offset_bottom = 12.5
 
 [node name="Light NE" parent="." instance=ExtResource("2_73dl8")]
-position = Vector2(354.5, 12.5)
+layout_mode = 1
+offset_left = 354.5
+offset_top = 12.5
+offset_right = 354.5
+offset_bottom = 12.5
 
 [node name="Light SW" parent="." instance=ExtResource("2_73dl8")]
-position = Vector2(12.5, 179.5)
+layout_mode = 1
+offset_left = 12.5
+offset_top = 179.5
+offset_right = 12.5
+offset_bottom = 179.5
 
 [node name="Light SE" parent="." instance=ExtResource("2_73dl8")]
-position = Vector2(354.5, 179.5)
+layout_mode = 1
+offset_left = 354.5
+offset_top = 179.5
+offset_right = 354.5
+offset_bottom = 179.5
 
 [node name="Light i" parent="." instance=ExtResource("2_73dl8")]
-position = Vector2(265.5, 21.5)
+layout_mode = 1
+offset_left = 265.5
+offset_top = 21.5
+offset_right = 265.5
+offset_bottom = 21.5

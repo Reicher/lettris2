@@ -12,6 +12,7 @@ outline_size = 1
 outline_color = Color(0, 0, 0, 1)
 
 [node name="Button" type="TextureButton"]
+texture_filter = 1
 offset_right = 210.0
 offset_bottom = 70.0
 mouse_filter = 1

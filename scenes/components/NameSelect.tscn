@@ -22,6 +22,7 @@ theme_override_constants/v_separation = 10
 columns = 3
 
 [node name="Up1" type="TextureButton" parent="GridContainer"]
+texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -29,6 +30,7 @@ texture_normal = ExtResource("2_mk3xv")
 texture_pressed = ExtResource("3_jh3t5")
 
 [node name="Up2" type="TextureButton" parent="GridContainer"]
+texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -36,6 +38,7 @@ texture_normal = ExtResource("2_mk3xv")
 texture_pressed = ExtResource("3_jh3t5")
 
 [node name="Up3" type="TextureButton" parent="GridContainer"]
+texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -43,6 +46,7 @@ texture_normal = ExtResource("2_mk3xv")
 texture_pressed = ExtResource("3_jh3t5")
 
 [node name="Box1" type="TextureRect" parent="GridContainer"]
+texture_filter = 1
 layout_mode = 2
 texture = ExtResource("4_di1tq")
 
@@ -65,6 +69,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Box2" type="TextureRect" parent="GridContainer"]
+texture_filter = 1
 layout_mode = 2
 texture = ExtResource("4_di1tq")
 
@@ -87,6 +92,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Box3" type="TextureRect" parent="GridContainer"]
+texture_filter = 1
 layout_mode = 2
 texture = ExtResource("4_di1tq")
 
@@ -109,6 +115,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Down1" type="TextureButton" parent="GridContainer"]
+texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -117,6 +124,7 @@ texture_pressed = ExtResource("3_jh3t5")
 flip_v = true
 
 [node name="Down2" type="TextureButton" parent="GridContainer"]
+texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -125,6 +133,7 @@ texture_pressed = ExtResource("3_jh3t5")
 flip_v = true
 
 [node name="Down3" type="TextureButton" parent="GridContainer"]
+texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4

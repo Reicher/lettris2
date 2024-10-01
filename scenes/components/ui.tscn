@@ -162,12 +162,14 @@ size_flags_vertical = 0
 theme_override_constants/separation = 20
 
 [node name="Clear" type="TextureButton" parent="OuterMargin/InnerMargin/Buttons"]
+texture_filter = 1
 layout_mode = 2
 texture_normal = ExtResource("5_ffvsw")
 texture_pressed = ExtResource("6_nosdh")
 stretch_mode = 0
 
 [node name="Confirm" type="TextureButton" parent="OuterMargin/InnerMargin/Buttons"]
+texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 3
 texture_normal = ExtResource("3_2uy1r")
@@ -225,6 +227,7 @@ layout_mode = 2
 theme_override_constants/separation = 100
 
 [node name="Levelbox" type="NinePatchRect" parent="LowerInfo/HBoxContainer"]
+texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 3
 texture = ExtResource("10_33dyy")
@@ -264,6 +267,7 @@ label_settings = SubResource("LabelSettings_ae6pw")
 horizontal_alignment = 2
 
 [node name="Scorebox" type="NinePatchRect" parent="LowerInfo/HBoxContainer"]
+texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 3
 texture = ExtResource("10_33dyy")
