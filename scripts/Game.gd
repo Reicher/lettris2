@@ -24,12 +24,13 @@ var box_scenes: Dictionary = {
 	BoxType.TRIPLE: preload("res://scenes/boxes/Triple.tscn")
 }
 
-const KARMA_THRESHOLD: float = 3.3
-const MAX_KARMA: float = 20.0
+const KARMA_THRESHOLD: float = 3.5 # word length more than this -> good karma
+const KARMA_NORMALIZE: float = 0.05 # How much we drift toward normal per drop
+const MAX_KARMA: float = 10.0
 const MIN_KARMA: float = 0.0
-const MID_KARMA: float = 10.0
+const MID_KARMA: float = (MAX_KARMA + MIN_KARMA) / 2
 
-@export var karma: float = 10
+@export var karma: float = MID_KARMA
 var game_over_scene: PackedScene = preload("res://scenes/GameOver.tscn")
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
@@ -43,48 +44,62 @@ func _ready() -> void:
 func initialize_box(box: Node2D) -> void:
 	box.add_to_group("boxes")
 	box.clicked.connect($UI.box_clicked)
+
+func get_box_type_name(box_type):
+	return str(box_type).replace("BoxType.", "")
+
+func calculate_weights() -> Dictionary:
+	var good_karma_factor = abs((karma - MID_KARMA) / (MAX_KARMA - MID_KARMA))
+	var bad_karma_factor = abs((MID_KARMA - karma) / MID_KARMA)
 	
-func _get_next_box() -> Node:
-	var good_karma_factor = (karma - MID_KARMA) / (MAX_KARMA - MID_KARMA)
-	var bad_karma_factor = (MID_KARMA - karma) / MID_KARMA
-	
-	var weights = {
+	return {
 		BoxType.NORMAL: 3.0,
-		BoxType.BOMB: (1.0 if Global.level >= 5 else 0.0),
+		BoxType.BOMB: (0.5 if Global.level >= 5 else 0.0),
 		BoxType.SILVER: (2.0 * good_karma_factor if karma > MID_KARMA else 0.0),
 		BoxType.GOLD: (1.5 * good_karma_factor if karma > MID_KARMA else 0.0),
-		BoxType.DOUBLE: (1.0 * good_karma_factor if karma > MID_KARMA else 0.0),
-		BoxType.TRIPLE: (0.5 * good_karma_factor if karma > MID_KARMA else 0.0),
+		BoxType.DOUBLE: (0.4 * good_karma_factor if karma > MID_KARMA else 0.0),
+		BoxType.TRIPLE: (0.2 * good_karma_factor if karma > MID_KARMA else 0.0),
 		BoxType.BALL: (1.5 * bad_karma_factor if karma < MID_KARMA else 0.0),
 		BoxType.CASE: (1.5 * bad_karma_factor if karma < MID_KARMA else 0.0),
 		BoxType.BIG: (1.0 * bad_karma_factor if karma < MID_KARMA else 0.0),
 	}
-	var total_weight = 0.0
 
-	# Calculate total weight
-	for weight in weights.values():
-		total_weight += weight
-		
-	# Randomly select a box based on weights
+func print_drop_chances(weights, total_weight):
+	print("Drop Chances:")
+	for box_type in weights.keys():
+		var weight = weights[box_type]
+		if weight > 0:
+			var percentage = (weight / total_weight) * 100
+			var box_type_name = get_box_type_name(box_type)
+			print("  " + box_type_name + ": " + str(round(percentage)) + "%")
+
+func select_box(weights, total_weight) -> Node:
 	var rand_value = rng.randf_range(0, total_weight)
 	var cumulative_weight = 0.0
-	for box_type in weights.keys():
+	var sorted_box_types = weights.keys()
+	sorted_box_types.sort()
+	for box_type in sorted_box_types:
 		cumulative_weight += weights[box_type]
 		if rand_value <= cumulative_weight:
-			# Adjust karma after selecting a box
-			if box_type in [BoxType.SILVER, BoxType.GOLD, 
-							BoxType.DOUBLE, BoxType.TRIPLE]:
-				karma -= 0.5  # Slightly decrease karma
-			elif box_type in [BoxType.BALL, BoxType.CASE, BoxType.BIG]:
-				karma += 0.5  # Slightly increase karma
-			# Clamp karma within bounds
-			karma = clamp(karma, MIN_KARMA, MAX_KARMA)
 			return box_scenes[box_type].instantiate()
-
-	# Default to normal box if none selected
 	return box_scenes[BoxType.NORMAL].instantiate()
 
-	
+func _get_next_box() -> Node:
+	karma = move_toward(karma, MID_KARMA, KARMA_NORMALIZE) 	# Normalize karma towards MID_KARMA
+	karma = clamp(karma, MIN_KARMA, MAX_KARMA) # Clamp karma within bounds
+
+	# Calculate weights
+	var weights = calculate_weights()
+	var total_weight = weights.values().reduce(func(accum, number): return accum + number)
+
+	# Print drop chances
+	print_drop_chances(weights, total_weight)
+
+	# Select and return the box
+	var box = select_box(weights, total_weight)
+
+	return box
+
 func _on_ui_box_drop_time():
 	if _check_game_over():
 		get_tree().change_scene_to_packed(game_over_scene)
@@ -106,9 +121,7 @@ func _check_game_over() -> bool:
 func _on_ui_word_accepted(word):
 	var karma_change = (word.length() - KARMA_THRESHOLD)
 	karma += karma_change
-	karma = clamp(karma, MIN_KARMA, MAX_KARMA)
-	
-	print("karma right now:" + str(karma))
+	karma = clamp(karma, MIN_KARMA, MAX_KARMA)	
 	
 func _on_resized():
 	resize_walls_and_floors()
