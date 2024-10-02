@@ -12,10 +12,11 @@ since i had all the game assets allready.
 - ~~A paus when game over~~
 - ~~Add the pixelart-setting to alllll~~
 - Sounds
-	- falling block
-	- bomb
-	- rockets
-	- etc?
+	- [ ] Music
+	- [ ] Box destroy?
+	- [ ] Fanfare
+	- [ ] fireworks
+	- [ ] Bomb destroy
 
 ### Nice to have
 - ~~Add "Random tip for the day"~~
