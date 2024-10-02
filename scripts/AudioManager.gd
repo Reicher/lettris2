@@ -5,4 +5,7 @@ extends Node
 @onready var letter_select = $LetterSelect
 @onready var letter_deselect = $LetterDeselect
 @onready var word_accepted = $WordAccepted
-@onready var word_not_accepted = $AudioStreamPlayer
+@onready var word_not_accepted = $WordRejected
+@onready var fanfare = $Fanfare
+@onready var firework = $Firework
+@onready var bomb = $Bomb

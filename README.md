@@ -14,9 +14,9 @@ since i had all the game assets allready.
 - Sounds
 	- Music
 	- Box destroy?
-	- Fanfare
-	- fireworks
-	- Bomb destroy
+	- ~~ Fanfare ~~
+	- ~~ fireworks ~~
+	- ~~ Bomb destroy ~~
 
 ### Nice to have
 - ~~Add "Random tip for the day"~~
@@ -26,3 +26,8 @@ since i had all the game assets allready.
 ### When all is done
 * Tuning
 * Put up on play store??!
+
+### BuGs?!
+* Best word shows wrong word and is not scaled? 
+* Accepted wordlist fucked
+* 

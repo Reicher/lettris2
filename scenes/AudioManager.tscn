@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://blkm5cun88g8b"]
+[gd_scene load_steps=11 format=3 uid="uid://blkm5cun88g8b"]
 
 [ext_resource type="Script" path="res://scripts/AudioManager.gd" id="1_ndt8n"]
 [ext_resource type="AudioStream" uid="uid://cx46t446bn7jl" path="res://assets/audio/TNS_splash.wav" id="2_8xdv4"]
@@ -7,6 +7,9 @@
 [ext_resource type="AudioStream" uid="uid://dv6p2wnjswwp7" path="res://assets/audio/letter_declick.wav" id="5_86lbl"]
 [ext_resource type="AudioStream" uid="uid://577aq7mmkrky" path="res://assets/audio/accept.wav" id="6_2h5h4"]
 [ext_resource type="AudioStream" uid="uid://b6rknyj1hvqbh" path="res://assets/audio/unaccepted.wav" id="7_4c7lv"]
+[ext_resource type="AudioStream" uid="uid://bm428coslqppn" path="res://assets/audio/fanfare.wav" id="8_20uj7"]
+[ext_resource type="AudioStream" uid="uid://108fh6kei3hy" path="res://assets/audio/fireworks.wav" id="9_kgtmf"]
+[ext_resource type="AudioStream" uid="uid://dbkgsguejojhw" path="res://assets/audio/bomb.wav" id="10_xuxtl"]
 
 [node name="AudioManager" type="Node"]
 script = ExtResource("1_ndt8n")
@@ -31,6 +34,18 @@ bus = &"Sfx"
 stream = ExtResource("6_2h5h4")
 bus = &"Sfx"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="WordRejected" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_4c7lv")
+bus = &"Sfx"
+
+[node name="Fanfare" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_20uj7")
+bus = &"Sfx"
+
+[node name="Firework" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_kgtmf")
+bus = &"Sfx"
+
+[node name="Bomb" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_xuxtl")
 bus = &"Sfx"

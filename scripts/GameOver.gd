@@ -18,6 +18,8 @@ func _ready() -> void:
 func _on_tent_door_finished() -> void:
 	$"Outer Margin/BackButton".visible = true
 	$"Outer Margin/Inner Margin/Most inner/HighScore".visible = true
+	AudioManager.fanfare.play()
+
 
 func _on_back_button_pressed():
 	get_tree().change_scene_to_file("res://scenes/MainMenu.tscn")

@@ -100,10 +100,13 @@ func set_selected(status: bool) -> void:
 func destroy() -> void:
 	set_selected(false)
 	$Letter.visible = false
-	self.collision_layer = 0
+	self.collision_layer = 0	
 
 	$AnimatedSprite.play("Death")
 	$AnimatedSprite.animation_finished.connect(destroy_done)
+	
+	if scene_file_path.contains("Bomb"):
+		AudioManager.bomb.play()
 	
 	for emitter in emitters:
 		emitter.restart()

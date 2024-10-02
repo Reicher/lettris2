@@ -14,6 +14,7 @@ func fire_to_the_right() -> void:
 
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == "fire_left" or anim_name == "fire_right":
+		AudioManager.firework.play()
 		$AnimatedSprite2D.play("dead")
 
 func _on_AnimatedSprite2D_animation_finished():
